@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
         if(token) {
           this._auth.fetchProfile()
             .toPromise().then(() => {
-            this._router.navigateByUrl('products');
+            this._router.navigateByUrl('');
           });
         } else {
           //TOdo fix this
