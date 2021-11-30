@@ -1,1 +1,13 @@
+<p>
+  <mat-toolbar>
+    <a routerLink=""><span>Ruds Fashion</span></a>
+    <span class="example-spacer"></span>
+    <div *ngIf="profile$ | async as profile" style="float: right">
+      <span class="ost">Welcome {{profile.name}}</span>
+      <button style="margin-left:15px"
+        (click)="logout()"
+        class="float-right">Logout</button>
+    </div>
+  </mat-toolbar>
+</p>
 <router-outlet></router-outlet>
