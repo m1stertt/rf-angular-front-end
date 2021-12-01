@@ -1,1 +1,10 @@
-<p>product-create works!</p>
+<div *ngIf="product">
+
+  <div>
+    <label for="product-name">Product name: </label>
+    <input id="product-name" [(ngModel)]="product.name" placeholder="name">
+    <button (click)="create()">Create</button>
+  </div>
+
+</div>
+<button (click)="goBack()">go back</button>
