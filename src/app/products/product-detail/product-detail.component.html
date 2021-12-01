@@ -1,1 +1,12 @@
-<p>product-detail works!</p>
+<div *ngIf="product">
+
+  <h2>{{product.productName | uppercase}} Details</h2>
+  <div><span>id: </span>{{product.id}}</div>
+  <div>
+    <label for="product-name">Product name: </label>
+    <input id="product-name" [(ngModel)]="product.productName" placeholder="name">
+    <button (click)="update()">Update</button>
+  </div>
+
+</div>
+<button (click)="goBack()">go back</button>
