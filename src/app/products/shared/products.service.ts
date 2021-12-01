@@ -27,7 +27,7 @@ export class ProductsService {
   //   return this._http.put<ProductDto>('https://localhost:5001/api/Product/' + product.id, product)
   // }
   //
-  // create(product: ProductDto): Observable<ProductDto> {
-  //   return this._http.post<ProductDto>('https://localhost:5001/api/Product', product)
-  // }
+  create(product: ProductDto): Observable<ProductDto> {
+    return this._http.post<ProductDto>('https://localhost:5001/api/Product', product)
+  }
 }
