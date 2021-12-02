@@ -11,6 +11,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   padding-left:10px;
 }
 
+@media only screen and (max-width: 600px) {
+  .megamenu {
+    top:56px;
+  }
+}
+
 .megamenu-item{
   width:100px !important;
   display:inline !important;
