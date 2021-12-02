@@ -24,7 +24,7 @@ export class ProductsGridComponent implements OnInit {
               private router: Router){}
 
   ngOnInit(): void {
-    this.breakpoint = (window.innerWidth <= 400) ? 1 : 2;
+    this.breakpoint = (window.innerWidth <= 400) ? 1 : 3;
     this.updateList()
 
   }
@@ -43,7 +43,7 @@ export class ProductsGridComponent implements OnInit {
   }
 
   onResize(event: any) {
-    this.breakpoint = (event.target.innerWidth <= 400) ? 1 : 2;
+    this.breakpoint = (event.target.innerWidth <= 400) ? 1 : 3;
   }
 
 
