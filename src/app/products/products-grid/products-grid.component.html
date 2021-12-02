@@ -1,0 +1,12 @@
+<div class="products-grid">
+  <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+  <mat-grid-list cols="4" rowHeight="1.5:1" gutterSize='15px' >>
+
+    <ng-container *ngFor="let productDto of products">
+      <mat-grid-tile>
+        {{ productDto.productName}}
+        {{ productDto.id}}
+      </mat-grid-tile>
+    </ng-container>
+  </mat-grid-list>
+</div>

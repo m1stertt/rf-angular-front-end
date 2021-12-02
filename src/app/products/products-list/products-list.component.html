@@ -27,6 +27,8 @@
     <tr mat-row (click)="clickedProduct = row" *matRowDef="let row; columns: ['id','name','actions']"></tr>
   </table>
 
+
+
   <div *ngIf="clickedProduct!=undefined">
     {{clickedProduct.id}} {{clickedProduct.productName}}
   </div>
