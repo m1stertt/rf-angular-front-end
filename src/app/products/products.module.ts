@@ -10,7 +10,10 @@ import {MatListModule} from '@angular/material/list';
 import {MatTableModule} from '@angular/material/table';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductCreateComponent } from './product-create/product-create.component';
-import { ProducstsGridComponent } from './producsts-grid/producsts-grid.component';
+import {ProductsGridComponent} from "./producsts-grid/products-grid.component";
+import {MatGridListModule} from "@angular/material/grid-list";
+import {MatPaginatorModule} from "@angular/material/paginator";
+
 
 
 @NgModule({
@@ -18,7 +21,7 @@ import { ProducstsGridComponent } from './producsts-grid/producsts-grid.componen
     ProductsListComponent,
     ProductDetailComponent,
     ProductCreateComponent,
-    ProducstsGridComponent,
+    ProductsGridComponent,
   ],
   imports: [
     CommonModule,
@@ -28,6 +31,8 @@ import { ProducstsGridComponent } from './producsts-grid/producsts-grid.componen
     MatIconModule,
     MatListModule,
     MatTableModule,
+    MatGridListModule,
+    MatPaginatorModule,
   ]
 })
 export class ProductsModule { }
