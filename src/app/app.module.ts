@@ -8,21 +8,29 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthInterceptor } from './auth/interceptors/auth.interceptor';
 import { AuthService } from './auth/shared/auth.service';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { MenuComponent } from './menu/menu.component';
+import { CategoriesService } from './categories/shared/categories.service';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatButtonModule} from '@angular/material/button';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatMenuModule,
+    MatButtonModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
-    ,AuthService,AppComponent],
+    ,AuthService,AppComponent,CategoriesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

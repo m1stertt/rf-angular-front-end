@@ -11,7 +11,10 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module')
       .then(m => m.AuthModule)
   },
-  { path: '**',redirectTo: '/products'}
+  {path: 'category', loadChildren: () =>
+    import('./categories/categories.module')
+      .then(f => f.CategoriesModule)}
+  //{ path: '**',redirectTo: '/products'}
 ];
 
 @NgModule({
