@@ -29,7 +29,7 @@ export class AppComponent {
     this._authService.logout()
       .subscribe(succes => {
         if(succes) {
-          this._router.navigateByUrl('/auth/login');
+          this._router.navigateByUrl('/');
         }
       });
   }
