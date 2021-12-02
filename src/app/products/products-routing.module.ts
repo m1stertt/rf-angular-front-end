@@ -7,6 +7,7 @@ import {ProductDetailComponent} from "./product-detail/product-detail.component"
 
 const routes: Routes = [
   {path: '', component: ProductsListComponent},
+
   {path: 'create', component: ProductCreateComponent, canActivate:[WriteProductsGuard] }, // Create Product
   {path: ':id', component: ProductDetailComponent, canActivate:[WriteProductsGuard] } // Update Product
 ];
