@@ -2,3 +2,21 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.megamenu {
+  min-width:100% !important;
+  position:fixed;
+  left:0px;
+  top:64px;
+  padding-left:10px;
+}
+
+.megamenu-item{
+  width:100px !important;
+  display:inline !important;
+  text-align:center !important;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}

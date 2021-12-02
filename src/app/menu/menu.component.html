@@ -1,0 +1,21 @@
+<mat-toolbar color="primary">
+  <span><a routerLink="">Ruds Fashion</a></span>
+  <button mat-button [matMenuTriggerFor]="menu" class="my-full-width-menu">Kategorier</button>
+  <mat-menu class="megamenu" #menu="matMenu">
+    <h2>Kategorier</h2>
+    <button mat-menu-item class="megamenu-item" *ngFor="let category of categories">{{category.name}}</button>
+  </mat-menu>
+  <span class="example-spacer"></span>
+  <div *ngIf="this.appComponent.profile$ | async as profile else loggedOut" style="float: right">
+    <span class="ost">Welcome {{profile.name}}</span>
+    <button mat-menu-item style="margin-left:15px"
+      (click)="this.appComponent.logout()"
+      class="float-right">Logout</button>
+  </div>
+  <ng-template #loggedOut>
+    <div style="float: right">
+      <button mat-menu-item style="margin-left:15px"
+        routerLink="/auth/login" >Login</button>
+    </div>
+  </ng-template>
+</mat-toolbar>
