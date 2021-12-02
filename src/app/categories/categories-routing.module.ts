@@ -5,7 +5,7 @@ import {CategoriesDetailComponent} from "./categories-detail/categories-detail.c
 
 const routes: Routes = [
   {path: '', component: CategoriesListComponent},
-  {path: ':id', component: CategoriesDetailComponent } //Update
+  {path: ':id', component: CategoriesDetailComponent }
 ];
 
 @NgModule({
