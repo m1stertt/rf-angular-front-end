@@ -10,6 +10,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatTableModule} from '@angular/material/table';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductCreateComponent } from './product-create/product-create.component';
+import { ProducstsGridComponent } from './producsts-grid/producsts-grid.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { ProductCreateComponent } from './product-create/product-create.componen
     ProductsListComponent,
     ProductDetailComponent,
     ProductCreateComponent,
+    ProducstsGridComponent,
   ],
   imports: [
     CommonModule,
