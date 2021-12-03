@@ -35,7 +35,7 @@ export class ProductsGridComponent implements OnInit {
         this.products = products;
       });
   }
-
+  
   public getPaginatorData(event: PageEvent): PageEvent {
     this.lowValue = event.pageIndex * event.pageSize;
     this.highValue = this.lowValue + event.pageSize;

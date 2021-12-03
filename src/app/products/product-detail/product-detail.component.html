@@ -5,6 +5,13 @@
   <div>
     <label for="product-name">Product name: </label>
     <input id="product-name" [(ngModel)]="product.productName" placeholder="name">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Edit categories</mat-label>
+      <mat-select [formControl]="categories_" multiple>
+        <mat-option *ngFor="let category of categories">{{category.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>    
     <button (click)="update()">Update</button>
   </div>
 
