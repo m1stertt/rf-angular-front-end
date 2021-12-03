@@ -15,7 +15,7 @@ export class CategoriesService {
     return this._http.get<CategoryDto[]>('https://localhost:5001/api/Category');
   }
 
-  getCategoryProducts(id: number): Observable<ProductDto[]> {
-    return this._http.get<ProductDto[]>('https://localhost:5001/api/Category/' + id);
+  getCategory(id: number): Observable<CategoryDto> {
+    return this._http.get<CategoryDto>('https://localhost:5001/api/Category/' + id);
   }
 }

@@ -34,7 +34,11 @@ export class ProductDetailComponent implements OnInit {
   getProduct(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.productsService.getProduct(id)
-      .subscribe(product => this.product = product);
+      .subscribe(product =>{
+        this.product = product;
+        this.categories_=new FormControl(this.product.categories);
+        console.log(product);
+      });
   }
   getCategories(): void {
     this.categoriesService.getAll()
@@ -48,11 +52,15 @@ export class ProductDetailComponent implements OnInit {
   update() {
     if (this.product) {
       this.productsService.updateProduct(this.product).subscribe(() => {
-          this.location.back();
+          //this.location.back();
         },
         error => {
           console.log(error)
         });
     }
+  }
+
+  compareWithFunc(a: CategoryDto, b:CategoryDto) {
+    return a.id === b.id;
   }
 }

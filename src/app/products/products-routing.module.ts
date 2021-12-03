@@ -11,7 +11,7 @@ const routes: Routes = [
   {path: '', component: ProductsListComponent},
   {path: 'gridview', component: ProductsGridComponent},
   {path: 'create', component: ProductCreateComponent, canActivate:[AdminGuard,CanManageProductsGuard] }, // Create Product
-  {path: ':id', component: ProductDetailComponent, canActivate:[CanManageProductsGuard] } // Update Product
+  {path: ':id', component: ProductDetailComponent } // Update Product
 ];
 
 @NgModule({
