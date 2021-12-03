@@ -12,7 +12,7 @@ import { MenuComponent } from './menu/menu.component';
 import { CategoriesService } from './categories/shared/categories.service';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -27,6 +27,7 @@ import {MatButtonModule} from '@angular/material/button';
     MatToolbarModule,
     MatMenuModule,
     MatButtonModule,
+    NgxPaginationModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
