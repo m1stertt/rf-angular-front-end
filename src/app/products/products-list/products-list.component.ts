@@ -28,7 +28,7 @@ export class ProductsListComponent implements OnInit {
   }
 
   updateList(): void {
-    this._productService.getAll()
+    this._productService.getAll(1,5)
       // Not until this is called the request is sent
       .subscribe(products => {
         this.products = products;
