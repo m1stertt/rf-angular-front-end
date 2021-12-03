@@ -5,6 +5,7 @@ import {Location} from '@angular/common';
 import {CategoriesService} from "../shared/categories.service";
 import { ProductDto } from 'src/app/products/shared/product.dto';
 import { PageEvent } from '@angular/material/paginator';
+import { CategoryDto } from '../shared/category.dto';
 
 @Component({
   selector: 'app-categories-detail',
@@ -14,6 +15,7 @@ import { PageEvent } from '@angular/material/paginator';
 export class CategoriesDetailComponent implements OnInit {
 
   products: ProductDto[]=[];
+  category: CategoryDto | undefined;
 
   constructor(private route: ActivatedRoute,
               private categoriesService: CategoriesService,
@@ -27,8 +29,11 @@ export class CategoriesDetailComponent implements OnInit {
   }
 
   getProducts(id:number): void {
-    this.categoriesService.getCategoryProducts(id)
-      .subscribe(category => this.products = category);
+    this.categoriesService.getCategory(id)
+      .subscribe(category =>{
+        this.category = category;
+        this.products=category.products;
+      });
   }
 
   goBack(): void {
