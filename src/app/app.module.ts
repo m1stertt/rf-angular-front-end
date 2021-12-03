@@ -26,6 +26,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { SizesService } from './sizes/shared/sizes.service';
+import { ColorsService } from './colors/shared/colors.service';
 
 
 @NgModule({
@@ -64,7 +66,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
-    ,AuthService,AppComponent,CategoriesService],
+    ,AuthService,AppComponent,CategoriesService,SizesService,ColorsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
