@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {CategoryDto} from './category.dto';
+import {ProductDto} from "src/app/products/shared/product.dto";
 
 @Injectable({
   providedIn: 'root'

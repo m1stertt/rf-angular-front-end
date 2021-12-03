@@ -12,7 +12,7 @@ import { MenuComponent } from './menu/menu.component';
 import { CategoriesService } from './categories/shared/categories.service';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
-import {NgxPaginationModule} from 'ngx-pagination';
+
 
 @NgModule({
   declarations: [
@@ -27,11 +27,30 @@ import {NgxPaginationModule} from 'ngx-pagination';
     MatToolbarModule,
     MatMenuModule,
     MatButtonModule,
-    NgxPaginationModule,
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    LayoutModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatGridListModule,
+    MatDialogModule,
+    MatCardModule,
+    MatIconModule,
+    MatListModule,
+    MatTableModule,
+    MatGridListModule,
+    MatPaginatorModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
-    ,AuthService,AppComponent,CategoriesService],
+    ,AuthService,AppComponent,CategoriesService,SizesService,ColorsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

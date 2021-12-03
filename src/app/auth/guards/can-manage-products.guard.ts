@@ -6,13 +6,13 @@ import {AuthService} from '../shared/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class WriteProductsGuard implements CanActivate {
+export class CanManageProductsGuard implements CanActivate {
   constructor(private _authService: AuthService) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this._authService.hasPermission('CanWriteProducts');
+    return this._authService.hasPermission('CanManageProducts');
   }
 
 }

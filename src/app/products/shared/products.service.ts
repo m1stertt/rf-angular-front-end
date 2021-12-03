@@ -24,6 +24,7 @@ export class ProductsService {
   }
 
   updateProduct(product: ProductDto): Observable<ProductDto> {
+    console.log(product);
     return this._http.put<ProductDto>('https://localhost:5001/api/Product/' + product.id, product)
   }
 
