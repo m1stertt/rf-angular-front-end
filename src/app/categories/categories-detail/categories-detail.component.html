@@ -1,12 +1,16 @@
-<p>categories-detail works!</p>
-<div *ngIf="category">
-
-  <h2>{{category.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{category.id}}</div>
-  <div>
-    <label for="category-name">Product name: </label>
-    <input id="category-name" [(ngModel)]="category.name" placeholder="name">
+<mat-card>
+  <div class="products-grid">
+    <mat-grid-list rowHeight="1.5:1" gutterSize='15px' [cols]="breakpoint" (window:resize)="onResize($event)" >
+      <ng-container *ngFor="let productDto of (products | slice: lowValue : highValue)">
+        <mat-grid-tile>
+          {{ productDto.productName}}
+          {{ productDto.id}}
+        </mat-grid-tile>
+      </ng-container>
+    </mat-grid-list>
+    <mat-paginator [length]="products.length" pageSize=20
+                   (page)="getPaginatorData($event)" [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons="false">
+    </mat-paginator>
   </div>
-
-</div>
-<button (click)="goBack()">go back</button>
+</mat-card>

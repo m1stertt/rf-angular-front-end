@@ -1,9 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductDto} from "../shared/product.dto";
+import {CategoryDto} from "src/app/categories/shared/category.dto";
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 
 import {ProductsService} from "../shared/products.service";
+import { CategoriesService } from 'src/app/categories/shared/categories.service';
+import { FormControl } from '@angular/forms';
 
 
 @Component({
@@ -14,20 +17,28 @@ import {ProductsService} from "../shared/products.service";
 export class ProductDetailComponent implements OnInit {
 
   product?: ProductDto;
+  categories: CategoryDto[]=[];
+  categories_=new FormControl();
 
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
-              private location: Location) {
+              private location: Location,
+              private categoriesService: CategoriesService) {
   }
 
   ngOnInit(): void {
     this.getProduct();
+    this.getCategories();
   }
 
   getProduct(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.productsService.getProduct(id)
       .subscribe(product => this.product = product);
+  }
+  getCategories(): void {
+    this.categoriesService.getAll()
+      .subscribe(product => this.categories = product);
   }
 
   goBack(): void {
@@ -43,7 +54,5 @@ export class ProductDetailComponent implements OnInit {
           console.log(error)
         });
     }
-
-
   }
 }

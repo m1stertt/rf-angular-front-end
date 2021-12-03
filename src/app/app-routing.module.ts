@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/guards/auth.guard';
+import { ProductsGridComponent } from './products/products-grid/products-grid.component';
 
 const routes: Routes = [
   {path: 'products', loadChildren: () =>
@@ -13,8 +14,8 @@ const routes: Routes = [
   },
   {path: 'category', loadChildren: () =>
     import('./categories/categories.module')
-      .then(f => f.CategoriesModule)}
-  //{ path: '**',redirectTo: '/products'}
+      .then(f => f.CategoriesModule)},
+  { path: '',component:ProductsGridComponent}
 ];
 
 @NgModule({
