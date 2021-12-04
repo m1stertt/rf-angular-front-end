@@ -64,14 +64,7 @@ export class AuthService {
   }
 
   hasPermission(permission: string): Observable<boolean> {
-    return this.profile$
-      .pipe(
-        map(profile => {
-          if(profile && profile.permissions) {
-            return profile.permissions.indexOf(permission) > -1;
-          }
-          return false;
-        })
-      )
+    if(localStorage.getItem('Profile')?.includes(permission)) return of(true);
+    return of(false);
   }
 }

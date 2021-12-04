@@ -34,8 +34,7 @@ export class ProductsListComponent implements OnInit {
         this.products = products;
       });
     this.appComponent.profile$?.subscribe(pro => {
-      console.log(pro?.permissions);
-      this.showWriteProducts = pro?.permissions.includes("CanWriteProducts");
+      this.showWriteProducts = pro?.permissions.includes("CanManageProducts");
     });
   }
 

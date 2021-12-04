@@ -6,7 +6,7 @@ import { ProductsGridComponent } from './products/products-grid/products-grid.co
 const routes: Routes = [
   {path: 'products', loadChildren: () =>
       import('./products/products.module')
-        .then(f => f.ProductsModule), canActivate: [AuthGuard]},
+        .then(f => f.ProductsModule)},
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module')
