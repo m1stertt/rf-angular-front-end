@@ -20,6 +20,11 @@ export class ProductsGridComponent implements AfterViewInit {
   totalCount: number | undefined;
   breakpoint: number | undefined;
 
+  constructor(private route: ActivatedRoute,
+              private productsService: ProductsService,
+              public paginationService: PaginationService) {
+  }
+
   @Input('products')
   set allowDay(value: ProductDto[]) {
     this.products = value;
@@ -38,11 +43,6 @@ export class ProductsGridComponent implements AfterViewInit {
       });
   }
 
-  constructor(private route: ActivatedRoute,
-              private productsService: ProductsService,
-              public paginationService: PaginationService) {
-  }
-
 
   onResize(event: any) {
     this.breakpoint = (event.target.innerWidth <= 400) ? 1 : 3;
@@ -50,6 +50,7 @@ export class ProductsGridComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.getPagedProducts();
+    this.breakpoint = (window.innerWidth <= 400) ? 1 : 3;
   }
 
 
