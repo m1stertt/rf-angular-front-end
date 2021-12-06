@@ -22,10 +22,8 @@ export class ProductsGridComponent implements OnInit {
 
 
   breakpoint: number | undefined;
-  lowValue: number = 0;
-  highValue: number = 20;
 
-  @Output() onDeleteCustomer = new EventEmitter();
+
   @Output() onPageSwitch = new EventEmitter();
 
   @Input('products')

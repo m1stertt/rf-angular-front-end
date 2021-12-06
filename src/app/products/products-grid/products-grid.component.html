@@ -3,7 +3,7 @@
 
 
     <mat-grid-list rowHeight="1.5:1" gutterSize='15px' [cols]="breakpoint" (window:resize)="onResize($event)"  >
-      <ng-container *ngFor="let productDto of (products | slice: lowValue : highValue)">
+      <ng-container *ngFor="let productDto of products">
         <mat-grid-tile>
           {{ productDto.productName}}
           {{ productDto.id}}
