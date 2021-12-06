@@ -2,7 +2,7 @@
   <div class="products-grid">
 
 
-    <mat-grid-list rowHeight="1.5:1" gutterSize='15px' [cols]="breakpoint" (window:resize)="onResize($event)"  >
+    <mat-grid-list rowHeight="1.5:1" gutterSize='15px' [cols]="breakpoint" (window:resize)="onResize($event)">
       <ng-container *ngFor="let productDto of products">
         <mat-grid-tile>
           {{ productDto.productName}}
@@ -13,7 +13,7 @@
     <mat-paginator [length]="totalCount"
                    [pageSize]="paginationService.pageCount"
                    [pageSizeOptions]="paginationService.selectItemsPerPage"
-                   (page)="onPageSwitch.emit($event)">
+                   (page)="switchPage($event)">
     </mat-paginator>
   </div>
 </mat-card>

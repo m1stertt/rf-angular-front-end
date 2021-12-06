@@ -1,11 +1,12 @@
 import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {ProductsService} from "../shared/products.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {MatPaginatorModule, PageEvent} from "@angular/material/paginator";
+import {MatPaginator, MatPaginatorModule, PageEvent} from "@angular/material/paginator";
 import {ProductDto} from "../shared/product.dto";
 import {Location} from "@angular/common";
 import {MatTableDataSource} from "@angular/material/table";
 import {PaginationService} from "../../pagination/pagination.service";
+import {map, switchMap} from "rxjs/operators";
 
 
 @Component({
@@ -13,18 +14,11 @@ import {PaginationService} from "../../pagination/pagination.service";
   templateUrl: './products-grid.component.html',
   styleUrls: ['./products-grid.component.scss']
 })
-export class ProductsGridComponent implements OnInit {
-
+export class ProductsGridComponent implements AfterViewInit {
   products: ProductDto[] = [];
+
   totalCount: number | undefined;
-  dataSource = new MatTableDataSource<ProductDto>();
-  displayedColumns = ['id', 'name'];
-
-
   breakpoint: number | undefined;
-
-
-  @Output() onPageSwitch = new EventEmitter();
 
   @Input('products')
   set allowDay(value: ProductDto[]) {
@@ -33,30 +27,29 @@ export class ProductsGridComponent implements OnInit {
 
   switchPage(event: PageEvent) {
     this.paginationService.change(event);
-    this.getAllCustomers();
+    this.getPagedProducts();
   }
 
-  getAllCustomers() {
-    this.productsService.getAll<ProductDto[]>()
+  getPagedProducts() {
+    this.productsService.getAll()
       .subscribe((result: any) => {
-        this.totalCount = JSON.parse(result.headers.get('X-Pagination')).totalCount;
-        this.products = result.body.value;
+        this.totalCount = JSON.parse(result.headers.get('X-Pagination')).TotalCount;
+        this.products = result.body;
       });
   }
 
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
-              private location: Location,
-              private router: Router,
               public paginationService: PaginationService) {
   }
 
-  ngOnInit(): void {
-
-    }
 
   onResize(event: any) {
     this.breakpoint = (event.target.innerWidth <= 400) ? 1 : 3;
+  }
+
+  ngAfterViewInit(): void {
+    this.getPagedProducts();
   }
 
 

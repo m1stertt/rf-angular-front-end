@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ProductDto} from "./product.dto";
 import {PaginationService} from "../../pagination/pagination.service";
@@ -10,7 +10,7 @@ import {PaginationService} from "../../pagination/pagination.service";
 })
 export class ProductsService {
   private headers = new HttpHeaders();
-  private endpoint = `http://localhost:5000/api/products/`;
+  private endpoint = `http://localhost:5000/api/Product/`;
 
   constructor(private _http: HttpClient,
               private paginationService: PaginationService) {
@@ -22,10 +22,10 @@ export class ProductsService {
   // getAll<T>(pageNumber: number, pageSize: number): Observable<ProductDto[]> {
   //   return this._http.get<ProductDto[]>('https://localhost:5001/api/Product?pageNumber=' + pageNumber + '&pageSize=' + pageSize, {responseType:'json'});
   // }
-  getAll<T>() {
+  getAll(): Observable<HttpResponse<ProductDto[]>> {
     const mergedUrl = `${this.endpoint}` +
-      `?page=${this.paginationService.page}&pageCount=${this.paginationService.pageCount}`;
-    return this._http.get<T>(mergedUrl, { observe: 'response' });
+      `?pageNumber=${this.paginationService.page}&pageSize=${this.paginationService.pageCount}`;
+    return this._http.get<ProductDto[]>(mergedUrl, { observe: 'response' });
   }
 
   getProduct(id: number): Observable<ProductDto> {
