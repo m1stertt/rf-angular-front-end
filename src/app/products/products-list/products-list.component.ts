@@ -23,9 +23,9 @@ export class ProductsListComponent implements OnInit {
     // this.updateList()
   }
 
-  // delete(product: ProductDto) {
-  //   this._productService.delete(product.id).subscribe(() => this.updateList());
-  // }
+  delete(product: ProductDto) {
+    this._productService.delete(product.id).subscribe(() => this.updateList());
+  }
 
   // updateList(): void {
   //   this._productService.getAll()
