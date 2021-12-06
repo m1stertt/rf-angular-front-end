@@ -19,24 +19,27 @@ export class ProductsListComponent implements OnInit {
               private router: Router, private appComponent: AppComponent) {
   }
 
+  // ToDo - Setup paging for list to work.
+
+
   ngOnInit(): void {
-    this.updateList()
+    // this.updateList()
   }
 
   delete(product: ProductDto) {
-    this._productService.delete(product.id).subscribe(() => this.updateList());
+    // this._productService.delete(product.id).subscribe(() => this.updateList());
   }
 
-  updateList(): void {
-    this._productService.getAll(1,5)
-      // Not until this is called the request is sent
-      .subscribe(products => {
-        this.products = products;
-      });
-    this.appComponent.profile$?.subscribe(pro => {
-      this.showWriteProducts = pro?.permissions.includes("CanManageProducts");
-    });
-  }
+  // updateList(): void {
+  //   this._productService.getAll()
+  //     // Not until this is called the request is sent
+  //     .subscribe(products => {
+  //       this.products = products;
+  //     });
+  //   this.appComponent.profile$?.subscribe(pro => {
+  //     this.showWriteProducts = pro?.permissions.includes("CanManageProducts");
+  //   });
+  // }
 
   create() {
     this.router.navigateByUrl('products/create');

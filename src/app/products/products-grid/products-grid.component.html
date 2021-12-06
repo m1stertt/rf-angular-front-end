@@ -1,19 +1,19 @@
 <mat-card>
   <div class="products-grid">
-    <mat-grid-list rowHeight="1.5:1" gutterSize='15px' [cols]="breakpoint" (window:resize)="onResize($event)" >
-      <ng-container *ngFor="let productDto of (products | slice: lowValue : highValue)">
+
+
+    <mat-grid-list rowHeight="1.5:1" gutterSize='15px' [cols]="breakpoint" (window:resize)="onResize($event)">
+      <ng-container *ngFor="let productDto of products">
         <mat-grid-tile>
           {{ productDto.productName}}
           {{ productDto.id}}
         </mat-grid-tile>
       </ng-container>
     </mat-grid-list>
-    <mat-paginator
-      showFirstLastButtons
-      [pageSizeOptions]="[5, 10, 15]"
-      [length]="totalRecords"
-      [pageSize]='5'
-    >
+    <mat-paginator [length]="totalCount"
+                   [pageSize]="paginationService.pageCount"
+                   [pageSizeOptions]="paginationService.selectItemsPerPage"
+                   (page)="switchPage($event)">
     </mat-paginator>
   </div>
 </mat-card>
