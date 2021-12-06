@@ -5,7 +5,7 @@ import {MatPaginator, MatPaginatorModule, PageEvent} from "@angular/material/pag
 import {ProductDto} from "../shared/product.dto";
 import {Location} from "@angular/common";
 import {MatTableDataSource} from "@angular/material/table";
-import {PaginationService} from "../../pagination/pagination.service";
+import {PaginationService} from "../pagination/pagination.service";
 import {map, switchMap} from "rxjs/operators";
 
 

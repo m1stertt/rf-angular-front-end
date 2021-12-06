@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ProductDto} from "./product.dto";
-import {PaginationService} from "../../pagination/pagination.service";
+import {PaginationService} from "../pagination/pagination.service";
 
 
 @Injectable({
