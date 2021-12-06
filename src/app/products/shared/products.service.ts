@@ -19,9 +19,6 @@ export class ProductsService {
     this.headers = this.headers.set('Accept', 'application/json');
   }
 
-  // getAll<T>(pageNumber: number, pageSize: number): Observable<ProductDto[]> {
-  //   return this._http.get<ProductDto[]>('https://localhost:5001/api/Product?pageNumber=' + pageNumber + '&pageSize=' + pageSize, {responseType:'json'});
-  // }
   getAll(): Observable<HttpResponse<ProductDto[]>> {
     const mergedUrl = `${this.endpoint}` +
       `?pageNumber=${this.paginationService.page}&pageSize=${this.paginationService.pageCount}`;
