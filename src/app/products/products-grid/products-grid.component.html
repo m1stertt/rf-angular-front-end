@@ -12,7 +12,7 @@
     </mat-grid-list>
     <mat-paginator [length]="totalCount"
                    [pageSize]="paginationService.pageCount"
-                   [pageSizeOptions]="paginationService.selectItemsPerPage"
+                   [pageSizeOptions]="paginationService.getDefaultPageSize"
                    (page)="switchPage($event)">
     </mat-paginator>
   </div>

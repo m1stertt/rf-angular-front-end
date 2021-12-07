@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ProductDto} from "./product.dto";
-import {PaginationService} from "../pagination/pagination.service";
+import {PaginationService} from "../products-grid/pagination/pagination.service";
 
 
 @Injectable({
@@ -21,7 +21,7 @@ export class ProductsService {
 
   getAll(): Observable<HttpResponse<ProductDto[]>> {
     const mergedUrl = `${this.endpoint}` +
-      `?pageNumber=${this.paginationService.page}&pageSize=${this.paginationService.pageCount}`;
+      `?pageNumber=${this.paginationService.getPageIndex}&pageSize=${this.paginationService.pageCount}`;
     return this._http.get<ProductDto[]>(mergedUrl, { observe: 'response' });
   }
 

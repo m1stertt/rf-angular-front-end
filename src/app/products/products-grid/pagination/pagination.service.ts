@@ -8,12 +8,12 @@ import {PaginationModel} from "./shared/pagination.model";
 export class PaginationService {
   private paginationModel: PaginationModel;
 
-  get page(): number {
+  get getPageIndex(): number {
     return this.paginationModel.pageIndex;
   }
 
-  get selectItemsPerPage(): number[] {
-    return this.paginationModel.selectItemsPerPage;
+  get getDefaultPageSize(): number[] {
+    return this.paginationModel.defaultPageSize;
   }
 
   get pageCount(): number {
@@ -27,6 +27,6 @@ export class PaginationService {
   change(pageEvent: PageEvent) {
     this.paginationModel.pageIndex = pageEvent.pageIndex + 1;
     this.paginationModel.pageSize = pageEvent.pageSize;
-    this.paginationModel.allItemsLength = pageEvent.length;
+    this.paginationModel.length = pageEvent.length;
   }
 }
