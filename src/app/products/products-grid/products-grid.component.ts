@@ -5,7 +5,7 @@ import {MatPaginator, MatPaginatorModule, PageEvent} from "@angular/material/pag
 import {ProductDto} from "../shared/product.dto";
 import {Location} from "@angular/common";
 import {MatTableDataSource} from "@angular/material/table";
-import {PaginationService} from "./pagination/pagination.service";
+import {ProductsGridPaginationService} from "./pagination/products-grid-pagination.service";
 import {map, switchMap} from "rxjs/operators";
 
 
@@ -22,7 +22,7 @@ export class ProductsGridComponent implements AfterViewInit {
 
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
-              public paginationService: PaginationService) {
+              public paginationService: ProductsGridPaginationService) {
   }
 
   @Input('products')
@@ -36,7 +36,7 @@ export class ProductsGridComponent implements AfterViewInit {
   }
 
   getPagedProducts() {
-    this.productsService.getAll()
+    this.productsService.getAll(this.paginationService.getPageIndex, this.paginationService.pageSize)
       .subscribe((result: any) => {
         this.totalCount = JSON.parse(result.headers.get('X-Pagination')).TotalCount;
         this.products = result.body;

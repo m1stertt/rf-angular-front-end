@@ -1,5 +1,7 @@
 <div class="products-list">
   <h2>My products <button *ngIf="showWriteProducts" (click)="create()">Create new</button></h2>
+
+  <div>
   <table mat-table [dataSource]="products" class="mat-elevation-z8">
 
     <!--- Note that these columns can be defined in any order.
@@ -26,7 +28,13 @@
     <tr mat-header-row *matHeaderRowDef="['id','name','actions']"></tr>
     <tr mat-row (click)="clickedProduct = row" *matRowDef="let row; columns: ['id','name','actions']"></tr>
   </table>
+  <mat-paginator [length]="totalCount"
+                 [pageSize]="paginationService.pageSize"
+                 [pageSizeOptions]="paginationService.getDefaultPageSize"
+                 (page)="switchPage($event)">
+  </mat-paginator>
 
+  </div>
   <div *ngIf="clickedProduct!=undefined">
     {{clickedProduct.id}} {{clickedProduct.productName}}
   </div>

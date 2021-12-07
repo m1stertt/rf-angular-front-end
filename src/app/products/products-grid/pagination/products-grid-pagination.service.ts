@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import {PageEvent} from "@angular/material/paginator";
-import {PaginationModel} from "./shared/pagination.model";
+import {ProductsGridPaginationSettings} from "./shared/products-grid-pagination-settings";
 
 @Injectable({
   providedIn: 'root'
 })
-export class PaginationService {
-  private paginationModel: PaginationModel;
+export class ProductsGridPaginationService {
+  private paginationModel: ProductsGridPaginationSettings;
 
   get getPageIndex(): number {
     return this.paginationModel.pageIndex;
@@ -16,12 +16,12 @@ export class PaginationService {
     return this.paginationModel.defaultPageSize;
   }
 
-  get pageCount(): number {
+  get pageSize(): number {
     return this.paginationModel.pageSize;
   }
 
   constructor() {
-    this.paginationModel = new PaginationModel();
+    this.paginationModel = new ProductsGridPaginationSettings();
   }
 
   change(pageEvent: PageEvent) {

@@ -1,8 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ProductsService} from '../shared/products.service';
 import {ProductDto} from '../shared/product.dto';
 import {Router} from "@angular/router";
 import {AppComponent} from 'src/app/app.component';
+import {PageEvent} from "@angular/material/paginator";
+import {ProductsGridPaginationService} from "../products-grid/pagination/products-grid-pagination.service";
+import {ProductsListPaginationService} from "./pagination/products-list-pagination.service";
 
 @Component({
   selector: 'app-inno-tech-products-list',
@@ -10,20 +13,32 @@ import {AppComponent} from 'src/app/app.component';
   styleUrls: ['./products-list.component.scss']
 })
 
-export class ProductsListComponent implements OnInit {
+export class ProductsListComponent implements AfterViewInit {
   products: ProductDto[] = [];
+
+  totalCount: number | undefined;
+
   clickedProduct: ProductDto | undefined;
   showWriteProducts: Boolean | undefined;
 
-  constructor(private _productService: ProductsService,
-              private router: Router, private appComponent: AppComponent) {
+  constructor(private productsService: ProductsService,
+              private router: Router, private appComponent: AppComponent,
+              public paginationService: ProductsListPaginationService) {
   }
 
   // ToDo - Setup paging for list to work.
 
+  getPagedProducts() {
+    this.productsService.getAll(this.paginationService.getPageIndex, this.paginationService.pageSize)
+      .subscribe((result: any) => {
+        this.totalCount = JSON.parse(result.headers.get('X-Pagination')).TotalCount;
+        this.products = result.body;
+      });
+  }
 
-  ngOnInit(): void {
-    // this.updateList()
+  switchPage(event: PageEvent) {
+    this.paginationService.change(event);
+    this.getPagedProducts();
   }
 
   delete(product: ProductDto) {
@@ -43,6 +58,10 @@ export class ProductsListComponent implements OnInit {
 
   create() {
     this.router.navigateByUrl('products/create');
+  }
+
+  ngAfterViewInit(): void {
+    this.getPagedProducts();
   }
 
 
