@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ProductDto} from "./product.dto";
-import {PaginationService} from "../pagination/pagination.service";
+import {ProductsGridPaginationService} from "../products-grid/pagination/products-grid-pagination.service";
 
 
 @Injectable({
@@ -13,15 +13,15 @@ export class ProductsService {
   private endpoint = `http://localhost:5000/api/Product/`;
 
   constructor(private _http: HttpClient,
-              private paginationService: PaginationService) {
+              private paginationService: ProductsGridPaginationService) {
 
     this.headers = this.headers.set('Content-Type', 'application/json');
     this.headers = this.headers.set('Accept', 'application/json');
   }
 
-  getAll(): Observable<HttpResponse<ProductDto[]>> {
+  getAll(pageIndex: number, pageSize: number): Observable<HttpResponse<ProductDto[]>> {
     const mergedUrl = `${this.endpoint}` +
-      `?pageNumber=${this.paginationService.page}&pageSize=${this.paginationService.pageCount}`;
+      `?pageNumber=${pageIndex}&pageSize=${pageSize}`;
     return this._http.get<ProductDto[]>(mergedUrl, { observe: 'response' });
   }
 

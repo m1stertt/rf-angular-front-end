@@ -11,8 +11,8 @@
       </ng-container>
     </mat-grid-list>
     <mat-paginator [length]="totalCount"
-                   [pageSize]="paginationService.pageCount"
-                   [pageSizeOptions]="paginationService.selectItemsPerPage"
+                   [pageSize]="paginationService.pageSize"
+                   [pageSizeOptions]="paginationService.getDefaultPageSize"
                    (page)="switchPage($event)">
     </mat-paginator>
   </div>

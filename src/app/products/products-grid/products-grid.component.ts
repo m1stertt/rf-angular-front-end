@@ -1,11 +1,20 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import {ProductsService} from "../shared/products.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatPaginator, MatPaginatorModule, PageEvent} from "@angular/material/paginator";
 import {ProductDto} from "../shared/product.dto";
 import {Location} from "@angular/common";
 import {MatTableDataSource} from "@angular/material/table";
-import {PaginationService} from "../pagination/pagination.service";
+import {ProductsGridPaginationService} from "./pagination/products-grid-pagination.service";
 import {map, switchMap} from "rxjs/operators";
 
 
@@ -22,7 +31,8 @@ export class ProductsGridComponent implements AfterViewInit {
 
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
-              public paginationService: PaginationService) {
+              public paginationService: ProductsGridPaginationService,
+              private cdRef: ChangeDetectorRef ) {
   }
 
   @Input('products')
@@ -36,7 +46,7 @@ export class ProductsGridComponent implements AfterViewInit {
   }
 
   getPagedProducts() {
-    this.productsService.getAll()
+    this.productsService.getAll(this.paginationService.getPageIndex, this.paginationService.pageSize)
       .subscribe((result: any) => {
         this.totalCount = JSON.parse(result.headers.get('X-Pagination')).TotalCount;
         this.products = result.body;
@@ -49,8 +59,9 @@ export class ProductsGridComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.getPagedProducts();
     this.breakpoint = (window.innerWidth <= 400) ? 1 : 3;
+    this.cdRef.detectChanges();
+    this.getPagedProducts();
   }
 
 
