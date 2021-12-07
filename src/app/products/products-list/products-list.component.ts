@@ -1,10 +1,9 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ProductsService} from '../shared/products.service';
 import {ProductDto} from '../shared/product.dto';
 import {Router} from "@angular/router";
 import {AppComponent} from 'src/app/app.component';
 import {PageEvent} from "@angular/material/paginator";
-import {ProductsGridPaginationService} from "../products-grid/pagination/products-grid-pagination.service";
 import {ProductsListPaginationService} from "./pagination/products-list-pagination.service";
 
 @Component({
@@ -23,7 +22,8 @@ export class ProductsListComponent implements AfterViewInit {
 
   constructor(private productsService: ProductsService,
               private router: Router, private appComponent: AppComponent,
-              public paginationService: ProductsListPaginationService) {
+              public paginationService: ProductsListPaginationService,
+              private cdRef: ChangeDetectorRef) {
   }
 
   getPagedProducts() {
@@ -32,6 +32,10 @@ export class ProductsListComponent implements AfterViewInit {
         this.totalCount = JSON.parse(result.headers.get('X-Pagination')).TotalCount;
         this.products = result.body;
       });
+    this.appComponent.profile$?.subscribe(pro => {
+      console.log(pro?.permissions);
+      this.showWriteProducts = pro?.permissions.includes("CanManageProducts");
+    });
   }
 
   switchPage(event: PageEvent) {
@@ -40,15 +44,9 @@ export class ProductsListComponent implements AfterViewInit {
   }
 
   delete(product: ProductDto) {
-    this.productsService.delete(product.id).subscribe(() => this.updateList());
+    this.productsService.delete(product.id).subscribe(() => this.getPagedProducts());
   }
 
-  updateList(): void {
-    this.getPagedProducts();
-    this.appComponent.profile$?.subscribe(pro => {
-      this.showWriteProducts = pro?.permissions.includes("CanManageProducts");
-    });
-  }
 
   create() {
     this.router.navigateByUrl('products/create');
@@ -56,6 +54,7 @@ export class ProductsListComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.getPagedProducts();
+    this.cdRef.detectChanges();
   }
 
 

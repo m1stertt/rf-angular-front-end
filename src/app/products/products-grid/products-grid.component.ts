@@ -1,4 +1,13 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import {ProductsService} from "../shared/products.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatPaginator, MatPaginatorModule, PageEvent} from "@angular/material/paginator";
@@ -22,7 +31,8 @@ export class ProductsGridComponent implements AfterViewInit {
 
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
-              public paginationService: ProductsGridPaginationService) {
+              public paginationService: ProductsGridPaginationService,
+              private cdRef: ChangeDetectorRef ) {
   }
 
   @Input('products')
@@ -49,8 +59,9 @@ export class ProductsGridComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.getPagedProducts();
     this.breakpoint = (window.innerWidth <= 400) ? 1 : 3;
+    this.cdRef.detectChanges();
+    this.getPagedProducts();
   }
 
 
