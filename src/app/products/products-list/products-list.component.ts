@@ -26,8 +26,6 @@ export class ProductsListComponent implements AfterViewInit {
               public paginationService: ProductsListPaginationService) {
   }
 
-  // ToDo - Setup paging for list to work.
-
   getPagedProducts() {
     this.productsService.getAll(this.paginationService.getPageIndex, this.paginationService.pageSize)
       .subscribe((result: any) => {
@@ -42,19 +40,15 @@ export class ProductsListComponent implements AfterViewInit {
   }
 
   delete(product: ProductDto) {
-    // this._productService.delete(product.id).subscribe(() => this.updateList());
+    this.productsService.delete(product.id).subscribe(() => this.updateList());
   }
 
-  // updateList(): void {
-  //   this._productService.getAll()
-  //     // Not until this is called the request is sent
-  //     .subscribe(products => {
-  //       this.products = products;
-  //     });
-  //   this.appComponent.profile$?.subscribe(pro => {
-  //     this.showWriteProducts = pro?.permissions.includes("CanManageProducts");
-  //   });
-  // }
+  updateList(): void {
+    this.getPagedProducts();
+    this.appComponent.profile$?.subscribe(pro => {
+      this.showWriteProducts = pro?.permissions.includes("CanManageProducts");
+    });
+  }
 
   create() {
     this.router.navigateByUrl('products/create');
