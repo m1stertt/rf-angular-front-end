@@ -1,21 +1,9 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewChild
-} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, Input} from '@angular/core';
 import {ProductsService} from "../shared/products.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {MatPaginator, MatPaginatorModule, PageEvent} from "@angular/material/paginator";
+import {ActivatedRoute} from "@angular/router";
+import {PageEvent} from "@angular/material/paginator";
 import {ProductDto} from "../shared/product.dto";
-import {Location} from "@angular/common";
-import {MatTableDataSource} from "@angular/material/table";
 import {ProductsGridPaginationService} from "./pagination/products-grid-pagination.service";
-import {map, switchMap} from "rxjs/operators";
 
 
 @Component({
@@ -65,7 +53,7 @@ export class ProductsGridComponent implements AfterViewInit {
 
     this.route.queryParams
       .subscribe(params => {
-        this.searchString = params.searchString;
+        this.searchString = params.searchString || '';
         this.getPagedProducts();
       });
 

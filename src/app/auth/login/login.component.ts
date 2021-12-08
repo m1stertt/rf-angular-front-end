@@ -21,6 +21,8 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', Validators.required),
   });
 
+  errorMessage?: string;
+
   constructor(private _auth: AuthService,
               private _router: Router) {}
 
@@ -45,8 +47,7 @@ export class LoginComponent implements OnInit {
         }
       })
       .catch(err => {
-        //Todo fix this
-        console.error('err: ', err);
+      this.errorMessage = err.error;
       });
     //redirect
   }
