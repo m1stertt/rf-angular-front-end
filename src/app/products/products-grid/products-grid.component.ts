@@ -25,14 +25,15 @@ import {map, switchMap} from "rxjs/operators";
 })
 export class ProductsGridComponent implements AfterViewInit {
   products: ProductDto[] = [];
+  searchString: string = '';
 
-  totalCount: number | undefined;
-  breakpoint: number | undefined;
+  totalCount?: number;
+  breakpoint?: number;
 
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
               public paginationService: ProductsGridPaginationService,
-              private cdRef: ChangeDetectorRef ) {
+              private cdRef: ChangeDetectorRef) {
   }
 
   @Input('products')
@@ -46,7 +47,7 @@ export class ProductsGridComponent implements AfterViewInit {
   }
 
   getPagedProducts() {
-    this.productsService.getAll(this.paginationService.getPageIndex, this.paginationService.pageSize)
+    this.productsService.getAll(this.paginationService.getPageIndex, this.paginationService.pageSize, this.searchString)
       .subscribe((result: any) => {
         this.totalCount = JSON.parse(result.headers.get('X-Pagination')).TotalCount;
         this.products = result.body;
@@ -61,7 +62,13 @@ export class ProductsGridComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.breakpoint = (window.innerWidth <= 400) ? 1 : 3;
     this.cdRef.detectChanges();
-    this.getPagedProducts();
+
+    this.route.queryParams
+      .subscribe(params => {
+        this.searchString = params.searchString;
+        this.getPagedProducts();
+      });
+
   }
 
 
