@@ -29,6 +29,7 @@ import {MatInputModule} from "@angular/material/input";
 import {SizesService} from "./sizes/shared/sizes.service";
 import {ColorsService} from "./colors/shared/colors.service";
 import {getDanishPaginatorIntl} from "./danish-paginator-intl";
+import {MatBadgeModule} from '@angular/material/badge';
 
 
 @NgModule({
@@ -65,6 +66,8 @@ import {getDanishPaginatorIntl} from "./danish-paginator-intl";
     MatFormFieldModule,
     ReactiveFormsModule,
     FormsModule,
+    ReactiveFormsModule,
+    MatBadgeModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}

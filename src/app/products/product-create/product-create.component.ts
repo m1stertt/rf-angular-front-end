@@ -17,7 +17,7 @@ export class ProductCreateComponent implements OnInit {
               private productsService: ProductsService,
               private location: Location,
               private router: Router) {
-    this.product = {id: 0, productName:'', price: 0, description: '', imageUrl: '',categories:[],sizes:[],colors:[]}
+    this.product = {id: 0, productName:'', price: 0, description: '', imageUrl: '',categories:[],sizes:[],colors:[],images:[]}
   }
 
   ngOnInit(): void {

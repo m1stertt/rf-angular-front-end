@@ -15,6 +15,9 @@ const routes: Routes = [
   {path: 'category', loadChildren: () =>
     import('./categories/categories.module')
       .then(f => f.CategoriesModule)},
+  {path: 'images', loadChildren: () =>
+    import('./images/images.module')
+      .then(f => f.ImagesModule)},
   { path: '',component:ProductsGridComponent}
 ];
 
