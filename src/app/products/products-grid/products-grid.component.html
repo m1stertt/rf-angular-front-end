@@ -7,6 +7,7 @@
         <mat-grid-tile>
           {{ productDto.productName}}
           {{ productDto.id}}
+          <img *ngIf="productDto.images.length" src="https://localhost:5001/resources/images/{{productDto.images[0].path}}"/>
         </mat-grid-tile>
       </ng-container>
     </mat-grid-list>

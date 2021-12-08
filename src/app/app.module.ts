@@ -28,6 +28,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
 import {SizesService} from "./sizes/shared/sizes.service";
 import {ColorsService} from "./colors/shared/colors.service";
+import {MatBadgeModule} from '@angular/material/badge';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import {ColorsService} from "./colors/shared/colors.service";
     MatPaginatorModule,
     MatSelectModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatBadgeModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
