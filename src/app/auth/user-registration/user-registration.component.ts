@@ -2,7 +2,6 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {AuthService} from "../shared/auth.service";
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {LoginUser} from "../shared/models/login-user";
 import {RegistrationDetails} from "../shared/models/registration-details";
 
 @Component({
@@ -12,7 +11,6 @@ import {RegistrationDetails} from "../shared/models/registration-details";
 })
 export class UserRegistrationComponent implements OnInit, AfterViewInit {
   errorMessage?: string;
-  registrationDetails!: RegistrationDetails;
 
   constructor(private authService: AuthService,
               private router: Router) {}
@@ -28,7 +26,7 @@ export class UserRegistrationComponent implements OnInit, AfterViewInit {
     ),
     email: new FormControl('', [
       Validators.required,
-      Validators.pattern(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+      Validators.pattern(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
     ])
   });
 
@@ -36,8 +34,9 @@ export class UserRegistrationComponent implements OnInit, AfterViewInit {
   get password() {return this.loginForm.get('password');}
 
   register() {
-    this.authService.register(this.registrationDetails).subscribe(() => {
-        this.router.navigateByUrl('/login')
+    let registrationDetails = this.loginForm.value as RegistrationDetails;
+    this.authService.register(registrationDetails).subscribe(() => {
+        this.router.navigateByUrl('auth/login')
       },
       error => {
         console.log(error)
