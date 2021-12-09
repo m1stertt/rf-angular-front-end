@@ -30,12 +30,15 @@ import {SizesService} from "./sizes/shared/sizes.service";
 import {ColorsService} from "./colors/shared/colors.service";
 import {getDanishPaginatorIntl} from "./danish-paginator-intl";
 import {MatBadgeModule} from '@angular/material/badge';
+import {UserRegistrationComponent} from "./auth/login/user-registration/user-registration/user-registration.component";
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
+    UserRegistrationComponent,
   ],
   imports: [
     BrowserModule,
