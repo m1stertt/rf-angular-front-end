@@ -30,6 +30,8 @@ import {SizesService} from "./sizes/shared/sizes.service";
 import {ColorsService} from "./colors/shared/colors.service";
 import {getDanishPaginatorIntl} from "./danish-paginator-intl";
 import {MatBadgeModule} from '@angular/material/badge';
+import { CartService } from './cart/shared/cart.service';
+import { CartViewComponent } from './cart/cart-view/cart-view.component';
 
 
 
@@ -37,6 +39,7 @@ import {MatBadgeModule} from '@angular/material/badge';
   declarations: [
     AppComponent,
     MenuComponent,
+    CartViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +75,7 @@ import {MatBadgeModule} from '@angular/material/badge';
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
-    , AuthService, AppComponent, CategoriesService, SizesService, ColorsService,
+    , AuthService, AppComponent, CategoriesService, SizesService, ColorsService, CartService,
     {provide: MatPaginatorIntl, useValue: getDanishPaginatorIntl()}
   ],
   bootstrap: [AppComponent]

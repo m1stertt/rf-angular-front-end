@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/guards/auth.guard';
+import { CartViewComponent } from './cart/cart-view/cart-view.component';
 import { ProductsGridComponent } from './products/products-grid/products-grid.component';
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path: 'images', loadChildren: () =>
     import('./images/images.module')
       .then(f => f.ImagesModule)},
-  { path: '',component:ProductsGridComponent}
+  { path: '',component:ProductsGridComponent},
+  { path: 'cart', component: CartViewComponent }
 ];
 
 @NgModule({

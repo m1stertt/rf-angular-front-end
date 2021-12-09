@@ -11,6 +11,7 @@ import { ColorDto } from 'src/app/colors/shared/color.dto';
 import { SizeDto } from 'src/app/sizes/shared/size.dto';
 import { SizesService } from 'src/app/sizes/shared/sizes.service';
 import { ColorsService } from 'src/app/colors/shared/colors.service';
+import { CartService } from 'src/app/cart/shared/cart.service';
 
 
 @Component({
@@ -33,7 +34,8 @@ export class ProductDetailComponent implements OnInit {
               private location: Location,
               private categoriesService: CategoriesService,
               private sizesService: SizesService,
-              private colorsService: ColorsService) {
+              private colorsService: ColorsService,
+              private cartService: CartService ) {
   }
 
   ngOnInit(): void {
@@ -51,6 +53,12 @@ export class ProductDetailComponent implements OnInit {
         console.log(product);
       });
   }
+
+  addToCart(product: ProductDto) {
+    this.cartService.addToCart(product);
+    window.alert('Your product has been added to the cart!');
+  }
+
   getCategories(): void {
     this.categoriesService.getAll()
       .subscribe(product => this.categories = product);
