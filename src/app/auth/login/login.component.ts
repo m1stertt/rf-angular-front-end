@@ -10,7 +10,13 @@ import {Router} from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  errorMessage?: string;
 
+  constructor(private _auth: AuthService,
+              private _router: Router) {}
+
+  ngOnInit(): void {
+  }
   loginForm = new FormGroup({
     username: new FormControl('',
       [
@@ -20,14 +26,6 @@ export class LoginComponent implements OnInit {
     ),
     password: new FormControl('', Validators.required),
   });
-
-  errorMessage?: string;
-
-  constructor(private _auth: AuthService,
-              private _router: Router) {}
-
-  ngOnInit(): void {
-  }
 
   get username() {return this.loginForm.get('username');}
   get password() {return this.loginForm.get('password');}
@@ -51,4 +49,9 @@ export class LoginComponent implements OnInit {
       });
     //redirect
   }
+
+  register(){
+
+  }
+
 }

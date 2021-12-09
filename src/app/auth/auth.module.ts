@@ -9,7 +9,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
-import { UserRegistrationComponent } from './login/user-registration/user-registration/user-registration.component';
+import { UserRegistrationComponent } from './user-registration/user-registration.component';
 
 
 @NgModule({
