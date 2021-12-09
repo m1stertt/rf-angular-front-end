@@ -40,7 +40,7 @@ export class UserRegistrationComponent implements OnInit, AfterViewInit {
         this.router.navigateByUrl('auth/login')
       },
       error => {
-        console.log(error)
+        this.errorMessage = error.error;
       });
   }
 

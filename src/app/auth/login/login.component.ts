@@ -44,14 +44,12 @@ export class LoginComponent implements OnInit {
             this._router.navigateByUrl('');
           });
         } else {
-          //TOdo fix this
           console.log('Oh no! ')
         }
       })
-      .catch(err => {
-      this.errorMessage = err.error;
+      .catch(error => {
+      this.errorMessage = error.error;
       });
-    //redirect
   }
 
   register(){
