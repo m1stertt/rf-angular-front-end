@@ -6,6 +6,13 @@
     <button mat-menu-item class="megamenu-item" *ngFor="let category of categories" routerLink="/category/{{category.id}}">{{category.name}}</button>
   </mat-menu>
   <span class="example-spacer"></span>
+  <mat-form-field class="searchField" appearance="fill">
+    <mat-label>Søg</mat-label>
+    <input (keydown.enter)="search()" matInput type="text" [(ngModel)]="searchString">
+    <button *ngIf="searchString" matSuffix mat-icon-button aria-label="Clear" (click)="searchString=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
   <div *ngIf="this.appComponent.profile$ | async as profile else loggedOut" style="float: right">
     <span class="ost">Welcome {{profile.name}}</span>
     <button mat-menu-item style="margin-left:15px"

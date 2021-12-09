@@ -27,7 +27,7 @@ export class ProductsListComponent implements AfterViewInit {
   }
 
   getPagedProducts() {
-    this.productsService.getAll(this.paginationService.getPageIndex, this.paginationService.pageSize)
+    this.productsService.getAll(this.paginationService.getPageIndex, this.paginationService.pageSize, '')
       .subscribe((result: any) => {
         this.totalCount = JSON.parse(result.headers.get('X-Pagination')).TotalCount;
         this.products = result.body;
