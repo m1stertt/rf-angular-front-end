@@ -32,6 +32,7 @@ import {getDanishPaginatorIntl} from "./danish-paginator-intl";
 import {MatBadgeModule} from '@angular/material/badge';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -5,6 +5,7 @@ import {map, tap} from 'rxjs/operators';
 import {TokenInfo} from './models/token-info';
 import {Profile} from './models/profile';
 import {BehaviorSubject, Observable, of} from 'rxjs';
+import {RegistrationDetails} from "./models/registration-details";
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,10 @@ export class AuthService {
         })
       )
       .toPromise();
+  }
+
+  register(registrationDetails: RegistrationDetails): Observable<RegistrationDetails> {
+    return this._http.post<RegistrationDetails>('https://localhost:5001/api' + '/auth/register', registrationDetails)
   }
 
   getToken(): string | null {
