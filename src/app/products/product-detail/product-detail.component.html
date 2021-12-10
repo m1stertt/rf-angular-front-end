@@ -19,7 +19,7 @@
       </mat-select>
     </mat-form-field>
     <mat-form-field appearance="fill">
-      <mat-label>Edit sizes</mat-label>
+      <mat-label>Edit  sizes</mat-label>
       <mat-select [(ngModel)]="product.sizes" [formControl]="sizes_" multiple [compareWith]="compareWithFunc">
         <mat-option *ngFor="let size of sizes" [value]="size" >{{size.title}}</mat-option>
       </mat-select>

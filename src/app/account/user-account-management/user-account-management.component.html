@@ -1,0 +1,61 @@
+<mat-card>
+  <form [formGroup]="loginForm" (ngSubmit)="save()">
+    <h1>Mine Oplysninger</h1>
+    <div>
+      <mat-form-field disabled appearance="outline">
+        <mat-label>Fornavn</mat-label>
+        <input matInput placeholder="Placeholder">
+        <mat-icon matSuffix>edit</mat-icon>
+      </mat-form-field>
+      <mat-form-field disabled appearance="outline">
+        <mat-label>Efternavn</mat-label>
+        <input matInput placeholder="Placeholder">
+        <mat-icon matSuffix>edit</mat-icon>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field disabled appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Placeholder">
+        <mat-icon matSuffix>edit</mat-icon>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field disabled appearance="outline">
+        <mat-label>Gade og husnummer</mat-label>
+        <input matInput placeholder="Placeholder">
+        <mat-icon matSuffix>edit</mat-icon>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field disabled appearance="outline">
+        <mat-label>Postnummer</mat-label>
+        <input matInput placeholder="Placeholder">
+        <mat-icon matSuffix>edit</mat-icon>
+      </mat-form-field>
+      <mat-form-field disabled appearance="outline">
+        <mat-label>By</mat-label>
+        <input matInput placeholder="Placeholder">
+        <mat-icon matSuffix>edit</mat-icon>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field disabled appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Placeholder">
+        <mat-icon matSuffix>edit</mat-icon>
+      </mat-form-field>
+      <mat-form-field disabled appearance="outline">
+        <mat-label>Telefon</mat-label>
+        <input matInput placeholder="Placeholder">
+        <mat-icon matSuffix>edit</mat-icon>
+      </mat-form-field>
+
+    </div>
+    <div >
+      <button mat-raised-button color="primary">Gem Ændringer</button>
+      <button mat-raised-button color="warn">Slet konto</button>
+    </div>
+
+  </form>
+</mat-card>

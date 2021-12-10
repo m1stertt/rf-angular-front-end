@@ -41,6 +41,7 @@ export class ProductDetailComponent implements OnInit {
     this.getCategories();
     this.getColors();
     this.getSizes();
+
   }
 
   getProduct(): void {
