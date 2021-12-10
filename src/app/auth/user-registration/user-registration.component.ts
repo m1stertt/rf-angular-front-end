@@ -13,10 +13,12 @@ export class UserRegistrationComponent implements OnInit, AfterViewInit {
   errorMessage?: string;
 
   constructor(private authService: AuthService,
-              private router: Router) {}
+              private router: Router) {
+  }
 
   ngOnInit(): void {
   }
+
   loginForm = new FormGroup({
     email: new FormControl('', [
       Validators.required,
@@ -28,11 +30,15 @@ export class UserRegistrationComponent implements OnInit, AfterViewInit {
         Validators.minLength(6)
       ]
     )
-
   });
 
-  get email() {return this.loginForm.get('email');}
-  get password() {return this.loginForm.get('password');}
+  get email() {
+    return this.loginForm.get('email');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
+  }
 
   register() {
     let registrationDetails = this.loginForm.value as RegistrationDetails;

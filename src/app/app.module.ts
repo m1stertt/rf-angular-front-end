@@ -68,7 +68,8 @@ import {MatBadgeModule} from '@angular/material/badge';
     ReactiveFormsModule,
     FormsModule,
     ReactiveFormsModule,
-    MatBadgeModule
+    MatBadgeModule,
+
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}

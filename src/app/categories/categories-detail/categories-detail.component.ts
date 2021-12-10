@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 
@@ -19,13 +19,16 @@ export class CategoriesDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private categoriesService: CategoriesService,
-              private location: Location) {
+              private location: Location,
+              private cdRef: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
     this.route.params.subscribe( q => {
       this.getProducts(q.id);
     } );
+    this.breakpoint = (window.innerWidth <= 400) ? 1 : 3;
+    this.cdRef.detectChanges();
   }
 
   getProducts(id:number): void {
