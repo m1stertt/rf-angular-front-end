@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {PageEvent} from "@angular/material/paginator";
 import {ProductDto} from "../shared/product.dto";
 import {ProductsGridPaginationService} from "./pagination/products-grid-pagination.service";
+import { CartService } from 'src/app/cart/shared/cart.service';
 
 
 @Component({
@@ -21,12 +22,17 @@ export class ProductsGridComponent implements AfterViewInit {
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
               public paginationService: ProductsGridPaginationService,
-              private cdRef: ChangeDetectorRef) {
+              private cdRef: ChangeDetectorRef,
+              private cartService:CartService) {
   }
 
   @Input('products')
   set allowDay(value: ProductDto[]) {
     this.products = value;
+  }
+
+  addToCart(product: ProductDto) {
+    this.cartService.addToCart(product);
   }
 
   switchPage(event: PageEvent) {

@@ -1,6 +1,11 @@
-<h3>Cart</h3>
-
-<div class="cart-item" *ngFor="let item of items">
-  <span>{{ item.name }}</span>
-  <span>{{ item.price | currency }}</span>
+<div style="width:200px; margin:auto;">
+<h1>Kurv</h1>
+<mat-list>
+  <mat-list-item *ngFor="let item of items">
+    <h3 matLine> {{item.productName}} </h3>
+    <p matLine> {{item.productPrice}},- DKK </p>
+    <button mat-button (click)="removeFromCart(item)"> Fjern </button>
+  </mat-list-item>
+</mat-list>
+<h2>Total pris: {{sum()}},- DKK</h2>
 </div>

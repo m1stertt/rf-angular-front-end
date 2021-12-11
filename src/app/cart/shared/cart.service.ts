@@ -6,10 +6,24 @@ import { ProductDto } from 'src/app/products/shared/product.dto';
 })
 export class CartService {
   items: ProductDto[] = [];
-  constructor() { }
+  constructor() {
+    var cart=localStorage.getItem('cart');
+    if(cart!=null){
+      console.log("Restored shopping cart");
+      this.items=JSON.parse(cart);
+    }
+  }
 
   addToCart(product: ProductDto) {
     this.items.push(product);
+    localStorage.setItem('cart', JSON.stringify(this.items));
+  }
+
+  removeFromCart(product: ProductDto){
+    this.items=this.items.filter(function(item) {
+      return item !== product
+    });
+    localStorage.setItem('cart', JSON.stringify(this.items));
   }
 
   getItems() {
@@ -18,6 +32,7 @@ export class CartService {
 
   clearCart() {
     this.items = [];
+    localStorage.removeItem("cart");
     return this.items;
   }
 }

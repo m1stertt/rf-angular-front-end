@@ -3,6 +3,7 @@ import {CategoriesService} from '../categories/shared/categories.service';
 import {CategoryDto} from '../categories/shared/category.dto';
 import {AppComponent} from 'src/app/app.component';
 import {ActivatedRoute, Router} from "@angular/router";
+import { CartService } from '../cart/shared/cart.service';
 
 
 @Component({
@@ -12,7 +13,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class MenuComponent implements OnInit {
 
-  constructor(private categoryService: CategoriesService, public appComponent: AppComponent, private router: Router, private route: ActivatedRoute) {
+  constructor(private categoryService: CategoriesService, public appComponent: AppComponent, private router: Router, private route: ActivatedRoute,
+    private cartService: CartService) {
   }
 
   categories: CategoryDto[] = [];
@@ -29,10 +31,16 @@ export class MenuComponent implements OnInit {
       .subscribe(params => {
         this.searchString = params.searchString || '';
       });
+    console.log(this.cartService.getItems());
   }
 
   search() {
     this.goProducts();
+  }
+
+  cartAmount(){
+    let length=this.cartService.getItems().length;
+    return this.cartService.getItems().length || "";
   }
 
   goProducts() {

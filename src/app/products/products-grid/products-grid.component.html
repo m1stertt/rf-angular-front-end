@@ -8,6 +8,7 @@
           {{ productDto.productName}}
           {{ productDto.id}}
           <img *ngIf="productDto.images.length" src="https://localhost:5001/resources/images/{{productDto.images[0].path}}"/>
+          <button (click)="addToCart(productDto)">Tilføj til kurv</button>
         </mat-grid-tile>
       </ng-container>
     </mat-grid-list>
