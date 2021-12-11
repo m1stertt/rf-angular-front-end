@@ -5,9 +5,11 @@ import { CartViewComponent } from './cart/cart-view/cart-view.component';
 import { ProductsGridComponent } from './products/products-grid/products-grid.component';
 
 const routes: Routes = [
-  {path: 'products', loadChildren: () =>
+  {
+    path: 'products', loadChildren: () =>
       import('./products/products.module')
-        .then(f => f.ProductsModule)},
+        .then(f => f.ProductsModule)
+  },
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module')
@@ -20,11 +22,17 @@ const routes: Routes = [
     import('./images/images.module')
       .then(f => f.ImagesModule)},
   { path: '',component:ProductsGridComponent},
-  { path: 'cart', component: CartViewComponent }
+  { path: 'cart', component: CartViewComponent },
+  {
+    path: 'account',
+    loadChildren: () => import('./account/account.module')
+      .then(m => m.AccountModule)
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

@@ -1,20 +1,18 @@
 <mat-card>
+  <h1>Login</h1>
   <form [formGroup]="loginForm" (ngSubmit)="login()">
 
     <div>
       <mat-form-field appearance="fill">
-        <mat-label>Username</mat-label>
-        <input matInput id="username" type="text" formControlName="username">
+        <mat-label>Email</mat-label>
+        <input matInput id="email" type="text" formControlName="email">
       </mat-form-field>
 
-      <div *ngIf="username && username.invalid && (username.dirty || username.touched)"
+      <div *ngIf="email && email.invalid && (email.dirty && email.touched)"
            class="alert alert-danger">
 
-        <div *ngIf="username.errors?.required">
-          Username is required.
-        </div>
-        <div *ngIf="username.errors?.minlength">
-          Username must be at least 3 characters long.
+        <div class="text-information" *ngIf="email.errors?.required">
+          E-mailadresse er påkrævet.
         </div>
       </div>
     </div>
@@ -29,15 +27,15 @@
            class="alert alert-danger">
 
         <div *ngIf="password.errors?.required">
-          Password is required.
+          Kodeord er påkrævet.
         </div>
       </div>
     </div>
 
-    <button mat-raised-button color="primary" type="submit"
+    <button class="login-button" mat-raised-button color="primary" type="submit"
             [disabled]="!loginForm.valid">Login
     </button>
-    <a routerLink="register" class="btn btn-link">Register</a>
+    <a routerLink="register" class="btn btn-link">Opret Bruger</a>
     <div class="error-message" *ngIf="errorMessage">
       {{errorMessage}}
 

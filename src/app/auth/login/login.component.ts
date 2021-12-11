@@ -18,16 +18,20 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   loginForm = new FormGroup({
-    username: new FormControl('',
+    email: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+    ]),
+
+    password: new FormControl('',
       [
         Validators.required,
-        Validators.minLength(3)
+        Validators.minLength(6)
       ]
     ),
-    password: new FormControl('', Validators.required),
   });
 
-  get username() {return this.loginForm.get('username');}
+  get email() {return this.loginForm.get('email');}
   get password() {return this.loginForm.get('password');}
 
   login() {
@@ -40,14 +44,12 @@ export class LoginComponent implements OnInit {
             this._router.navigateByUrl('');
           });
         } else {
-          //TOdo fix this
           console.log('Oh no! ')
         }
       })
-      .catch(err => {
-      this.errorMessage = err.error;
+      .catch(error => {
+      this.errorMessage = error.error;
       });
-    //redirect
   }
 
   register(){
