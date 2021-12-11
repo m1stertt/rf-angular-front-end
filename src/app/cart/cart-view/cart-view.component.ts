@@ -15,8 +15,13 @@ export class CartViewComponent implements OnInit {
     console.log(this.items);
   }
 
-  removeFromCart(product: CartItemDto){
-    this.cartService.removeFromCart(product);
+  removeFromCart(product: CartItemDto,amount:number=1){
+    this.cartService.removeFromCart(product,amount);
+    this.items = this.cartService.getItems();
+  }
+
+  incrementCartItem(product: CartItemDto){
+    this.cartService.incrementCartItem(product);
     this.items = this.cartService.getItems();
   }
 
@@ -27,6 +32,10 @@ export class CartViewComponent implements OnInit {
       }
       return accum;
     }, 0);
+  }
+
+  amount(){
+    return this.cartService.getAmount();
   }
 
   groupBy(xs: any[], key: string) {

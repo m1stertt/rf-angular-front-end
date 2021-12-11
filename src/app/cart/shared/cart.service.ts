@@ -46,6 +46,16 @@ export class CartService {
     this.update();
   }
 
+  incrementCartItem(product: CartItemDto) { //@todo size stuff.
+    let index=this.items.findIndex(e=>e.id===product.id&&e.color===product.color&&e.size===product.size);
+    if (index>=0) {
+      this.items[index].amount+=product.amount;
+    }else{
+      this.items.push(product)
+    }
+    this.update();
+  }
+
   removeFromCart(product: CartItemDto,amount:number=1){
     let index=this.items.findIndex(e=>e.id===product.id&&e.color===product.color&&e.size===product.size);
     if (index<0) return; //Unable to find item

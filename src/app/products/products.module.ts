@@ -15,7 +15,11 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
+import {CarouselModule} from 'primeng/carousel';
+import {ButtonModule} from 'primeng/button';
+import {ToastModule} from 'primeng/toast';
+import {GalleriaModule} from 'primeng/galleria';
+import {PanelModule} from 'primeng/panel';
 
 
 @NgModule({
@@ -37,7 +41,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatPaginatorModule,
     MatSelectModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CarouselModule,
+    ButtonModule,
+    ToastModule,
+    GalleriaModule,
+    PanelModule
   ]
 })
 export class ProductsModule { }

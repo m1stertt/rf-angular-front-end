@@ -4,6 +4,7 @@ import {CategoryDto} from '../categories/shared/category.dto';
 import {AppComponent} from 'src/app/app.component';
 import {ActivatedRoute, Router} from "@angular/router";
 import { CartService } from '../cart/shared/cart.service';
+import {MenuItem} from 'primeng/api';
 
 
 @Component({
@@ -12,6 +13,12 @@ import { CartService } from '../cart/shared/cart.service';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
+
+  public breadcrumb: MenuItem[] = [
+    {icon:'pi pi-home',routerLink:"/"},
+    {label:'Kategori/Søgning',routerLink:"/"},
+    {label:'Vare',routerLink:"/"}
+  ];
 
   constructor(private categoryService: CategoriesService, public appComponent: AppComponent, private router: Router, private route: ActivatedRoute,
     private cartService: CartService) {
@@ -31,7 +38,6 @@ export class MenuComponent implements OnInit {
       .subscribe(params => {
         this.searchString = params.searchString || '';
       });
-    console.log(this.cartService.getItems());
   }
 
   search() {

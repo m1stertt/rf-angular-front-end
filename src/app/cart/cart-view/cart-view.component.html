@@ -1,13 +1,42 @@
-<div style="width:200px; margin:auto;">
-<h1>Kurv</h1>
-<mat-list>
-  <mat-list-item *ngFor="let item of items">
-    <h3 matLine> {{item.name}} [{{item.amount}}] </h3>
-    <p matLine *ngIf="item.price"> {{item.amount*item.price}},- DKK </p>
-    <p matLine *ngIf="item.color"> {{item.color.title}}</p>
-    <p matLine *ngIf="item.size"> {{item.size.title}}</p>
-    <button mat-button (click)="removeFromCart(item)"> Fjern </button>
-  </mat-list-item>
-</mat-list>
-<h2>Total pris: {{sum()}},- DKK</h2>
-</div>
+<div class="grid">
+  <div class="col-12 md:col-10 md:col-offset-1 lg:col-8 lg:col-offset-2">
+<p-table [value]="items" responsiveLayout="scroll">
+  <ng-template pTemplate="caption">
+      <div class="p-d-flex p-ai-center p-jc-between">
+          Kurv
+      </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+      <tr>
+          <th>Product Name</th>
+          <th>Details (If applicable)</th>
+          <th>Product Image</th>
+          <th>Amount</th>
+          <th></th>
+          <th>Price</th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+      <tr>
+          <td>{{product.name}}</td>
+          <td>
+            <div *ngIf="product.color"> {{product.color.title}}</div>
+            <div *ngIf="product.size"> {{product.size.title}}</div>
+          </td>
+          <td><img src="https://localhost:5001/resources/images/{{product.image}}" [alt]="product.name" width="100" class="p-shadow-4" /></td>
+          <td>{{product.amount}}</td>
+          <td>
+            <button pButton type="button" class="p-button-text p-button-icon-only" (click)="removeFromCart(product)">-</button>
+            <button pButton type="button" class="p-button-text p-button-icon-only" (click)="incrementCartItem(product)">+</button>
+          </td>
+          <td>{{(product.price*product.amount) | currency:'DKK'}}</td>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="summary">
+      <div class="p-d-flex p-ai-center p-jc-between">
+          Der er i alt {{amount()}} varer.<br>
+          Total pris: {{sum()}},- DKK
+      </div>
+  </ng-template>
+</p-table>
+</div></div>
