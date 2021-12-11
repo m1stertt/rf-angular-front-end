@@ -1,31 +1,41 @@
-<div *ngIf="product">
-
-  <h2>{{product.productName | uppercase}} Details</h2>
-  <div><span>id: </span>{{product.id}}</div>
-  <div>
-    <label for="product-name">Product name: </label>
-    <input id="product-name" [(ngModel)]="product.productName" placeholder="name">
-
-    <mat-form-field appearance="fill">
-      <mat-label>Edit categories</mat-label>
-      <mat-select [(ngModel)]="product.categories" [formControl]="categories_" multiple [compareWith]="compareWithFunc">
-        <mat-option *ngFor="let category of categories" [value]="category" >{{category.name}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Edit colors</mat-label>
-      <mat-select [(ngModel)]="product.colors" [formControl]="colors_" multiple [compareWith]="compareWithFunc">
-        <mat-option *ngFor="let color of colors" [value]="color" >{{color.title}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Edit  sizes</mat-label>
-      <mat-select [(ngModel)]="product.sizes" [formControl]="sizes_" multiple [compareWith]="compareWithFunc">
-        <mat-option *ngFor="let size of sizes" [value]="size" >{{size.title}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <button (click)="update()">Update</button>
+<div class="grid">
+  <div class="col-12 md:col-10 md:col-offset-1 lg:col-6 lg:col-offset-3"><p-panel><div *ngIf="product">
+    <p-galleria [value]="product.images">
+      <ng-template pTemplate="item" let-item>
+          <img src="https://localhost:5001/resources/images/{{item.path}}"/>
+      </ng-template>
+    </p-galleria>
+  
+    <div class="column">
+      <div class="details">
+        <h1>{{product.productName}}</h1>
+        <p class="price">{{product.productPrice}},- DKK</p>
+        <p class="description">A remarkable shoe that's naturally soft, cozy all over, and fits your every move.</p>
+  
+  
+  
+        <div class="columns">
+          <p><mat-form-field appearance="fill">
+            <mat-label>Farve</mat-label>
+            <mat-select [(value)]="colorSelected">
+              <mat-option *ngFor="let color of product.colors" [value]="color" >{{color.title}}</mat-option>
+            </mat-select>
+          </mat-form-field></p>
+          <p><mat-form-field appearance="fill">
+            <mat-label>Størrelse</mat-label>
+            <mat-select [(value)]="sizeSelected">
+              <mat-option *ngFor="let size of product.sizes" [value]="size" >{{size.title}}</mat-option>
+            </mat-select>
+          </mat-form-field></p>
+            <button mat-button (click)="addToCart(product)">Tilføj til kurv</button>
+  
+        </div>
+  
+        <p class="small-text"><span>Standard delivery</span> 2-5 working days</p>
+        <p class="small-text"><span>Next day delivery</span> order before 2pm ($5.79)</p>
+  
+      </div>
+    </div>
+  
   </div>
-
-</div>
-<button (click)="goBack()">go back</button>
+</p-panel></div></div>

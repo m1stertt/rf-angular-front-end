@@ -6,9 +6,11 @@ import { SizeDto } from "src/app/sizes/shared/size.dto";
 export interface ProductDto {
   id: number;
   productName: string;
-  price: number;
-  description: string;
-  imageUrl: string;
+  productPrice: number;
+  productDescription: string;
+  productImageUrl: string;
+
+  
   categories: CategoryDto[];
   colors: ColorDto[];
   sizes: SizeDto[];

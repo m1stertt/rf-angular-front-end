@@ -25,5 +25,6 @@
         routerLink="/auth/login" >Login</button>
     </div>
   </ng-template>
-  <button mat-button><span matBadge="2" class="material-icons">shopping_basket</span></button>
+  <button routerLink="/cart" mat-button><span matBadge="{{cartAmount()}}" class="material-icons">shopping_basket</span></button>
 </mat-toolbar>
+<p-breadcrumb [model]="breadcrumb"></p-breadcrumb>

@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {PageEvent} from "@angular/material/paginator";
 import {ProductDto} from "../shared/product.dto";
 import {ProductsGridPaginationService} from "./pagination/products-grid-pagination.service";
+import { CartService } from 'src/app/cart/shared/cart.service';
 
 
 @Component({
@@ -17,11 +18,29 @@ export class ProductsGridComponent implements AfterViewInit {
 
   totalCount?: number;
   breakpoint?: number;
-
+	
+	responsiveOptions =[
+    {
+        breakpoint: '1024px',
+        numVisible: 3,
+        numScroll: 3
+    },
+    {
+        breakpoint: '768px',
+        numVisible: 2,
+        numScroll: 2
+    },
+    {
+        breakpoint: '560px',
+        numVisible: 1,
+        numScroll: 1
+    }
+];
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
               public paginationService: ProductsGridPaginationService,
-              private cdRef: ChangeDetectorRef) {
+              private cdRef: ChangeDetectorRef,
+              private cartService:CartService) {
   }
 
   @Input('products')

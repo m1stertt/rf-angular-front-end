@@ -13,9 +13,8 @@ export class AppComponent {
   title = 'rf-angular-front-end';
   profile$: Observable<Profile | null> | undefined;
 
-  constructor(private _authService: AuthService,
-              private _router: Router) {
-  }
+
+  constructor(private _authService: AuthService, private _router: Router) { }
 
   ngOnInit(): void {
     this.profile$ = this._authService.listenForProfile();
