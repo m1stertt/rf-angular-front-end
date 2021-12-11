@@ -17,28 +17,46 @@ export class CartService {
         this.productService.getProduct(item.id).subscribe(product=>{
           this.items[index].name=product.productName;
           this.items[index].price=product.productPrice;
+          let color=this.items[index].color;
+          let size=this.items[index].size;
+          if(color){
+            if(!product.colors||!product.colors.includes(color)){
+              //Remove item, not available anymore
+            }
+            //@todo
+          }
+          if(size){
+            if(!product.sizes||!product.sizes.includes(size)){
+              //Remove item, not available anymore
+            }
+            //@todo
+          }
         });
       });
     }
   }
 
-  addToCart(product: ProductDto,amount:number=1) {
-    let index=this.items.findIndex(e=>e.id===product.id);
+  addToCart(product: CartItemDto) { //@todo size stuff.
+    let index=this.items.findIndex(e=>e.id===product.id&&e.color===product.color&&e.size===product.size);
     if (index>=0) {
-      this.items[index].amount+=amount;
+      this.items[index].amount+=product.amount;
     }else{
-      this.items.push({id:product.id,amount:amount,price:product.productPrice,name:product.productName})
+      this.items.push(product)
     }
-    localStorage.setItem('cart', JSON.stringify(this.items));
+    this.update();
   }
 
   removeFromCart(product: CartItemDto,amount:number=1){
-    let index=this.items.findIndex(e=>e.id===product.id);
+    let index=this.items.findIndex(e=>e.id===product.id&&e.color===product.color&&e.size===product.size);
     if (index<0) return; //Unable to find item
     this.items[index].amount-=amount;
     if(this.items[index].amount<=0){
       this.items.splice(index,1);
     }
+    this.update();
+  }
+
+  update(){
     localStorage.setItem('cart', JSON.stringify(this.items));
   }
 

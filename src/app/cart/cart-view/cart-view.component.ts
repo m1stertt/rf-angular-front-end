@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductDto } from 'src/app/products/shared/product.dto';
 import { CartService } from '../shared/cart.service';
 import { CartItemDto } from '../shared/cartItem.dto';
 
@@ -13,6 +12,7 @@ export class CartViewComponent implements OnInit {
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
+    console.log(this.items);
   }
 
   removeFromCart(product: CartItemDto){

@@ -4,6 +4,8 @@
   <mat-list-item *ngFor="let item of items">
     <h3 matLine> {{item.name}} [{{item.amount}}] </h3>
     <p matLine *ngIf="item.price"> {{item.amount*item.price}},- DKK </p>
+    <p matLine *ngIf="item.color"> {{item.color.title}}</p>
+    <p matLine *ngIf="item.size"> {{item.size.title}}</p>
     <button mat-button (click)="removeFromCart(item)"> Fjern </button>
   </mat-list-item>
 </mat-list>

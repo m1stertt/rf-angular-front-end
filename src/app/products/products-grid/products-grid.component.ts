@@ -31,10 +31,6 @@ export class ProductsGridComponent implements AfterViewInit {
     this.products = value;
   }
 
-  addToCart(product: ProductDto) {
-    this.cartService.addToCart(product);
-  }
-
   switchPage(event: PageEvent) {
     this.paginationService.change(event);
     this.getPagedProducts();
