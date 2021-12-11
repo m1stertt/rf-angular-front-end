@@ -38,6 +38,10 @@ import {ButtonModule} from 'primeng/button';
 import {RatingModule} from 'primeng/rating';
 import {StepsModule} from 'primeng/steps';
 import { MenuService } from './menu/shared/menu.service';
+import { HomepageComponent } from './homepage/homepage.component';
+import { ProductsGridComponent } from './products/products-grid/products-grid.component';
+import {CarouselModule} from 'primeng/carousel';
+import { ProductsModule } from './products/products.module';
 
 
 @NgModule({
@@ -45,6 +49,7 @@ import { MenuService } from './menu/shared/menu.service';
     AppComponent,
     MenuComponent,
     CartViewComponent,
+    HomepageComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,13 +86,16 @@ import { MenuService } from './menu/shared/menu.service';
     TableModule,
     ButtonModule,
     RatingModule,
-    StepsModule
+    StepsModule,
+    CarouselModule,
+    ProductsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
     , AuthService, AppComponent, MenuService, CategoriesService, SizesService, ColorsService, CartService,
     {provide: MatPaginatorIntl, useValue: getDanishPaginatorIntl()}
   ],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule {
