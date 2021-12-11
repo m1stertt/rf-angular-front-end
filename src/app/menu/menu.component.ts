@@ -39,8 +39,7 @@ export class MenuComponent implements OnInit {
   }
 
   cartAmount(){
-    let length=this.cartService.getItems().length;
-    return this.cartService.getItems().length || "";
+    return this.cartService.getAmount() || "";
   }
 
   goProducts() {

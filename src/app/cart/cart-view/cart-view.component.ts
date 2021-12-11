@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductDto } from 'src/app/products/shared/product.dto';
 import { CartService } from '../shared/cart.service';
+import { CartItemDto } from '../shared/cartItem.dto';
 
 @Component({
   selector: 'app-cart-view',
@@ -9,19 +10,23 @@ import { CartService } from '../shared/cart.service';
 })
 export class CartViewComponent implements OnInit {
   items = this.cartService.getItems();
-  grouped = this.groupBy(this.items,"id");
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
   }
 
-  removeFromCart(product: ProductDto){
+  removeFromCart(product: CartItemDto){
     this.cartService.removeFromCart(product);
     this.items = this.cartService.getItems();
   }
 
   sum(){
-    return this.items.reduce((accum,item) => accum + item.productPrice, 0);
+    return this.items.reduce((accum,item) =>{
+      if(item.price){
+        return accum + item.price*item.amount;
+      }
+      return accum;
+    }, 0);
   }
 
   groupBy(xs: any[], key: string) {
