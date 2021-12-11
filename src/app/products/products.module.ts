@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ProductsRoutingModule } from './products-routing.module';
-import { ProductsListComponent } from './products-list/products-list.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
@@ -23,7 +22,6 @@ import {PanelModule} from 'primeng/panel';
 
 @NgModule({
   declarations: [
-    ProductsListComponent,
     ProductDetailComponent,
     ProductCreateComponent,
     ProductsGridComponent,

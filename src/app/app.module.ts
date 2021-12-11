@@ -39,7 +39,6 @@ import {RatingModule} from 'primeng/rating';
 import {StepsModule} from 'primeng/steps';
 import { MenuService } from './menu/shared/menu.service';
 import { HomepageComponent } from './homepage/homepage.component';
-import { ProductsGridComponent } from './products/products-grid/products-grid.component';
 import {CarouselModule} from 'primeng/carousel';
 import { ProductsModule } from './products/products.module';
 
