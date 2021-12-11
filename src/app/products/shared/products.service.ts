@@ -41,4 +41,8 @@ export class ProductsService {
   create(product: ProductDto): Observable<ProductDto> {
     return this._http.post<ProductDto>('https://localhost:5001/api/Product', product)
   }
+
+  getFeatured(): Observable<ProductDto[]>{
+    return this._http.get<ProductDto[]>('https://localhost:5001/api/Product/Featured');
+  }
 }

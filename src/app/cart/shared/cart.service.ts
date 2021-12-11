@@ -17,6 +17,7 @@ export class CartService {
         this.productService.getProduct(item.id).subscribe(product=>{
           this.items[index].name=product.productName;
           this.items[index].price=product.productPrice;
+          this.items[index].image=product.images[0];
           let color=this.items[index].color;
           let size=this.items[index].size;
           if(color){

@@ -1,16 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductDto} from "../shared/product.dto";
-import {CategoryDto} from "src/app/categories/shared/category.dto";
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 
 import {ProductsService} from "../shared/products.service";
-import { CategoriesService } from 'src/app/categories/shared/categories.service';
-import { FormControl } from '@angular/forms';
 import { ColorDto } from 'src/app/colors/shared/color.dto';
 import { SizeDto } from 'src/app/sizes/shared/size.dto';
 import { CartService } from 'src/app/cart/shared/cart.service';
-import { CartItemDto } from 'src/app/cart/shared/cartItem.dto';
+import { MenuService } from 'src/app/menu/shared/menu.service';
 
 
 @Component({
@@ -27,7 +24,7 @@ export class ProductDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
               private location: Location,
-              private cartService: CartService ) {
+              private cartService: CartService, private menuService:MenuService ) {
   }
 
   ngOnInit(): void {
@@ -39,6 +36,11 @@ export class ProductDetailComponent implements OnInit {
     this.productsService.getProduct(id)
       .subscribe(product =>{
         this.product = product;
+        this.menuService.breadcrumb=[
+          {icon:'pi pi-home',routerLink:"/"},
+          {label:'Produkter',routerLink:"/products"},
+          {label:product.productName,routerLink:"/products/"+product.id}
+        ];
         console.log(product);
       });
   }
