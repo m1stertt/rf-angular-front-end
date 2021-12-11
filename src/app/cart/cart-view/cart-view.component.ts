@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuService } from 'src/app/menu/shared/menu.service';
 import { CartService } from '../shared/cart.service';
 import { CartItemDto } from '../shared/cartItem.dto';
 
@@ -8,11 +9,21 @@ import { CartItemDto } from '../shared/cartItem.dto';
   styleUrls: ['./cart-view.component.scss']
 })
 export class CartViewComponent implements OnInit {
+
+  steps=[
+    {label: 'Kurv'},
+    {label: 'Levering'},
+    {label: 'Bekræftelse'}
+  ];
   items = this.cartService.getItems();
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService,private menuService:MenuService) { }
 
   ngOnInit(): void {
     console.log(this.items);
+    this.menuService.breadcrumb=[
+      {icon:'pi pi-home',routerLink:"/"},
+      {label:'Kurv',routerLink:"/cart"}
+    ];
   }
 
   removeFromCart(product: CartItemDto,amount:number=1){

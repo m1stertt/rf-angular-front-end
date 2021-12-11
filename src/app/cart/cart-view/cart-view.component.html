@@ -1,29 +1,30 @@
 <div class="grid">
   <div class="col-12 md:col-10 md:col-offset-1 lg:col-8 lg:col-offset-2">
+    <p-steps [model]="steps"></p-steps>
 <p-table [value]="items" responsiveLayout="scroll">
   <ng-template pTemplate="caption">
       <div class="p-d-flex p-ai-center p-jc-between">
-          Kurv
+          Din ordre
       </div>
   </ng-template>
   <ng-template pTemplate="header">
       <tr>
-          <th>Product Name</th>
-          <th>Details (If applicable)</th>
-          <th>Product Image</th>
-          <th>Amount</th>
+          <th style="width:6rem;"></th>
+          <th>Navn</th>
+          <th>Detaljer</th>
+          <th>Mængde</th>
           <th></th>
-          <th>Price</th>
+          <th>Pris</th>
       </tr>
   </ng-template>
   <ng-template pTemplate="body" let-product>
       <tr>
+          <td><img *ngIf="product.image" src="https://localhost:5001/resources/images/{{product.image.path}}" [alt]="product.image.desc" width="100" class="p-shadow-4" /></td>
           <td>{{product.name}}</td>
           <td>
             <div *ngIf="product.color"> {{product.color.title}}</div>
             <div *ngIf="product.size"> {{product.size.title}}</div>
           </td>
-          <td><img src="https://localhost:5001/resources/images/{{product.image}}" [alt]="product.name" width="100" class="p-shadow-4" /></td>
           <td>{{product.amount}}</td>
           <td>
             <button pButton type="button" class="p-button-text p-button-icon-only" (click)="removeFromCart(product)">-</button>
@@ -35,7 +36,8 @@
   <ng-template pTemplate="summary">
       <div class="p-d-flex p-ai-center p-jc-between">
           Der er i alt {{amount()}} varer.<br>
-          Total pris: {{sum()}},- DKK
+          Total pris: {{sum()}},- DKK<br>
+          <button mat-raised-button style="width:80%; background:#305a66; color:white; margin-left:10%;margin-top:5px;">Gå til levering</button>
       </div>
   </ng-template>
 </p-table>

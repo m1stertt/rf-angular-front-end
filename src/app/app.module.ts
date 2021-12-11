@@ -36,6 +36,8 @@ import {BreadcrumbModule} from 'primeng/breadcrumb';
 import {TableModule} from 'primeng/table';
 import {ButtonModule} from 'primeng/button';
 import {RatingModule} from 'primeng/rating';
+import {StepsModule} from 'primeng/steps';
+import { MenuService } from './menu/shared/menu.service';
 
 
 @NgModule({
@@ -78,11 +80,12 @@ import {RatingModule} from 'primeng/rating';
     BreadcrumbModule,
     TableModule,
     ButtonModule,
-    RatingModule
+    RatingModule,
+    StepsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
-    , AuthService, AppComponent, CategoriesService, SizesService, ColorsService, CartService,
+    , AuthService, AppComponent, MenuService, CategoriesService, SizesService, ColorsService, CartService,
     {provide: MatPaginatorIntl, useValue: getDanishPaginatorIntl()}
   ],
   bootstrap: [AppComponent]
