@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ProductDto } from 'src/app/products/shared/product.dto';
 import { ProductsService } from 'src/app/products/shared/products.service';
 import { CartItemDto } from './cartItem.dto';
 
