@@ -1,61 +1,48 @@
-<mat-card>
-  <form [formGroup]="loginForm" (ngSubmit)="save()">
+<mat-card *ngIf="this.appComponent.profile$ | async as profile" >
+  <form [formGroup]="userManagementForm" (ngSubmit)="saveChanges()">
     <h1>Mine Oplysninger</h1>
     <div>
       <mat-form-field disabled appearance="outline">
         <mat-label>Fornavn</mat-label>
-        <input matInput placeholder="Placeholder">
+        <input id="firstName" formControlName="firstName" matInput placeholder="Placeholder">
         <mat-icon matSuffix>edit</mat-icon>
       </mat-form-field>
       <mat-form-field disabled appearance="outline">
         <mat-label>Efternavn</mat-label>
-        <input matInput placeholder="Placeholder">
+        <input id="lastName" formControlName="lastName" matInput placeholder="Placeholder" >
         <mat-icon matSuffix>edit</mat-icon>
       </mat-form-field>
-    </div>
-    <div>
-      <mat-form-field disabled appearance="outline">
+      <mat-form-field disabled appearance="outline" >
         <mat-label>Email</mat-label>
-        <input matInput placeholder="Placeholder">
+        <input id="email" formControlName="email" matInput placeholder="Placeholder" >
         <mat-icon matSuffix>edit</mat-icon>
       </mat-form-field>
-    </div>
-    <div>
       <mat-form-field disabled appearance="outline">
         <mat-label>Gade og husnummer</mat-label>
-        <input matInput placeholder="Placeholder">
+        <input id="streetAndNumber" formControlName="streetAndNumber" matInput placeholder="Placeholder">
         <mat-icon matSuffix>edit</mat-icon>
       </mat-form-field>
-    </div>
-    <div>
       <mat-form-field disabled appearance="outline">
         <mat-label>Postnummer</mat-label>
-        <input matInput placeholder="Placeholder">
+        <input id="postalCode" formControlName="postalCode" matInput placeholder="Placeholder">
         <mat-icon matSuffix>edit</mat-icon>
       </mat-form-field>
       <mat-form-field disabled appearance="outline">
         <mat-label>By</mat-label>
-        <input matInput placeholder="Placeholder">
-        <mat-icon matSuffix>edit</mat-icon>
-      </mat-form-field>
-    </div>
-    <div>
-      <mat-form-field disabled appearance="outline">
-        <mat-label>Email</mat-label>
-        <input matInput placeholder="Placeholder">
+        <input id="city" formControlName="city" matInput placeholder="Placeholder">
         <mat-icon matSuffix>edit</mat-icon>
       </mat-form-field>
       <mat-form-field disabled appearance="outline">
         <mat-label>Telefon</mat-label>
-        <input matInput placeholder="Placeholder">
+        <input id="phoneNumber" formControlName="phoneNumber" matInput placeholder="Placeholder" >
         <mat-icon matSuffix>edit</mat-icon>
       </mat-form-field>
 
     </div>
     <div >
       <button mat-raised-button color="primary">Gem Ændringer</button>
-      <button mat-raised-button color="warn">Slet konto</button>
-    </div>
 
+    </div>
   </form>
+  <button (click)="deleteUser()" mat-raised-button color="warn" >Slet konto </button>
 </mat-card>

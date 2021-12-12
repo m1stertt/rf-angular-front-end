@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import { Component } from '@angular/core';
 import {AuthService} from "../shared/auth.service";
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
@@ -9,14 +9,11 @@ import {RegistrationDetails} from "../shared/models/registration-details";
   templateUrl: './user-registration.component.html',
   styleUrls: ['./user-registration.component.scss']
 })
-export class UserRegistrationComponent implements OnInit, AfterViewInit {
+export class UserRegistrationComponent{
   errorMessage?: string;
 
   constructor(private authService: AuthService,
               private router: Router) {
-  }
-
-  ngOnInit(): void {
   }
 
   loginForm = new FormGroup({
@@ -48,9 +45,6 @@ export class UserRegistrationComponent implements OnInit, AfterViewInit {
       error => {
         this.errorMessage = error.error;
       });
-  }
-
-  ngAfterViewInit(): void {
   }
 
 }
