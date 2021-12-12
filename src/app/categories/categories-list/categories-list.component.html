@@ -1,12 +1,18 @@
-<h1>Categories</h1>
+<div class="grid" style="margin-top:10px;">
+  <div class="col-6 col-offset-3">
+    <mat-card>
+      <h1>KATEGORIER</h1>
 
-<ul *ngIf="categories">
-  <span *ngIf="categories && categories.length > 0 else noCategories">
-    <li *ngFor="let category of categories">
-      id: {{category.id}} name: {{category.name}}
-    </li>
-  </span>
-  <ng-template #noCategories>
-    <h5>No Categories found</h5>
-  </ng-template>
-</ul>
+      <ul *ngIf="categories">
+        <span *ngIf="categories && categories.length > 0 else noCategories">
+          <li *ngFor="let category of categories" routerLink="/category/{{category.id}}">
+            id: {{category.id}} name: {{category.name}}
+          </li>
+        </span>
+        <ng-template #noCategories>
+          <h5>No Categories found</h5>
+        </ng-template>
+      </ul>
+    </mat-card>
+  </div>
+</div>

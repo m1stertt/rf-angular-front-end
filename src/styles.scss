@@ -3,6 +3,9 @@
 html, body { height: 100%; box-sizing: border-box; margin: 0; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .grid{width:99%;}
+a, a:visited, a:active {
+  color: inherit;
+}
 #nonFooter {
   min-height: 100%;
   position:relative;
