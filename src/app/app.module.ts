@@ -30,13 +30,25 @@ import {SizesService} from "./sizes/shared/sizes.service";
 import {ColorsService} from "./colors/shared/colors.service";
 import {getDanishPaginatorIntl} from "./danish-paginator-intl";
 import {MatBadgeModule} from '@angular/material/badge';
-
+import { CartService } from './cart/shared/cart.service';
+import { CartViewComponent } from './cart/cart-view/cart-view.component';
+import {BreadcrumbModule} from 'primeng/breadcrumb';
+import {TableModule} from 'primeng/table';
+import {ButtonModule} from 'primeng/button';
+import {RatingModule} from 'primeng/rating';
+import {StepsModule} from 'primeng/steps';
+import { MenuService } from './menu/shared/menu.service';
+import { HomepageComponent } from './homepage/homepage.component';
+import {CarouselModule} from 'primeng/carousel';
+import { ProductsModule } from './products/products.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
+    CartViewComponent,
+    HomepageComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,13 +81,20 @@ import {MatBadgeModule} from '@angular/material/badge';
     FormsModule,
     ReactiveFormsModule,
     MatBadgeModule,
-
+    BreadcrumbModule,
+    TableModule,
+    ButtonModule,
+    RatingModule,
+    StepsModule,
+    CarouselModule,
+    ProductsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
-    , AuthService, AppComponent, CategoriesService, SizesService, ColorsService,
+    , AuthService, AppComponent, MenuService, CategoriesService, SizesService, ColorsService, CartService,
     {provide: MatPaginatorIntl, useValue: getDanishPaginatorIntl()}
   ],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule {

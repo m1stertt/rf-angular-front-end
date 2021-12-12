@@ -3,6 +3,9 @@ import {CategoriesService} from '../categories/shared/categories.service';
 import {CategoryDto} from '../categories/shared/category.dto';
 import {AppComponent} from 'src/app/app.component';
 import {ActivatedRoute, Router} from "@angular/router";
+import { CartService } from '../cart/shared/cart.service';
+import {MenuItem} from 'primeng/api';
+import { MenuService } from './shared/menu.service';
 
 
 @Component({
@@ -11,8 +14,8 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-
-  constructor(private categoryService: CategoriesService, public appComponent: AppComponent, private router: Router, private route: ActivatedRoute) {
+  constructor(private categoryService: CategoriesService, public appComponent: AppComponent, private router: Router, private route: ActivatedRoute,
+    private cartService: CartService,public menuService:MenuService) {
   }
 
   categories: CategoryDto[] = [];
@@ -34,6 +37,10 @@ export class MenuComponent implements OnInit {
 
   search() {
     this.goProducts();
+  }
+
+  cartAmount(){
+    return this.cartService.getAmount() || "";
   }
 
   goProducts() {

@@ -6,6 +6,7 @@ import {CategoriesService} from "../shared/categories.service";
 import { ProductDto } from 'src/app/products/shared/product.dto';
 import { PageEvent } from '@angular/material/paginator';
 import { CategoryDto } from '../shared/category.dto';
+import { MenuService } from 'src/app/menu/shared/menu.service';
 
 @Component({
   selector: 'app-categories-detail',
@@ -20,12 +21,14 @@ export class CategoriesDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private categoriesService: CategoriesService,
               private location: Location,
-              private cdRef: ChangeDetectorRef) {
+              private cdRef: ChangeDetectorRef,
+              private menuService:MenuService) {
   }
 
   ngOnInit(): void {
     this.route.params.subscribe( q => {
       this.getProducts(q.id);
+      
     } );
     this.breakpoint = (window.innerWidth <= 400) ? 1 : 3;
     this.cdRef.detectChanges();
@@ -36,6 +39,11 @@ export class CategoriesDetailComponent implements OnInit {
       .subscribe(category =>{
         this.category = category;
         this.products=category.products;
+        this.menuService.breadcrumb=[
+          {icon:'pi pi-home',routerLink:"/"},
+          {label:'Kategorier',routerLink:"/category"},
+          {label:this.category.name,routerLink:"/category/"+category.id}
+        ];
       });
   }
 
