@@ -9,6 +9,7 @@ export interface ProductDto {
   productPrice: number;
   productDescription: string;
   productImageUrl: string;
+  productFeatured: boolean;
 
   
   categories: CategoryDto[];

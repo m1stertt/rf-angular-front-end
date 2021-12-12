@@ -1,9 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+html, body { height: 100%; box-sizing: border-box; margin: 0; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .grid{width:99%;}
-
+#nonFooter {
+  min-height: 100%;
+  position:relative;
+  /* Firefox */
+  min-height: -moz-calc(100% - 200px);
+  /* WebKit */
+  min-height: -webkit-calc(100% - 200px);
+  /* Opera */
+  min-height: -o-calc(100% - 200px);
+  /* Standard */
+  min-height: calc(100% - 200px);
+}
 
 .megamenu {
   min-width:100% !important;

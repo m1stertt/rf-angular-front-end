@@ -1,0 +1,64 @@
+<div class="grid">
+  <div class="col-12 md:col-4 lg:col-2">
+    <app-admin-sidepanel></app-admin-sidepanel>
+  </div>
+  <div class="col-12 md:col-8 lg:col-10">
+    <div *ngIf="product">
+      <div class="grid">
+        <div class="col-12 md:col-6 lg:col-3">
+
+      <h2>{{product.productName | uppercase}} Details</h2>
+        <span class="p-float-label" style="margin-bottom:15px;">
+          <input id="float-input" type="text" disabled pInputText [(ngModel)]="product.id"> 
+          <label for="float-input">ID</label>
+        </span>
+        <span class="p-float-label" style="margin-bottom:15px;">
+          <input id="float-input" type="text" pInputText [(ngModel)]="product.productName"> 
+          <label for="float-input">Username</label>
+        </span>
+        <span class="p-float-label" style="margin-bottom:15px;">
+          <input id="float-input" type="text" pInputText [(ngModel)]="product.productPrice"> 
+          <label for="float-input">Pris</label>
+        </span>
+        <span class="p-float-label">
+          <textarea id="float-input" rows="5" cols="30" pInputTextarea [(ngModel)]="product.productDescription"></textarea>
+          <label for="float-input">Beskrivelse</label>
+      </span>
+      <div class="p-field-checkbox">
+        <p-checkbox [(ngModel)]="product.productFeatured" inputId="check"></p-checkbox>
+        <label for="check">Featured</label>
+      </div>
+      </div> <div class="col-12 md:col-5 lg:col-6">
+        <div style="margin-top:15px;">
+        <mat-form-field style="display:block;" appearance="fill">
+          <mat-label>Edit categories</mat-label>
+          <mat-select [(ngModel)]="product.categories" [formControl]="categories_" multiple [compareWith]="compareWithFunc">
+            <mat-option *ngFor="let category of categories" [value]="category" >{{category.name}}</mat-option>
+            <p-button (click)="createSize()">Ny kategori</p-button>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field style="display:block;" appearance="fill">
+          <mat-label>Edit colors</mat-label>
+          <mat-select [(ngModel)]="product.colors" [formControl]="colors_" multiple [compareWith]="compareWithFunc">
+            <mat-option *ngFor="let color of colors" [value]="color" >{{color.title}}</mat-option>
+            <p-button (click)="createSize()">Ny farve</p-button>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field style="display:block;" appearance="fill">
+          <mat-label>Edit sizes</mat-label>
+          <mat-select [(ngModel)]="product.sizes" [formControl]="sizes_" multiple [compareWith]="compareWithFunc">
+            <mat-option *ngFor="let size of sizes" [value]="size" >{{size.title}}</mat-option>
+            <div class="p-fluid"><p-button (click)="createSize()">Ny størrelse</p-button></div>
+          </mat-select>
+        </mat-form-field>
+      </div>
+        </div><div class="col-12 lg:col-3">
+          <div style="padding-top:10px;">
+            <div class="p-fluid"><p-button (click)="update()">Opdater</p-button></div>
+            <button mat-button (click)="goBack()" color="primary">Tilbage</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
