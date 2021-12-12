@@ -31,7 +31,7 @@ export class AuthService {
   }
 
   register(registrationDetails: RegistrationDetails): Observable<RegistrationDetails> {
-    return this._http.post<RegistrationDetails>('https://localhost:5001/api' + '/auth/register', registrationDetails)
+    return this._http.post<RegistrationDetails>('https://localhost:5001/api' + '/auth/registeruser', registrationDetails)
   }
 
   getToken(): string | null {

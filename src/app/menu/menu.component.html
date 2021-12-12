@@ -14,7 +14,7 @@
     </button>
   </mat-form-field>
   <div *ngIf="this.appComponent.profile$ | async as profile else loggedOut" style="float: right">
-    <span class="ost">Welcome {{profile.name}}</span>
+    <span class="ost">Welcome {{profile.email}}</span>
     <button mat-menu-item style="margin-left:15px"
       (click)="this.appComponent.logout()"
       class="float-right">Logout</button>

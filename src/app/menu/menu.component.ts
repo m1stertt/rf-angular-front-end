@@ -21,6 +21,7 @@ export class MenuComponent implements OnInit {
   categories: CategoryDto[] = [];
   searchString: string = '';
 
+
   ngOnInit(): void {
     this.categoryService.getAll()
       // Not until this is called the request is sent

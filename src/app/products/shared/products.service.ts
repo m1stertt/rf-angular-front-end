@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ProductDto} from "./product.dto";
-import {ProductsGridPaginationService} from "../products-grid/pagination/products-grid-pagination.service";
 
 
 @Injectable({
@@ -10,10 +9,9 @@ import {ProductsGridPaginationService} from "../products-grid/pagination/product
 })
 export class ProductsService {
   private headers = new HttpHeaders();
-  private endpoint = `http://localhost:5000/api/Product/`;
+  private endpoint = `https://localhost:5001/api/Product/`;
 
-  constructor(private _http: HttpClient,
-              private paginationService: ProductsGridPaginationService) {
+  constructor(private _http: HttpClient) {
 
     this.headers = this.headers.set('Content-Type', 'application/json');
     this.headers = this.headers.set('Accept', 'application/json');
@@ -34,7 +32,6 @@ export class ProductsService {
   }
 
   updateProduct(product: ProductDto): Observable<ProductDto> {
-    console.log(product);
     return this._http.put<ProductDto>('https://localhost:5001/api/Product/' + product.id, product)
   }
 

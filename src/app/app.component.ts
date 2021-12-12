@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {AuthService} from './auth/shared/auth.service';
 import {Observable} from 'rxjs';
 import {Profile} from './auth/shared/models/profile';
@@ -10,6 +10,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  @Input() profile = '';
   title = 'rf-angular-front-end';
   profile$: Observable<Profile | null> | undefined;
 

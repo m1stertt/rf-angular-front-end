@@ -1,4 +1,5 @@
 export interface Profile {
+  id: number;
   permissions: string[];
-  name: string;
+  email: string;
 }
