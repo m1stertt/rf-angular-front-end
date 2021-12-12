@@ -19,7 +19,10 @@ const routes: Routes = [
       .then(f => f.CategoriesModule)},
   {path: 'images', loadChildren: () =>
     import('./images/images.module')
-      .then(f => f.ImagesModule)},
+    .then(f => f.ImagesModule)},
+  {path: 'admin', loadChildren: () =>
+    import('./admin/admin.module')
+      .then(f => f.AdminModule)},
   { path: '',component:HomepageComponent},
   { path: 'cart', component: CartViewComponent },
   {

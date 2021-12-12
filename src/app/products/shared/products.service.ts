@@ -23,6 +23,10 @@ export class ProductsService {
     return this._http.get<ProductDto[]>(mergedUrl, { observe: 'response' });
   }
 
+  getAllProducts(): Observable<ProductDto[]> {
+    return this._http.get<ProductDto[]>('https://localhost:5001/api/Product/');
+  }
+
   getProduct(id: number): Observable<ProductDto> {
     return this._http.get<ProductDto>('https://localhost:5001/api/Product/' + id);
   }
