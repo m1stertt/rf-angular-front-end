@@ -8,6 +8,7 @@ import { ColorDto } from 'src/app/colors/shared/color.dto';
 import { SizeDto } from 'src/app/sizes/shared/size.dto';
 import { CartService } from 'src/app/cart/shared/cart.service';
 import { MenuService } from 'src/app/menu/shared/menu.service';
+import { MessageService } from 'primeng/api';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class ProductDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
               private location: Location,
-              private cartService: CartService, private menuService:MenuService ) {
+              private cartService: CartService, private menuService:MenuService,private messageService:MessageService ) {
   }
 
   ngOnInit(): void {
@@ -55,7 +56,15 @@ export class ProductDetailComponent implements OnInit {
       size: this.sizeSelected
     }
     this.cartService.addToCart(test);
-    window.alert('Your product has been added to the cart!');
+    let msg='Du har tilføjet '+_amount+"stk "+test.name;
+    if(this.colorSelected){
+      msg+="\nFarve: "+this.colorSelected.title;
+    }
+    if(this.sizeSelected){
+      msg+="\nStørrelse: "+this.sizeSelected.title;
+    }
+    msg+="\n\nKurv: "+this.cartService.getPriceAmount()+",- DKK";
+    this.messageService.add({severity:'success', summary:'Tilføjet til kurv', detail:msg});
   }
 
   goBack(): void {

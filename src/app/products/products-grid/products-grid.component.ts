@@ -5,6 +5,7 @@ import {PageEvent} from "@angular/material/paginator";
 import {ProductDto} from "../shared/product.dto";
 import {ProductsGridPaginationService} from "./pagination/products-grid-pagination.service";
 import { CartService } from 'src/app/cart/shared/cart.service';
+import { MenuService } from 'src/app/menu/shared/menu.service';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class ProductsGridComponent implements AfterViewInit {
               private productsService: ProductsService,
               public paginationService: ProductsGridPaginationService,
               private cdRef: ChangeDetectorRef,
-              private cartService:CartService) {
+              private menuService:MenuService) {
   }
 
   @Input('products')
@@ -41,6 +42,12 @@ export class ProductsGridComponent implements AfterViewInit {
       .subscribe((result: any) => {
         this.totalCount = JSON.parse(result.headers.get('X-Pagination')).TotalCount;
         this.products = result.body;
+        if(this.searchString!=""){
+          this.menuService.breadcrumb=[
+            {icon:'pi pi-home',routerLink:"/"},
+            {label:"Søgning for '"+this.searchString+"'",routerLink:"/products/gridview",queryParams:{"searchString":this.searchString}}
+          ]
+        }
       });
   }
 

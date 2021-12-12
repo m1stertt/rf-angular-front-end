@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth/guards/auth.guard';
 import { CartViewComponent } from './cart/cart-view/cart-view.component';
 import { HomepageComponent } from './homepage/homepage.component';
 
@@ -28,7 +29,7 @@ const routes: Routes = [
   {
     path: 'account',
     loadChildren: () => import('./account/account.module')
-      .then(m => m.AccountModule)
+      .then(m => m.AccountModule), canActivate:[AuthGuard]
   }
 ];
 

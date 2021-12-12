@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoginUser} from '../shared/models/login-user';
 import {AuthService} from '../shared/auth.service';
 import {Router} from '@angular/router';
+import { MenuService } from 'src/app/menu/shared/menu.service';
 
 @Component({
   selector: 'app-login',
@@ -13,9 +14,13 @@ export class LoginComponent implements OnInit {
   errorMessage?: string;
 
   constructor(private _auth: AuthService,
-              private _router: Router) {}
+              private _router: Router,private menuService:MenuService) {}
 
   ngOnInit(): void {
+    this.menuService.breadcrumb=[
+      {icon:'pi pi-home',routerLink:"/"},
+      {label:"Login",routerLink:"/auth/login"}
+    ]
   }
   loginForm = new FormGroup({
     email: new FormControl('', [

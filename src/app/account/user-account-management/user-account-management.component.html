@@ -1,4 +1,4 @@
-<mat-card *ngIf="this.appComponent.profile$ | async as profile" >
+<mat-card *ngIf="this.appComponent.profile$ | async as profile" style="margin-top:15px;margin-bottom:15px;">
   <form [formGroup]="userManagementForm" (ngSubmit)="saveChanges()">
     <h1>Mine Oplysninger</h1>
     <div>
@@ -39,10 +39,10 @@
       </mat-form-field>
 
     </div>
-    <div >
-      <button mat-raised-button color="primary">Gem Ændringer</button>
+    <div>
+      <button mat-raised-button style="width:100%;" color="primary">Gem Ændringer</button>
 
     </div>
   </form>
-  <button (click)="deleteUser()" mat-raised-button color="warn" >Slet konto </button>
+  <button (click)="deleteUser()" style="width:100%; margin-top:15px;" mat-raised-button color="warn" >Slet konto </button>
 </mat-card>

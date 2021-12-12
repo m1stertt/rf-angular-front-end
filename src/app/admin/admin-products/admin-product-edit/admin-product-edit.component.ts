@@ -69,11 +69,6 @@ export class AdminProductEditComponent implements OnInit {
       });
   }
 
-  addToCart(product: ProductDto) {
-    //this.cartService.addToCart(product);
-    //window.alert('Your product has been added to the cart!');
-  }
-
   getCategories(): void {
     this.categoriesService.getAll()
       .subscribe(product => this.categories = product);

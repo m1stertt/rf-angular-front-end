@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {ProductDto} from "../shared/product.dto";
+import { ProductDto } from 'src/app/products/shared/product.dto';
 import {ActivatedRoute, Router} from "@angular/router";
-import {ProductsService} from "../shared/products.service";
+import {ProductsService} from "src/app/products/shared/products.service";
 import {Location} from "@angular/common";
 
 @Component({
-  selector: 'app-inno-tech-product-create',
-  templateUrl: './product-create.component.html',
-  styleUrls: ['./product-create.component.scss']
+  selector: 'app-admin-product-create',
+  templateUrl: './admin-product-create.component.html',
+  styleUrls: ['./admin-product-create.component.scss']
 })
-export class ProductCreateComponent implements OnInit {
-
+export class AdminProductCreateComponent implements OnInit {
   product: ProductDto;
 
   constructor(private route: ActivatedRoute,

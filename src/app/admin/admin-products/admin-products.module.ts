@@ -12,11 +12,16 @@ import {InputTextModule} from 'primeng/inputtext';
 import {MatButtonModule} from '@angular/material/button'; 
 import {CheckboxModule} from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
+import {TabViewModule} from 'primeng/tabview';
+import { TableModule } from 'primeng/table';
+import { AdminProductCreateComponent } from './admin-product-create/admin-product-create.component';
 
 @NgModule({
   declarations: [
     AdminProductEditComponent,
-    ProductOverviewComponent
+    ProductOverviewComponent,
+    AdminProductCreateComponent,
+    AdminProductCreateComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +34,9 @@ import { ButtonModule } from 'primeng/button';
     InputTextModule,
     MatButtonModule,
     CheckboxModule,
-    ButtonModule
+    ButtonModule,
+    TabViewModule,
+    TableModule
   ]
 })
 export class AdminProductsModule { }

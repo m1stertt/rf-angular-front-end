@@ -13,8 +13,10 @@ export class MenuService {
         if(val.url&&val.url=="/"){
           this.breadcrumb=[{icon:'pi pi-home',routerLink:"/"}];
         }
+        if(val.url&&val.url=="/products"){
+          this.breadcrumb=[{icon:'pi pi-home',routerLink:"/"},{label:"Produkter",routerLink:"/products"}];
+        }
       }
     });
-
   }
 }
