@@ -78,6 +78,15 @@ export class CartService {
     return this.items.reduce((accum,item) =>accum + item.amount, 0);
   }
 
+  getPriceAmount(){
+    return this.items.reduce((accum,item) =>{
+      if(item.price){
+        return accum + item.price*item.amount;
+      }
+      return accum;
+    }, 0);
+  }
+
   clearCart() {
     this.items = [];
     localStorage.removeItem("cart");

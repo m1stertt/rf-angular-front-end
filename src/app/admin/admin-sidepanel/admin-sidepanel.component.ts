@@ -27,7 +27,7 @@ export class AdminSidepanelComponent implements OnInit {
         label: 'Produkter',
         icon: 'pi pi-pw pi-file',
         items: [
-          { label: 'Nyt produkt', icon: 'pi pi-fw pi-plus' },
+          { label: 'Nyt produkt', icon: 'pi pi-fw pi-plus',routerLink:"/admin/products/create" },
           {label: 'Se/Rediger produkter', icon: 'pi pi-fw pi-pencil'}
         ]
     },{

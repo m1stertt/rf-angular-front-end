@@ -3,6 +3,7 @@ import {AuthService} from "../shared/auth.service";
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {RegistrationDetails} from "../shared/models/registration-details";
+import { MenuService } from 'src/app/menu/shared/menu.service';
 
 @Component({
   selector: 'app-user-registration',
@@ -13,7 +14,12 @@ export class UserRegistrationComponent{
   errorMessage?: string;
 
   constructor(private authService: AuthService,
-              private router: Router) {
+              private router: Router,private menuService:MenuService) {
+                this.menuService.breadcrumb=[
+                  {icon:'pi pi-home',routerLink:"/"},
+                  {label:"Login",routerLink:"/auth/login"},
+                  {label:"Opret bruger",routerLink:"/auth/login/register"}
+                ]
   }
 
   loginForm = new FormGroup({

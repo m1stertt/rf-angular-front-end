@@ -37,12 +37,7 @@ export class CartViewComponent implements OnInit {
   }
 
   sum(){
-    return this.items.reduce((accum,item) =>{
-      if(item.price){
-        return accum + item.price*item.amount;
-      }
-      return accum;
-    }, 0);
+    return this.cartService.getPriceAmount();
   }
 
   amount(){

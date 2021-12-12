@@ -8,7 +8,6 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
 import {MatTableModule} from '@angular/material/table';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
-import { ProductCreateComponent } from './product-create/product-create.component';
 import {ProductsGridComponent} from "./products-grid/products-grid.component";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatPaginatorModule} from "@angular/material/paginator";
@@ -19,11 +18,9 @@ import {ToastModule} from 'primeng/toast';
 import {GalleriaModule} from 'primeng/galleria';
 import {PanelModule} from 'primeng/panel';
 
-
 @NgModule({
   declarations: [
     ProductDetailComponent,
-    ProductCreateComponent,
     ProductsGridComponent,
   ],
   imports: [

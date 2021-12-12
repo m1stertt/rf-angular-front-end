@@ -14,13 +14,15 @@ import { AdminSizeCreateComponent } from './admin-sizes/admin-size-create/admin-
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
+import { AdminTemplateComponent } from './admin-template/admin-template.component';
 
 
 @NgModule({
   declarations: [
     AdminOverviewComponent,
     AdminSidepanelComponent,
-    AdminSizeCreateComponent
+    AdminSizeCreateComponent,
+    AdminTemplateComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +38,7 @@ import { InputTextModule } from 'primeng/inputtext';
     ReactiveFormsModule,
     InputTextModule,
   ],
-  exports:[AdminSidepanelComponent],
+  exports:[AdminTemplateComponent],
   entryComponents: [
       AdminSizeCreateComponent
   ]

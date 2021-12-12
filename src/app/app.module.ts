@@ -42,6 +42,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import {CarouselModule} from 'primeng/carousel';
 import { ProductsModule } from './products/products.module';
 import { DialogService } from 'primeng/dynamicdialog';
+import { MessageService } from 'primeng/api';
 
 
 @NgModule({
@@ -92,7 +93,7 @@ import { DialogService } from 'primeng/dynamicdialog';
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
-    , AuthService, AppComponent, MenuService, CategoriesService, SizesService, ColorsService, CartService, DialogService,
+    , AuthService, AppComponent, MenuService, CategoriesService, SizesService, ColorsService, CartService, DialogService, MessageService,
     {provide: MatPaginatorIntl, useValue: getDanishPaginatorIntl()}
   ],
   

@@ -1,21 +1,16 @@
-<div class="grid">
+<div class="grid"  style="margin-top:25px;margin-bottom:25px;">
   <div class="col-12 md:col-10 md:col-offset-1 lg:col-8 lg:col-offset-2"><h2>Udvalgte varer</h2>
 <p-carousel [value]="products" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
   <ng-template pTemplate="header">
   </ng-template>
   <ng-template let-product pTemplate="item">
-      <div class="product-item" style="text-align:center;">
+      <div class="product-item" style="text-align:center;" routerLink="products/{{product.id}}">
           <div class="product-item-content">
               <div class="p-mb-3">
               </div>
               <div>
                   <h4 class="p-mb-1">{{product.productName}}</h4>
                   <h6 class="p-mt-0 p-mb-3">${{product.productPrice}}</h6>
-                  <div class="car-buttons p-mt-5">
-                      <p-button type="button" styleClass="p-button p-button-rounded p-mr-2" icon="pi pi-search"></p-button>
-                      <p-button type="button" styleClass="p-button-success p-button-rounded p-mr-2" icon="pi pi-star"></p-button>
-                      <p-button type="button" styleClass="p-button-help p-button-rounded" icon="pi pi-cog"></p-button>
-                  </div>
               </div>
           </div>
       </div>
