@@ -1,12 +1,13 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { HttpEventType, HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEventType } from '@angular/common/http';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-upload',
-  templateUrl: './upload.component.html',
-  styleUrls: ['./upload.component.scss']
+  selector: 'app-admin-images-upload',
+  templateUrl: './admin-images-upload.component.html',
+  styleUrls: ['./admin-images-upload.component.scss']
 })
-export class UploadComponent implements OnInit {
+export class AdminImagesUploadComponent implements OnInit {
+
   public progress: number | undefined;
   public message: string | undefined;
   @Output() public onUploadFinished = new EventEmitter();

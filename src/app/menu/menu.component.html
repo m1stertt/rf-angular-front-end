@@ -10,8 +10,8 @@
   </mat-menu>
   <mat-form-field class="searchField">
     <mat-label>Søg</mat-label>
-    <input (keydown.enter)="search()" matInput type="text" [(ngModel)]="searchString">
-    <button *ngIf="searchString" matSuffix mat-icon-button aria-label="Clear" (click)="searchString=''">
+    <input (keydown.enter)="searchFx()" matInput type="text" [(ngModel)]="search">
+    <button *ngIf="search" matSuffix mat-icon-button aria-label="Clear" (click)="search=''">
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>

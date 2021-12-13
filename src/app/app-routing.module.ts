@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/guards/auth.guard';
+import { CartConfirmComponent } from './cart/cart-confirm/cart-confirm.component';
+import { CartDeliveryComponent } from './cart/cart-delivery/cart-delivery.component';
 import { CartViewComponent } from './cart/cart-view/cart-view.component';
 import { HomepageComponent } from './homepage/homepage.component';
 
@@ -18,14 +20,13 @@ const routes: Routes = [
   {path: 'category', loadChildren: () =>
     import('./categories/categories.module')
       .then(f => f.CategoriesModule)},
-  {path: 'images', loadChildren: () =>
-    import('./images/images.module')
-    .then(f => f.ImagesModule)},
   {path: 'admin', loadChildren: () =>
     import('./admin/admin.module')
       .then(f => f.AdminModule)},
   { path: '',component:HomepageComponent},
   { path: 'cart', component: CartViewComponent },
+  { path: 'delivery', component: CartDeliveryComponent },
+  { path: 'confirm', component: CartConfirmComponent },
   {
     path: 'account',
     loadChildren: () => import('./account/account.module')
@@ -38,7 +39,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{scrollPositionRestoration: 'enabled'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

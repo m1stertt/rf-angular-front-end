@@ -5,7 +5,6 @@ import {ProductsGridComponent} from "./products-grid/products-grid.component";
 
 const routes: Routes = [
   {path: '', component: ProductsGridComponent},
-  {path: 'gridview', component: ProductsGridComponent},
   {path: ':id', component: ProductDetailComponent } // Update Product
 ];
 

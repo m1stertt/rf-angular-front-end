@@ -15,7 +15,7 @@ import { MenuService } from 'src/app/menu/shared/menu.service';
 })
 export class ProductsGridComponent implements AfterViewInit {
   products: ProductDto[] = [];
-  searchString: string = '';
+  search: string = '';
 
   totalCount?: number;
   breakpoint?: number;
@@ -38,14 +38,14 @@ export class ProductsGridComponent implements AfterViewInit {
   }
 
   getPagedProducts() {
-    this.productsService.getAll(this.paginationService.getPageIndex, this.paginationService.pageSize, this.searchString)
+    this.productsService.getAll(this.paginationService.getPageIndex, this.paginationService.pageSize, this.search)
       .subscribe((result: any) => {
         this.totalCount = JSON.parse(result.headers.get('X-Pagination')).TotalCount;
         this.products = result.body;
-        if(this.searchString!=""){
+        if(this.search!=""){
           this.menuService.breadcrumb=[
             {icon:'pi pi-home',routerLink:"/"},
-            {label:"Søgning for '"+this.searchString+"'",routerLink:"/products/gridview",queryParams:{"searchString":this.searchString}}
+            {label:"Søgning for '"+this.search+"'",routerLink:"/products",queryParams:{"search":this.search}}
           ]
         }
       });
@@ -62,7 +62,7 @@ export class ProductsGridComponent implements AfterViewInit {
 
     this.route.queryParams
       .subscribe(params => {
-        this.searchString = params.searchString || '';
+        this.search = params.search || '';
         this.getPagedProducts();
       });
 
