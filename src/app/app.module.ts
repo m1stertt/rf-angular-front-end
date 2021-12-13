@@ -12,17 +12,12 @@ import {MenuComponent} from './menu/menu.component';
 import {CategoriesService} from './categories/shared/categories.service';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
-import {MatSelectModule} from "@angular/material/select";
-import {MatRadioModule} from "@angular/material/radio";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {LayoutModule} from "@angular/cdk/layout";
 import {MatCardModule} from "@angular/material/card";
-import {MatSidenavModule} from "@angular/material/sidenav";
-import {MatDialogModule} from "@angular/material/dialog";
 import {MatGridListModule} from "@angular/material/grid-list";
-import {MatListModule} from "@angular/material/list";
 import {MatTableModule} from "@angular/material/table";
-import {MatPaginatorIntl, MatPaginatorModule} from "@angular/material/paginator";
+import {MatPaginatorIntl} from "@angular/material/paginator";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
@@ -36,13 +31,15 @@ import {BreadcrumbModule} from 'primeng/breadcrumb';
 import {TableModule} from 'primeng/table';
 import {ButtonModule} from 'primeng/button';
 import {RatingModule} from 'primeng/rating';
-import {StepsModule} from 'primeng/steps';
 import { MenuService } from './menu/shared/menu.service';
 import { HomepageComponent } from './homepage/homepage.component';
 import {CarouselModule} from 'primeng/carousel';
 import { ProductsModule } from './products/products.module';
 import { DialogService } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
+import { CartDeliveryComponent } from './cart/cart-delivery/cart-delivery.component';
+import { CartConfirmComponent } from './cart/cart-confirm/cart-confirm.component';
+import {MatStepperModule} from '@angular/material/stepper'; 
 
 @NgModule({
   declarations: [
@@ -50,6 +47,8 @@ import { MessageService } from 'primeng/api';
     MenuComponent,
     CartViewComponent,
     HomepageComponent,
+    CartDeliveryComponent,
+    CartConfirmComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,25 +59,13 @@ import { MessageService } from 'primeng/api';
     MatMenuModule,
     MatButtonModule,
     MatInputModule,
-    MatSelectModule,
-    MatRadioModule,
-    MatCardModule,
-    ReactiveFormsModule,
     LayoutModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
     MatGridListModule,
-    MatDialogModule,
     MatCardModule,
     MatIconModule,
-    MatListModule,
     MatTableModule,
     MatGridListModule,
-    MatPaginatorModule,
-    MatSelectModule,
     MatFormFieldModule,
-    ReactiveFormsModule,
     FormsModule,
     ReactiveFormsModule,
     MatBadgeModule,
@@ -86,9 +73,9 @@ import { MessageService } from 'primeng/api';
     TableModule,
     ButtonModule,
     RatingModule,
-    StepsModule,
     CarouselModule,
-    ProductsModule
+    ProductsModule,
+    MatStepperModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}

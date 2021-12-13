@@ -8,6 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class AdminSidepanelComponent implements OnInit {
   items = [
     {
+      label: 'Tilbage',
+      //icon: 'pi pi-pw pi-tags',
+      routerLink:"/admin/"
+    },
+    {
       label: 'Brugere',
       icon: 'pi pi-pw pi-user',
       items: [
@@ -15,14 +20,14 @@ export class AdminSidepanelComponent implements OnInit {
         {label: 'Se/Rediger brugere', icon: 'pi pi-fw pi-users'}
       ]
     },
-    {
+    /*{
       label: 'Ordre',
       icon: 'pi pi-pw pi-clone',
       items: [
         { label: 'Ny ordre', icon: 'pi pi-fw pi-plus' },
         {label: 'Se/Rediger ordre', icon: 'pi pi-fw pi-pencil'}
       ]
-    },
+    },*/
       {
         label: 'Produkter',
         icon: 'pi pi-pw pi-file',
@@ -33,31 +38,22 @@ export class AdminSidepanelComponent implements OnInit {
     },{
       label: 'Kategorier',
       icon: 'pi pi-pw pi-tags',
-      items: [
-        { label: 'Ny kategory', icon: 'pi pi-fw pi-plus' },
-        {label: 'Se/Rediger kategorier', icon: 'pi pi-fw pi-pencil'}
-      ]
-    },{
+      routerLink:"/admin/categories/"
+    },/*{
       label: 'Billeder',
       icon: 'pi pi-pw pi-image',
       items: [
         { label: 'Nyt billede', icon: 'pi pi-fw pi-plus' },
         {label: 'Se/Rediger billeder', icon: 'pi pi-fw pi-pencil'}
       ]
-    },{
+    },*/{
       label: 'Størrelser',
       icon: 'pi pi-pw pi-sort-amount-up',
-      items: [
-        { label: 'Ny størrelse', icon: 'pi pi-fw pi-plus' },
-        {label: 'Se/Rediger størrelser', icon: 'pi pi-fw pi-pencil'}
-      ]
+      routerLink:"/admin/sizes/"
     },{
       label: 'Farver',
       icon: 'pi pi-pw pi-sliders-v',
-      items: [
-        { label: 'Ny farve', icon: 'pi pi-fw pi-plus' },
-        {label: 'Se/Rediger farver', icon: 'pi pi-fw pi-pencil'}
-      ]
+      routerLink:"/admin/colors/"
     }
   ];
   constructor() { }

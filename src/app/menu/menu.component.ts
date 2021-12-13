@@ -19,7 +19,7 @@ export class MenuComponent implements OnInit {
   }
 
   categories: CategoryDto[] = [];
-  searchString: string = '';
+  search: string = '';
 
 
   ngOnInit(): void {
@@ -31,11 +31,11 @@ export class MenuComponent implements OnInit {
 
     this.route.queryParams
       .subscribe(params => {
-        this.searchString = params.searchString || '';
+        this.search = params.search || '';
       });
   }
 
-  search() {
+  searchFx() {
     this.goProducts();
   }
 
@@ -45,8 +45,8 @@ export class MenuComponent implements OnInit {
 
   goProducts() {
     this.router.navigate(
-      ['/products/gridview'],
-      {queryParams: {searchString: this.searchString}}
+      ['/products'],
+      {queryParams: {search: this.search}}
     );
   }
 }

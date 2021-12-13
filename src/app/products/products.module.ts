@@ -17,6 +17,8 @@ import {ButtonModule} from 'primeng/button';
 import {ToastModule} from 'primeng/toast';
 import {GalleriaModule} from 'primeng/galleria';
 import {PanelModule} from 'primeng/panel';
+import { MatButtonModule } from '@angular/material/button';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import {PanelModule} from 'primeng/panel';
     ButtonModule,
     ToastModule,
     GalleriaModule,
-    PanelModule
+    PanelModule,
+    MatButtonModule,
+    MatButtonToggleModule,
   ],
   exports:[ProductsGridComponent]
 })

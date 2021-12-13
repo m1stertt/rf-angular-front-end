@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuService } from 'src/app/menu/shared/menu.service';
 import { CartService } from '../shared/cart.service';
 import { CartItemDto } from '../shared/cartItem.dto';
@@ -16,7 +17,12 @@ export class CartViewComponent implements OnInit {
     {label: 'Bekræftelse'}
   ];
   items = this.cartService.getItems();
-  constructor(private cartService: CartService,private menuService:MenuService) { }
+  constructor(private cartService: CartService,private menuService:MenuService,private router:Router) { }
+
+  nextPage():void{
+    if(this.amount()<=0) return;
+    this.router.navigateByUrl("/delivery");
+  }
 
   ngOnInit(): void {
     console.log(this.items);

@@ -1,0 +1,23 @@
+<app-admin-template>
+<p-panel header="Kategorier">
+  <p-table [columns]="cols" [value]="cats" responsiveLayout="scroll">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr routerLink="/admin/categories/{{rowData['id']}}">
+            <td *ngFor="let col of columns">
+              <div *ngIf="col.field=='products' else elseBlock">
+                {{rowData[col.field].length}}
+              </div>
+              <ng-template #elseBlock>{{rowData[col.field]}}</ng-template>
+            </td>
+        </tr>
+    </ng-template>
+  </p-table>
+</p-panel>
+</app-admin-template>

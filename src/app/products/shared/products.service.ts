@@ -17,9 +17,9 @@ export class ProductsService {
     this.headers = this.headers.set('Accept', 'application/json');
   }
 
-  getAll(pageIndex: number, pageSize: number, searchString: string): Observable<HttpResponse<ProductDto[]>> {
+  getAll(pageIndex: number, pageSize: number, search: string): Observable<HttpResponse<ProductDto[]>> {
     const mergedUrl = `${this.endpoint}` +
-      `?pageNumber=${pageIndex}&pageSize=${pageSize}&searchString=${searchString}`;
+      `?pageNumber=${pageIndex}&pageSize=${pageSize}&searchString=${search}`;
     return this._http.get<ProductDto[]>(mergedUrl, { observe: 'response' });
   }
 
