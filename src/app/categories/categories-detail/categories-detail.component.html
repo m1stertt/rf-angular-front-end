@@ -1,16 +1,18 @@
-<mat-card>
-  <div class="products-grid">
-    <mat-grid-list rowHeight="1.5:1" gutterSize='15px' [cols]="breakpoint" (window:resize)="onResize($event)" >
-      <ng-container *ngFor="let productDto of (products | slice: lowValue : highValue)">
-        <mat-grid-tile routerLink="/products/{{productDto.id}}">
-          {{ productDto.productName}}
-          {{ productDto.id}}
-        </mat-grid-tile>
-      </ng-container>
-    </mat-grid-list>
-    <mat-paginator [length]="products.length" pageSize=20
-                   (page)="getPaginatorData($event)" [pageSizeOptions]="[5, 10, 20]"
-                   showFirstLastButtons="false">
-    </mat-paginator>
-  </div>
-</mat-card>
+<app-categories-template>
+  <mat-card>
+    <div class="products-grid">
+      <mat-grid-list rowHeight="1.5:1" gutterSize='15px' [cols]="breakpoint" (window:resize)="onResize($event)">
+        <ng-container *ngFor="let productDto of (products | slice: lowValue : highValue)">
+          <mat-grid-tile routerLink="/products/{{productDto.id}}">
+            {{ productDto.productName}}
+            {{ productDto.id}}
+          </mat-grid-tile>
+        </ng-container>
+      </mat-grid-list>
+      <mat-paginator [length]="products.length" pageSize=20
+                     (page)="getPaginatorData($event)" [pageSizeOptions]="[5, 10, 20]"
+                     showFirstLastButtons="false">
+      </mat-paginator>
+    </div>
+  </mat-card>
+</app-categories-template>

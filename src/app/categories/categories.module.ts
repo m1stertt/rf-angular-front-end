@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { CategoriesRoutingModule } from './categories-routing.module';
 import { CategoriesListComponent } from './categories-list/categories-list.component';
 import { CategoriesDetailComponent } from './categories-detail/categories-detail.component';
@@ -10,12 +10,22 @@ import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { CategoriesFilterComponent } from './categories-filter/categories-filter.component';
+import {PanelMenuModule} from "primeng/panelmenu";
+import { CategoriesTemplateComponent } from './categories-template/categories-template.component';
+import {AdminSizeCreateComponent} from "../admin/admin-sizes/admin-size-create/admin-size-create.component";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatOptionModule} from "@angular/material/core";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
   declarations: [
     CategoriesListComponent,
-    CategoriesDetailComponent
+    CategoriesDetailComponent,
+    CategoriesFilterComponent,
+    CategoriesTemplateComponent
   ],
   imports: [
     CommonModule,
@@ -27,6 +37,13 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatTableModule,
     MatGridListModule,
     MatPaginatorModule,
-  ]
+    PanelMenuModule,
+    MatCheckboxModule,
+    ReactiveFormsModule,
+    MatOptionModule,
+    MatFormFieldModule,
+    MatSelectModule,
+  ],
+  exports:[CategoriesTemplateComponent],
 })
 export class CategoriesModule { }
