@@ -15,6 +15,7 @@ import { CartService } from 'src/app/cart/shared/cart.service';
 import { MenuService } from 'src/app/menu/shared/menu.service';
 import {DialogService} from 'primeng/dynamicdialog';
 import { AdminSizeCreateComponent } from '../../admin-sizes/admin-size-create/admin-size-create.component';
+import { AdminColorCreateComponent } from '../../admin-colors/admin-color-create/admin-color-create.component';
 
 @Component({
   selector: 'app-admin-product-edit',
@@ -57,6 +58,16 @@ export class AdminProductEditComponent implements OnInit {
     const ref = this.dialogService.open(AdminSizeCreateComponent, {
       header: 'Ny størrelse',
       width: '70%'
+    });
+  }
+
+  createColor(product:ProductDto){
+    const ref = this.dialogService.open(AdminColorCreateComponent, {
+      data:{
+        product:product
+      },
+      header: 'Ny farve',
+      width: '240px'
     });
   }
 

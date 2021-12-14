@@ -1,33 +1,46 @@
+<p-overlayPanel #searchOverlay>
+  <ng-template pTemplate>
+    <mat-form-field class="searchField">
+      <mat-label>Søg</mat-label>
+      <input (keydown.enter)="searchFx()" matInput type="text" [(ngModel)]="search">
+      <button *ngIf="search" matSuffix mat-icon-button aria-label="Clear" (click)="searchFx()">
+        <mat-icon>arrow_right_alt</mat-icon>
+      </button>
+    </mat-form-field>
+  </ng-template>
+</p-overlayPanel>
 <mat-toolbar color="primary">
   <span>
     <a routerLink="" class="hidden lg:inline-flex xl:inline-flex">Ruds Fashion</a>
-    <a routerLink="" class="lg:hidden">RF</a>
+    <a routerLink="" class="lg:hidden xl:hidden">RF</a>
   </span>
-  <button mat-button [matMenuTriggerFor]="menu" class="my-full-width-menu">Kategorier</button>
+  <div class="hidden lg:inline-flex xl:inline-flex"><button mat-button [matMenuTriggerFor]="menu" class="my-full-width-menu">Kategorier</button></div>
+  <div class="lg:hidden xl:hidden"><button mat-button [matMenuTriggerFor]="menu" class="my-full-width-menu"><mat-icon>reorder</mat-icon></button></div>
   <mat-menu class="megamenu" #menu="matMenu">
     <h2>Kategorier</h2>
     <button mat-menu-item class="megamenu-item" *ngFor="let category of categories" routerLink="/category/{{category.id}}">{{category.name}}</button>
   </mat-menu>
-  <mat-form-field class="searchField">
-    <mat-label>Søg</mat-label>
-    <input (keydown.enter)="searchFx()" matInput type="text" [(ngModel)]="search">
-    <button *ngIf="search" matSuffix mat-icon-button aria-label="Clear" (click)="search=''">
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-form-field>
+  <div class="hidden md:inline-flex lg:inline-flex xl:inline-flex">
+    <mat-form-field class="searchField">
+      <mat-label>Søg</mat-label>
+      <input (keydown.enter)="searchFx()" matInput type="text" [(ngModel)]="search">
+      <button *ngIf="search" matSuffix mat-icon-button aria-label="Clear" (click)="search=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <button class="md:hidden lg:hidden xl:hidden" (click)="searchOverlay.toggle($event)" mat-button><span class="material-icons">search</span></button>
   <span class="example-spacer"></span>
   <div *ngIf="this.appComponent.profile$ | async as profile else loggedOut" style="float: right">
-    <a class="hidden md:inline-flex" routerLink="/account">Velkommen {{profile.email}}</a>
-    <button mat-button style="margin-left:15px"
-      (click)="this.appComponent.logout()"
-      class="float-right">Logout</button>
+    <button mat-button routerLink="/account" matTooltip="Min konto" class="float-right"><mat-icon style="color:white;">manage_accounts</mat-icon></button>
+    <button mat-button (click)="this.appComponent.logout()" matTooltip="Log ud" class="float-right"><mat-icon style="color:white;">logout</mat-icon></button>
   </div>
   <ng-template #loggedOut>
     <div style="float: right">
-      <button mat-menu-item style="margin-left:15px;color:white;"
-        routerLink="/auth/login" >Login</button>
+      <button mat-menu-item
+        routerLink="/auth/login" ><mat-icon style="color:white;">login</mat-icon></button>
     </div>
   </ng-template>
-  <button routerLink="/cart" mat-button><span matBadge="{{cartAmount()}}" class="material-icons">shopping_basket</span></button>
+  <button routerLink="/cart" mat-button><span matBadge="{{cartAmount()}}" matTooltip="Kurv" class="material-icons">shopping_basket</span></button>
 </mat-toolbar>
 <p-breadcrumb [model]="this.menuService.breadcrumb"></p-breadcrumb>

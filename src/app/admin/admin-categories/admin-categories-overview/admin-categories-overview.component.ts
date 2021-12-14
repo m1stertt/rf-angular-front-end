@@ -13,6 +13,7 @@ export class AdminCategoriesOverviewComponent implements OnInit {
   constructor(private menuService:MenuService,private categoryService:CategoriesService) { }
 
   cats:CategoryDto[]=[];
+  clonedCategories: { [s: string]: CategoryDto; } = {};
   cols = [
     { field: 'id', header: 'ID' },
     { field: 'name', header: 'Name' },
@@ -32,4 +33,26 @@ export class AdminCategoriesOverviewComponent implements OnInit {
     })
   }
 
+  confirmDelete(category:CategoryDto) {
+    
+  }
+
+  onRowEditInit(category: CategoryDto) {
+    this.clonedCategories[category.id] = {...category};
+  }
+
+  onRowEditSave(category: CategoryDto) {
+      //if (category.price > 0) {
+      //    delete this.clonedCategorys[category.id];
+      //    this.messageService.add({severity:'success', summary: 'Success', detail:'Category is updated'});
+      //}
+      //else {
+      //    this.messageService.add({severity:'error', summary: 'Error', detail:'Invalid Price'});
+      //}
+  }
+
+  onRowEditCancel(category: CategoryDto, index: number) {
+      this.cats[index] = this.clonedCategories[category.id];
+      delete this.clonedCategories[category.id];
+  }
 }

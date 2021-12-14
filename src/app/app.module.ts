@@ -36,10 +36,12 @@ import { HomepageComponent } from './homepage/homepage.component';
 import {CarouselModule} from 'primeng/carousel';
 import { ProductsModule } from './products/products.module';
 import { DialogService } from 'primeng/dynamicdialog';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { CartDeliveryComponent } from './cart/cart-delivery/cart-delivery.component';
 import { CartConfirmComponent } from './cart/cart-confirm/cart-confirm.component';
 import {MatStepperModule} from '@angular/material/stepper'; 
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -75,11 +77,13 @@ import {MatStepperModule} from '@angular/material/stepper';
     RatingModule,
     CarouselModule,
     ProductsModule,
-    MatStepperModule
+    MatStepperModule,
+    OverlayPanelModule,
+    MatTooltipModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
-    , AuthService, AppComponent, MenuService, CategoriesService, SizesService, ColorsService, CartService, DialogService, MessageService,
+    , AuthService, AppComponent, MenuService, CategoriesService, SizesService, ColorsService, CartService, DialogService, MessageService,ConfirmationService,
     {provide: MatPaginatorIntl, useValue: getDanishPaginatorIntl()}
   ],
   

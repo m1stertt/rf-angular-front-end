@@ -23,7 +23,7 @@
                 <p class="description">A remarkable shoe that's naturally soft, cozy all over, and fits your every move.</p>
                 <div class="columns">
                   <p><mat-button-toggle-group appearance="legacy" [(value)]="colorSelected">
-                    <mat-button-toggle *ngFor="let color of product.colors" [value]="color" [ngStyle]="{'background':color['colorString']}"></mat-button-toggle>
+                    <mat-button-toggle *ngFor="let color of product.colors" [value]="color" matTooltip="{{color.title}}" [ngStyle]="{'background':color['colorString']}"></mat-button-toggle>
                   </mat-button-toggle-group></p>
                   <p><mat-form-field appearance="fill">
                     <mat-label>Størrelse</mat-label>
