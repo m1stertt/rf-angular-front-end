@@ -10,25 +10,21 @@ import {SplitButtonModule} from 'primeng/splitbutton';
 import { TableModule } from 'primeng/table';
 import {PanelMenuModule} from 'primeng/panelmenu';
 import { AdminSidepanelComponent } from './admin-sidepanel/admin-sidepanel.component';
-import { AdminSizeCreateComponent } from './admin-sizes/admin-size-create/admin-size-create.component';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { AdminTemplateComponent } from './admin-template/admin-template.component';
 import { AdminImagesUploadComponent } from './admin-images-upload/admin-images-upload.component';
 import { AdminImagesEditComponent } from './admin-images-edit/admin-images-edit.component';
-import { AdminSizesOverviewComponent } from './admin-sizes/admin-sizes-overview/admin-sizes-overview.component';
 
 
 @NgModule({
   declarations: [
     AdminOverviewComponent,
     AdminSidepanelComponent,
-    AdminSizeCreateComponent,
     AdminTemplateComponent,
     AdminImagesUploadComponent,
     AdminImagesEditComponent,
-    AdminSizesOverviewComponent,
   ],
   imports: [
     CommonModule,
@@ -46,7 +42,6 @@ import { AdminSizesOverviewComponent } from './admin-sizes/admin-sizes-overview/
   ],
   exports:[AdminTemplateComponent],
   entryComponents: [
-      AdminSizeCreateComponent
   ]
 })
 export class AdminModule { }

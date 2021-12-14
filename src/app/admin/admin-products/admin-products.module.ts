@@ -16,6 +16,8 @@ import {TabViewModule} from 'primeng/tabview';
 import { TableModule } from 'primeng/table';
 import { AdminProductCreateComponent } from './admin-product-create/admin-product-create.component';
 import { ToastModule } from 'primeng/toast';
+import {EditorModule} from 'primeng/editor';
+import { ChipModule } from 'primeng/chip';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { ToastModule } from 'primeng/toast';
     ButtonModule,
     TabViewModule,
     TableModule,
-    ToastModule
+    ToastModule,
+    EditorModule,
+    ChipModule
   ]
 })
 export class AdminProductsModule { }

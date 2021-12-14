@@ -1,16 +1,16 @@
 <div class="grid">
-  <div class="col-12 md:col-10 md:col-offset-1 lg:col-8 lg:col-offset-2">
+  <div class="col-12 md:col-6 md:col-offset-2 lg:col-4 lg:col-offset-3">
     <mat-stepper orientation="vertical" [linear]="false" #stepper>
       <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup">
           <ng-template matStepLabel>Login</ng-template>
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
             <input matInput placeholder="Email" formControlName="firstCtrl">
           </mat-form-field>
-          <mat-form-field appearance="fill">
-            <mat-label>Password</mat-label>
-            <input matInput placeholder="Password" formControlName="firstCtrl">
+          <mat-form-field appearance="outline">
+            <mat-label>Adgangskode</mat-label>
+            <input matInput placeholder="Adgangskode" formControlName="firstCtrl">
           </mat-form-field>
           <div>
             <button mat-raised-button matStepperNext>Login</button>
@@ -19,7 +19,7 @@
         </form>
       </mat-step>
       <mat-step [stepControl]="secondFormGroup">
-        <form [formGroup]="secondFormGroup">
+        <form [formGroup]="userManagementForm">
           <ng-template matStepLabel>Kundeinformation</ng-template>
           <mat-form-field disabled appearance="outline">
             <mat-label>Fornavn</mat-label>
@@ -57,10 +57,10 @@
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Levering</ng-template>
-        <p>You are now done.</p>
+        <p>Vælg pris....</p>
         <div>
           <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="stepper.reset()">Reset</button>
+          <button mat-button matStepperNext>Next</button>
         </div>
       </mat-step>
       <mat-step>
@@ -73,5 +73,10 @@
         </div>
       </mat-step>
     </mat-stepper>
+  </div>
+  <div class="hidden md:inline md:col-4 lg:col-4">
+    <mat-card>
+      Indkøbskurv
+    </mat-card>
   </div>
 </div>

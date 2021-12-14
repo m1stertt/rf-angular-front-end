@@ -53,11 +53,21 @@ export class ProductsGridComponent implements AfterViewInit {
 
 
   onResize(event: any) {
-    this.breakpoint = (event.target.innerWidth <= 400) ? 1 : 3;
+    this.calculateBreakpoint();
+  }
+
+  calculateBreakpoint(){
+    if(window.innerWidth <= 768){
+      this.breakpoint=2;
+    }else if(window.innerWidth <=992){
+      this.breakpoint=4;
+    }else{
+      this.breakpoint=6;
+    }
   }
 
   ngAfterViewInit(): void {
-    this.breakpoint = (window.innerWidth <= 400) ? 1 : 3;
+    this.calculateBreakpoint();
     this.cdRef.detectChanges();
 
     this.route.queryParams

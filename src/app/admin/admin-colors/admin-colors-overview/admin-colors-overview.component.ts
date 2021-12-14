@@ -76,8 +76,7 @@ export class AdminColorsOverviewComponent implements OnInit {
         },(error)=>{
           this.messageService.add({severity:'error', summary:'Fejl', detail:'Der er desværre opstået en fejl.\nStatus text: '+error.statusText});
         });
-      },
-      reject:()=>this.messageService.add({severity:'warn', summary:'Cancelled', detail:'You have cancelled'})
+      }
     });
   }
 
