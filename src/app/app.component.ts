@@ -11,7 +11,6 @@ import {Router} from '@angular/router';
 })
 export class AppComponent {
   @Input() profile = '';
-  title = 'rf-angular-front-end';
   profile$: Observable<Profile | null> | undefined;
 
 

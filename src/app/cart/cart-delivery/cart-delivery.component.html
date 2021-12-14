@@ -1,25 +1,53 @@
 <div class="grid">
   <div class="col-12 md:col-10 md:col-offset-1 lg:col-8 lg:col-offset-2">
-    <mat-stepper orientation="vertical" [linear]="true" #stepper>
+    <mat-stepper orientation="vertical" [linear]="false" #stepper>
       <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup">
-          <ng-template matStepLabel>Fill out your name</ng-template>
+          <ng-template matStepLabel>Login</ng-template>
           <mat-form-field appearance="fill">
-            <mat-label>Name</mat-label>
-            <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" formControlName="firstCtrl">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Password" formControlName="firstCtrl">
           </mat-form-field>
           <div>
-            <button mat-button matStepperNext>Next</button>
+            <button mat-raised-button matStepperNext>Login</button>
+            <button mat-button matStepperNext>Fortsæt som gæst</button>
           </div>
         </form>
       </mat-step>
       <mat-step [stepControl]="secondFormGroup">
         <form [formGroup]="secondFormGroup">
-          <ng-template matStepLabel>Fill out your address</ng-template>
-          <mat-form-field appearance="fill">
-            <mat-label>Address</mat-label>
-            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                   required>
+          <ng-template matStepLabel>Kundeinformation</ng-template>
+          <mat-form-field disabled appearance="outline">
+            <mat-label>Fornavn</mat-label>
+            <input id="firstName" formControlName="firstName" matInput placeholder="Placeholder">
+          </mat-form-field>
+          <mat-form-field disabled appearance="outline">
+            <mat-label>Efternavn</mat-label>
+            <input id="lastName" formControlName="lastName" matInput placeholder="Placeholder" >
+          </mat-form-field>
+          <mat-form-field disabled appearance="outline" >
+            <mat-label>Email</mat-label>
+            <input id="email" formControlName="email" matInput placeholder="Placeholder" >
+          </mat-form-field>
+          <mat-form-field disabled appearance="outline">
+            <mat-label>Gade og husnummer</mat-label>
+            <input id="streetAndNumber" formControlName="streetAndNumber" matInput placeholder="Placeholder">
+          </mat-form-field>
+          <mat-form-field disabled appearance="outline">
+            <mat-label>Postnummer</mat-label>
+            <input id="postalCode" formControlName="postalCode" matInput placeholder="Placeholder">
+          </mat-form-field>
+          <mat-form-field disabled appearance="outline">
+            <mat-label>By</mat-label>
+            <input id="city" formControlName="city" matInput placeholder="Placeholder">
+          </mat-form-field>
+          <mat-form-field disabled appearance="outline">
+            <mat-label>Telefon</mat-label>
+            <input id="phoneNumber" formControlName="phoneNumber" matInput placeholder="Placeholder" >
           </mat-form-field>
           <div>
             <button mat-button matStepperPrevious>Back</button>
@@ -28,60 +56,22 @@
         </form>
       </mat-step>
       <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
+        <ng-template matStepLabel>Levering</ng-template>
         <p>You are now done.</p>
         <div>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button (click)="stepper.reset()">Reset</button>
         </div>
       </mat-step>
-    </mat-stepper>
-    <mat-card>
-      <form [formGroup]="userManagementForm" (ngSubmit)="saveData()">
-        <h1>Mine Oplysninger</h1>
+      <mat-step>
+        <ng-template matStepLabel>Bekræft din ordre</ng-template>
+        <p>You are now done.</p>
         <div>
-          <mat-form-field disabled appearance="outline">
-            <mat-label>Fornavn</mat-label>
-            <input id="firstName" formControlName="firstName" matInput placeholder="Placeholder">
-            <mat-icon matSuffix>edit</mat-icon>
-          </mat-form-field>
-          <mat-form-field disabled appearance="outline">
-            <mat-label>Efternavn</mat-label>
-            <input id="lastName" formControlName="lastName" matInput placeholder="Placeholder" >
-            <mat-icon matSuffix>edit</mat-icon>
-          </mat-form-field>
-          <mat-form-field disabled appearance="outline" >
-            <mat-label>Email</mat-label>
-            <input id="email" formControlName="email" matInput placeholder="Placeholder" >
-            <mat-icon matSuffix>edit</mat-icon>
-          </mat-form-field>
-          <mat-form-field disabled appearance="outline">
-            <mat-label>Gade og husnummer</mat-label>
-            <input id="streetAndNumber" formControlName="streetAndNumber" matInput placeholder="Placeholder">
-            <mat-icon matSuffix>edit</mat-icon>
-          </mat-form-field>
-          <mat-form-field disabled appearance="outline">
-            <mat-label>Postnummer</mat-label>
-            <input id="postalCode" formControlName="postalCode" matInput placeholder="Placeholder">
-            <mat-icon matSuffix>edit</mat-icon>
-          </mat-form-field>
-          <mat-form-field disabled appearance="outline">
-            <mat-label>By</mat-label>
-            <input id="city" formControlName="city" matInput placeholder="Placeholder">
-            <mat-icon matSuffix>edit</mat-icon>
-          </mat-form-field>
-          <mat-form-field disabled appearance="outline">
-            <mat-label>Telefon</mat-label>
-            <input id="phoneNumber" formControlName="phoneNumber" matInput placeholder="Placeholder" >
-            <mat-icon matSuffix>edit</mat-icon>
-          </mat-form-field>
-    
-        </div>
-        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
           <button mat-raised-button routerLink="/confirm" style="width:80%; background:#305a66; color:white; margin-left:10%;margin-top:5px;">Bekræft din ordre</button>
-    
         </div>
-      </form>
-    </mat-card>
+      </mat-step>
+    </mat-stepper>
   </div>
 </div>

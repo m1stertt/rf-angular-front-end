@@ -23,7 +23,6 @@ export class ColorsService {
   }
 
   updateColor(color: ColorDto): Observable<ColorDto> {
-    console.log(color);
     return this._http.put<ColorDto>('https://localhost:5001/api/Color/' + color.id, color)
   }
 

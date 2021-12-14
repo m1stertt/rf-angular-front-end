@@ -17,6 +17,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { AdminTemplateComponent } from './admin-template/admin-template.component';
 import { AdminImagesUploadComponent } from './admin-images-upload/admin-images-upload.component';
 import { AdminImagesEditComponent } from './admin-images-edit/admin-images-edit.component';
+import { AdminSizesOverviewComponent } from './admin-sizes/admin-sizes-overview/admin-sizes-overview.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { AdminImagesEditComponent } from './admin-images-edit/admin-images-edit.
     AdminTemplateComponent,
     AdminImagesUploadComponent,
     AdminImagesEditComponent,
+    AdminSizesOverviewComponent,
   ],
   imports: [
     CommonModule,
