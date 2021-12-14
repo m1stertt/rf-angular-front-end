@@ -1,6 +1,6 @@
-<app-categories-template>
+<app-categories-template >
   <mat-card>
-    <div class="products-grid">
+    <div class="products-grid" *ngIf="isDataAvailable">
       <mat-grid-list rowHeight="1.5:1" gutterSize='15px' [cols]="breakpoint" (window:resize)="onResize($event)">
         <ng-container *ngFor="let productDto of (products | slice: lowValue : highValue)">
           <mat-grid-tile routerLink="/products/{{productDto.id}}">

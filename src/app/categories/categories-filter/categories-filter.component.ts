@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {ColorDto} from "../../colors/shared/color.dto";
 import {ProductDto} from "../../products/shared/product.dto";
@@ -8,7 +8,8 @@ import {ProductDto} from "../../products/shared/product.dto";
   templateUrl: './categories-filter.component.html',
   styleUrls: ['./categories-filter.component.scss']
 })
-export class CategoriesFilterComponent implements OnInit {
+export class CategoriesFilterComponent implements OnInit, AfterViewInit {
+  @Output() loaded = new EventEmitter();
   // colorFormGroup: FormGroup;
 
   // colorsData: ColorDto[] = [
@@ -37,6 +38,10 @@ export class CategoriesFilterComponent implements OnInit {
   toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit(): void {
+    this.loaded.emit();
   }
 
 }
