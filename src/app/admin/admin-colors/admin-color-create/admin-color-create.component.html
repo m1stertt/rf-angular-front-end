@@ -1,3 +1,6 @@
-<app-admin-template>
-  <p>admin-color-create works!</p>
-</app-admin-template>
+<mat-form-field style="width:100%;" appearance="fill">
+  <mat-label>Titel</mat-label>
+  <input [(ngModel)]="color.title" matInput placeholder="Ex. Rød">
+</mat-form-field>
+<p-colorPicker [(ngModel)]="color.colorString" [inline]="true"></p-colorPicker>
+<button mat-raised-button (click)="create()" color="primary" style="width:100%;">Lav farve</button>

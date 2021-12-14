@@ -28,7 +28,7 @@
         <label for="float-input">Beskrivelse</label>
     </span>
     <div class="p-field-checkbox">
-      <p-checkbox [(ngModel)]="product.productFeatured" inputId="check"></p-checkbox>
+      <p-checkbox [binary]="true" [(ngModel)]="product.productFeatured" inputId="check"></p-checkbox>
       <label for="check">Featured</label>
     </div>
     </div> <div class="col-12 lg:col-6">
@@ -55,7 +55,7 @@
                   </tr>
               </ng-template>
             </p-table>
-            <p-button (click)="createSize()">Ny farve</p-button>
+            <p-button (click)="createColor(product)">Ny farve</p-button>
           </p-tabPanel>
           <p-tabPanel header="Størrelser">
             <p-table [value]="product.sizes" responsiveLayout="scroll">
@@ -101,3 +101,4 @@
     </div>
   </div>
 </app-admin-template>
+<p-toast [style]="{'white-space': 'pre-line'}"></p-toast>

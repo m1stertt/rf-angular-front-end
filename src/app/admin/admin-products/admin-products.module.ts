@@ -15,6 +15,7 @@ import { ButtonModule } from 'primeng/button';
 import {TabViewModule} from 'primeng/tabview';
 import { TableModule } from 'primeng/table';
 import { AdminProductCreateComponent } from './admin-product-create/admin-product-create.component';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { AdminProductCreateComponent } from './admin-product-create/admin-produc
     CheckboxModule,
     ButtonModule,
     TabViewModule,
-    TableModule
+    TableModule,
+    ToastModule
   ]
 })
 export class AdminProductsModule { }

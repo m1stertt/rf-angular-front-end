@@ -3,25 +3,33 @@ import { CommonModule } from '@angular/common';
 
 import { AdminCategoriesRoutingModule } from './admin-categories-routing.module';
 import { AdminCategoriesOverviewComponent } from './admin-categories-overview/admin-categories-overview.component';
-import { AdminCategoryEditComponent } from './admin-category-edit/admin-category-edit.component';
 import { AdminCategoryCreateComponent } from './admin-category-create/admin-category-create.component';
 import { TableModule } from 'primeng/table';
 import { PanelModule } from 'primeng/panel';
 import { AdminModule } from '../admin.module';
+import { FormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
   declarations: [
     AdminCategoriesOverviewComponent,
-    AdminCategoryEditComponent,
     AdminCategoryCreateComponent
   ],
   imports: [
     CommonModule,
+    FormsModule,
     AdminCategoriesRoutingModule,
+    AdminModule,
     TableModule,
     PanelModule,
-    AdminModule,
+    InputTextModule,
+    ConfirmDialogModule,
+    ToastModule,
+    MatInputModule
   ]
 })
 export class AdminCategoriesModule { }

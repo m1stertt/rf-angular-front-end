@@ -7,16 +7,31 @@ import { AdminColorsOverviewComponent } from './admin-colors-overview/admin-colo
 import { AdminModule } from '../admin.module';
 import { TableModule } from 'primeng/table';
 import { PanelModule } from 'primeng/panel';
+import {OverlayPanelModule} from 'primeng/overlaypanel';
+import {ColorPickerModule} from 'primeng/colorpicker';
+import { FormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
+import { MatInputModule } from '@angular/material/input';
+
 
 
 @NgModule({
   declarations: [AdminColorCreateComponent, AdminColorsOverviewComponent],
   imports: [
     CommonModule,
+    FormsModule,
     AdminColorsRoutingModule,
     AdminModule,
     TableModule,
-    PanelModule
+    PanelModule,
+    OverlayPanelModule,
+    ColorPickerModule,
+    InputTextModule,
+    ConfirmDialogModule,
+    ToastModule,
+    MatInputModule
   ]
 })
 export class AdminColorsModule { }

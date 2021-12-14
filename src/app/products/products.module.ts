@@ -19,6 +19,7 @@ import {GalleriaModule} from 'primeng/galleria';
 import {PanelModule} from 'primeng/panel';
 import { MatButtonModule } from '@angular/material/button';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     PanelModule,
     MatButtonModule,
     MatButtonToggleModule,
+    MatTooltipModule
   ],
   exports:[ProductsGridComponent]
 })
