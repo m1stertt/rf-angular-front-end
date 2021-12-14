@@ -18,7 +18,8 @@ export class AdminSidepanelComponent implements OnInit {
       items: [
         { label: 'Ny bruger', icon: 'pi pi-fw pi-user-plus' },
         {label: 'Se/Rediger brugere', icon: 'pi pi-fw pi-users'}
-      ]
+      ],
+      disabled:true
     },
     /*{
       label: 'Ordre',
@@ -33,7 +34,7 @@ export class AdminSidepanelComponent implements OnInit {
         icon: 'pi pi-pw pi-file',
         items: [
           { label: 'Nyt produkt', icon: 'pi pi-fw pi-plus',routerLink:"/admin/products/create" },
-          {label: 'Se/Rediger produkter', icon: 'pi pi-fw pi-pencil'}
+          {label: 'Se/Rediger produkter', icon: 'pi pi-fw pi-pencil',routerLink:"/admin/products/"}
         ]
     },{
       label: 'Kategorier',
@@ -49,7 +50,7 @@ export class AdminSidepanelComponent implements OnInit {
     },*/{
       label: 'Størrelser',
       icon: 'pi pi-pw pi-sort-amount-up',
-      routerLink:"/admin/sizes/"
+      routerLink:"/admin/sizes/",
     },{
       label: 'Farver',
       icon: 'pi pi-pw pi-sliders-v',

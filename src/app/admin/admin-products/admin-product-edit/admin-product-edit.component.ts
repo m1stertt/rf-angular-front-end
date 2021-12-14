@@ -31,6 +31,7 @@ export class AdminProductEditComponent implements OnInit {
   colors_=new FormControl();
   sizes: SizeDto[]=[];
   sizes_=new FormControl();
+  text: string="";
 
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
@@ -41,6 +42,8 @@ export class AdminProductEditComponent implements OnInit {
               private menuService:MenuService,
               private dialogService:DialogService ) {
   }
+
+  editoropts:string[]=['bold', 'italic', 'underline', 'strike','link','size','underline','script','font'];
 
   ngOnInit(): void {
     this.getProduct();

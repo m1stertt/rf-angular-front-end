@@ -11,7 +11,7 @@
           <tr>
             <th></th>
             <th>Navn</th>
-            <th>Antal produkter tilhørende</th>
+            <th>Antal Produkter</th>
             <th></th>
           </tr>
       </ng-template>
@@ -34,7 +34,7 @@
                 {{rowData.products.length}}
               </td>
               <td>
-                <button pButton pRipple type="button" icon="pi pi-times" style="float:right;" (click)="confirmDelete(rowData)" class="p-button-rounded p-button-danger p-button-text"></button>
+                <button pButton pRipple type="button" icon="pi pi-times" [ngStyle]="{'float':'right'}" (click)="confirmDelete(rowData)" class="p-button-rounded p-button-danger p-button-text"></button>
               </td>
           </tr>
       </ng-template>

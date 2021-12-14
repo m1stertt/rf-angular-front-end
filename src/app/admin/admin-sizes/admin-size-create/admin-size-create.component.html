@@ -1,4 +1,5 @@
-<span class="p-float-label" style="margin-bottom:15px;">
-  <input id="float-input" type="text" pInputText> 
-  <label for="float-input">Navn</label>
-</span>
+<mat-form-field style="width:100%;" appearance="fill">
+  <mat-label>Titel</mat-label>
+  <input [(ngModel)]="size.title" matInput placeholder="Ex. M eller 30/30">
+</mat-form-field>
+<button mat-raised-button (click)="create()" color="primary" style="width:100%;">Lav størrelse</button>

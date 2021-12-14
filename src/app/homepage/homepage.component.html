@@ -1,23 +1,22 @@
-<div class="grid"  style="margin-top:10px;margin-bottom:10px;">
-  <div class="col-12 md:col-8 md:col-offset-2 lg:col-6 lg:col-offset-3"><mat-card><h2>Udvalgte varer</h2>
-<p-carousel [value]="products" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
-  <ng-template pTemplate="header">
-  </ng-template>
-  <ng-template let-product pTemplate="item">
-      <div class="product-item" style="text-align:center;" routerLink="products/{{product.id}}">
-          <div class="product-item-content">
-              <div class="p-mb-3">
-                <img *ngIf="product.images" src="https://localhost:5001/resources/images/{{product.images[0].path}}" [alt]="product.images[0].desc" class="product-image"/>
-              </div>
-              <div>
-                  <h4 class="p-mb-1">{{product.productName}}</h4>
-                  <h6 class="p-mt-0 p-mb-3">${{product.productPrice}}</h6>
-              </div>
-          </div>
-      </div>
-  </ng-template>
-</p-carousel>
-</mat-card>
-</div>
+<div class="grid"  style="margin-top:0px;margin-bottom:10px;background:#3f51b5;width:100%;border-top:1px solid black; border-bottom:1px solid black; margin-left:0;">
+  <div class="col-12 md:col-8 md:col-offset-2 lg:col-6 lg:col-offset-3">
+    <mat-card>
+      <p-carousel [value]="products" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
+        <ng-template let-product pTemplate="item">
+            <div class="product-item" style="text-align:center;" routerLink="products/{{product.id}}">
+                <div class="product-item-content">
+                    <div class="p-mb-3">
+                      <img *ngIf="product.images" src="https://localhost:5001/resources/images/{{product.images[0].path}}" [alt]="product.images[0].desc" class="product-image"/>
+                    </div>
+                    <div>
+                        <h4 class="p-mb-1">{{product.productName}}</h4>
+                        <h6 class="p-mt-0 p-mb-3">${{product.productPrice}}</h6>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+      </p-carousel>
+    </mat-card>
+  </div>
 </div>
 <app-products-grid></app-products-grid>

@@ -12,6 +12,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { MatInputModule } from '@angular/material/input';
     InputTextModule,
     ConfirmDialogModule,
     ToastModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule
   ]
 })
 export class AdminCategoriesModule { }
