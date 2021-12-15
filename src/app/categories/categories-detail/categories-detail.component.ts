@@ -31,9 +31,9 @@ export class CategoriesDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.queryParams
+    this.route.params
       .subscribe(params => {
-        this.id = params.categoryId || '';
+        this.id = params.id || '';
         this.getProducts();
       });
     this.breakpoint = (window.innerWidth <= 400) ? 1 : 3;
