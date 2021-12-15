@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { UserDto } from 'src/app/account/shared/user.dto';
 import { ProductsService } from 'src/app/products/shared/products.service';
 import { CartItemDto } from './cartItem.dto';
 
@@ -6,7 +7,11 @@ import { CartItemDto } from './cartItem.dto';
   providedIn: 'root'
 })
 export class CartService {
+
   items: CartItemDto[] = [];
+
+  userData: UserDto={id:0,firstName:"",lastName:"",email:"",postalCode:"",streetAndNumber:"",city:"",phoneNumber:""};
+
   constructor(private productService:ProductsService) {
     var cart=localStorage.getItem('cart');
     if(cart!=null){

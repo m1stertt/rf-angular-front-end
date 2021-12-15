@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AppComponent } from 'src/app/app.component';
+import { CartService } from '../shared/cart.service';
+import {Profile} from 'src/app/auth/shared/models/profile';
+import { AuthService } from 'src/app/auth/shared/auth.service';
 
 @Component({
   selector: 'app-cart-delivery',
@@ -16,7 +20,10 @@ export class CartDeliveryComponent implements OnInit {
   firstFormGroup: FormGroup = new FormGroup({});
   secondFormGroup: FormGroup = new FormGroup({});
 
-  constructor(private _formBuilder: FormBuilder) {}
+  addressData=this.cartService.userData;
+  loggedIn:Profile | undefined =this.authService.getProfile();
+
+  constructor(private _formBuilder: FormBuilder,private cartService:CartService,public appComponent:AppComponent,private authService:AuthService) {}
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({

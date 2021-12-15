@@ -4,7 +4,6 @@ import {ActivatedRoute} from "@angular/router";
 import {PageEvent} from "@angular/material/paginator";
 import {ProductDto} from "../shared/product.dto";
 import {ProductsGridPaginationService} from "./pagination/products-grid-pagination.service";
-import { CartService } from 'src/app/cart/shared/cart.service';
 import { MenuService } from 'src/app/menu/shared/menu.service';
 
 

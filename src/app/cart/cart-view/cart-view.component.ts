@@ -21,7 +21,7 @@ export class CartViewComponent implements OnInit {
 
   nextPage():void{
     if(this.amount()<=0) return;
-    this.router.navigateByUrl("/delivery");
+    this.router.navigateByUrl("/checkout");
   }
 
   ngOnInit(): void {

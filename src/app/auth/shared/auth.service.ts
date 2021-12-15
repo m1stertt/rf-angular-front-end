@@ -60,13 +60,13 @@ export class AuthService {
     return of(true);
   }
 
-  // getProfile(): Profile | undefined {
-  //   let profile = localStorage.getItem('Profile');
-  //   if(profile) {
-  //     return JSON.parse(profile) as Profile;
-  //   }
-  //   return undefined;
-  // }
+  getProfile(): Profile | undefined {
+     let profile = localStorage.getItem('Profile');
+     if(profile) {
+       return JSON.parse(profile) as Profile;
+     }
+     return undefined;
+  }
 
   hasPermission(permission: string): Observable<boolean> {
     if(localStorage.getItem('Profile')?.includes(permission)) return of(true);
