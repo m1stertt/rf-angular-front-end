@@ -40,8 +40,22 @@ export class CategoriesDetailComponent implements OnInit {
     this.cdRef.detectChanges();
   }
 
+
+  // getProducts(): void {
+  //   this.categoriesService.getCategory(this.id)
+  //     .subscribe(category =>{
+  //       this.category = category;
+  //       this.products=category.products;
+  //       this.menuService.breadcrumb=[
+  //         {icon:'pi pi-home',routerLink:"/"},
+  //         {label:'Kategorier',routerLink:"/category"},
+  //         {label:this.category.name,routerLink:"/category/"+category.id}
+  //       ];
+  //     });
+  // }
+
   getProducts(): void {
-    // this.productsService.getPagedCategoryProducts(id)
+    // this.productsService.getPagedCategoryProducts()
     //   .subscribe(category => {
     //     // this.category = category;
     //     this.products = category.products;

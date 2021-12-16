@@ -13,7 +13,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { CategoriesFilterComponent } from './categories-filter/categories-filter.component';
 import {PanelMenuModule} from "primeng/panelmenu";
 import { CategoriesTemplateComponent } from './categories-template/categories-template.component';
-import {AdminSizeCreateComponent} from "../admin/admin-sizes/admin-size-create/admin-size-create.component";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatOptionModule} from "@angular/material/core";
 import {MatFormFieldModule} from "@angular/material/form-field";

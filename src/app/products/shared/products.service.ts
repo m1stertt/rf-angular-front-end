@@ -25,7 +25,7 @@ export class ProductsService {
 
   getPagedCategoryProducts(pageIndex: number, pageSize: number, categoryId: number): Observable<HttpResponse<ProductDto[]>> {
     const mergedUrl = `${this.endpoint}` +
-      `?pageNumber=${pageIndex}&pageSize=${pageSize}&categoryId=${categoryId}`;
+      `Category?pageNumber=${pageIndex}&pageSize=${pageSize}&categoryId=${categoryId}`;
     return this._http.get<ProductDto[]>(mergedUrl, { observe: 'response' });
   }
 
