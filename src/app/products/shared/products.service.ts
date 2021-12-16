@@ -23,6 +23,12 @@ export class ProductsService {
     return this._http.get<ProductDto[]>(mergedUrl, { observe: 'response' });
   }
 
+  getPagedCategoryProducts(pageIndex: number, pageSize: number, categoryId: number, colorIds: number[]): Observable<HttpResponse<ProductDto[]>> {
+    const mergedUrl = `${this.endpoint}` +
+      `Category?pageNumber=${pageIndex}&pageSize=${pageSize}&categoryId=${categoryId}&colorIds=${colorIds}`;
+    return this._http.get<ProductDto[]>(mergedUrl, { observe: 'response' });
+  }
+
   getAllProducts(): Observable<ProductDto[]> {
     return this._http.get<ProductDto[]>('https://localhost:5001/api/Product/');
   }

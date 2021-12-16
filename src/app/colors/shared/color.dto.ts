@@ -5,4 +5,5 @@ export interface ColorDto {
   title: string;
   colorString: string;
   products: ProductDto[];
+
 }

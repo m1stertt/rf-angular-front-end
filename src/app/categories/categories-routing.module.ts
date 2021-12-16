@@ -8,6 +8,8 @@ const routes: Routes = [
   {path: ':id', component: CategoriesDetailComponent }
 ];
 
+
+
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
