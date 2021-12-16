@@ -55,26 +55,22 @@ export class CategoriesDetailComponent implements OnInit {
   // }
 
   getProducts(): void {
-    // this.productsService.getPagedCategoryProducts()
-    //   .subscribe(category => {
-    //     // this.category = category;
-    //     this.products = category.products;
-    //     this.menuService.breadcrumb = [
-    //       {icon: 'pi pi-home', routerLink: "/"},
-    //       {label: 'Kategorier', routerLink: "/category"},
-    //       {label: this.category.name, routerLink: "/category/" + category.id}
-    //     ];
-    //     this.isDataAvailable = true;
-    //   });
+    this.categoriesService.getCategory(this.id)
+      .subscribe(category => {
+        this.category = category;
+        this.products = category.products;
+        this.menuService.breadcrumb = [
+          {icon: 'pi pi-home', routerLink: "/"},
+          {label: 'Kategorier', routerLink: "/category"},
+          {label: this.category.name, routerLink: "/category/" + category.id}
+        ];
+        this.isDataAvailable = true;
+      });
     this.productsService.getPagedCategoryProducts(this.paginationService.getPageIndex, this.paginationService.pageSize, this.id)
       .subscribe((result: any) => {
         this.totalCount = JSON.parse(result.headers.get('X-Pagination')).TotalCount;
         this.products = result.body;
 
-          this.menuService.breadcrumb=[
-            {icon:'pi pi-home',routerLink:"/"},
-            // {label:"Søgning for '"+this.search+"'",routerLink:"/products",queryParams:{"search":this.search}}
-          ]
         this.isDataAvailable = true;
       });
   }
