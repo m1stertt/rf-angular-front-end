@@ -10,19 +10,25 @@
 <!--    <br/>-->
 <!--    <button class="btn btn-success">submit</button>-->
 <!--  </form>-->
-
-  <section class="example-section" [formGroup]="toppings">
-    <h4>Farve(r):</h4>
-    <p><mat-checkbox formControlName="Rød">Rød</mat-checkbox></p>
-    <p><mat-checkbox formControlName="Blå">Blå</mat-checkbox></p>
-    <p><mat-checkbox formControlName="Grøn">Grøn</mat-checkbox></p>
+  <section class="example-section" [formGroup]="colors">
+  <div *ngFor="let colorDto of colorsData">
+    <mat-checkbox>
+      {{colorDto.title}}
+    </mat-checkbox>
+  </div>
   </section>
-  <section class="example-section" [formGroup]="toppings">
-    <h4>Størrelse(r):</h4>
-    <p><mat-checkbox formControlName="S">S</mat-checkbox></p>
-    <p><mat-checkbox formControlName="M">M</mat-checkbox></p>
-    <p><mat-checkbox formControlName="L">L</mat-checkbox></p>
-  </section>
+<!--  <section class="example-section" [formGroup]="toppings">-->
+<!--    <h4>Farve(r):</h4>-->
+<!--    <p><mat-checkbox formControlName="Rød">Rød</mat-checkbox></p>-->
+<!--    <p><mat-checkbox formControlName="Blå">Blå</mat-checkbox></p>-->
+<!--    <p><mat-checkbox formControlName="Grøn">Grøn</mat-checkbox></p>-->
+<!--  </section>-->
+<!--  <section class="example-section" [formGroup]="toppings">-->
+<!--    <h4>Størrelse(r):</h4>-->
+<!--    <p><mat-checkbox formControlName="S">S</mat-checkbox></p>-->
+<!--    <p><mat-checkbox formControlName="M">M</mat-checkbox></p>-->
+<!--    <p><mat-checkbox formControlName="L">L</mat-checkbox></p>-->
+<!--  </section>-->
 <!--  <mat-form-field>-->
 <!--    <mat-select placeholder="Toppings">-->
 <!--      <mat-option *ngFor="let topping of toppingList; let i =index" [value]="topping">-->
@@ -31,9 +37,9 @@
 <!--    </mat-select>-->
 <!--  </mat-form-field>-->
 
-  <section class="example-section" [formGroup]="toppings">
-    <h4>You chose:</h4>
-    {{toppings.value | json}}
-  </section>
+<!--  <section class="example-section" [formGroup]="toppings">-->
+<!--    <h4>You chose:</h4>-->
+<!--    {{toppings.value | json}}-->
+<!--  </section>-->
 
 </mat-card>
