@@ -19,7 +19,7 @@ export class ProductsGridComponent implements AfterViewInit {
 
   totalCount?: number;
   breakpoint?: number;
-	
+
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
               public paginationService: ProductsGridPaginationService,
@@ -27,10 +27,10 @@ export class ProductsGridComponent implements AfterViewInit {
               private menuService:MenuService) {
   }
 
-  @Input('products')
-  set allowDay(value: ProductDto[]) {
-    this.products = value;
-  }
+  // @Input('products')
+  // set allowDay(value: ProductDto[]) {
+  //   this.products = value;
+  // }
 
   switchPage(event: PageEvent) {
     this.paginationService.change(event);

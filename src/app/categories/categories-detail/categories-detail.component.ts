@@ -29,36 +29,25 @@ export class CategoriesDetailComponent implements OnInit {
               private productsService: ProductsService,
               public paginationService: ProductsGridPaginationService) {
   }
+  switchPage(event: PageEvent) {
+    this.paginationService.change(event);
+    this.getPagedProducts();
+  }
 
   ngOnInit(): void {
     this.route.params
       .subscribe(params => {
         this.id = params.id || '';
-        this.getProducts();
+        this.getPagedProducts();
       });
     this.breakpoint = (window.innerWidth <= 400) ? 1 : 3;
     this.cdRef.detectChanges();
   }
 
-
-  // getProducts(): void {
-  //   this.categoriesService.getCategory(this.id)
-  //     .subscribe(category =>{
-  //       this.category = category;
-  //       this.products=category.products;
-  //       this.menuService.breadcrumb=[
-  //         {icon:'pi pi-home',routerLink:"/"},
-  //         {label:'Kategorier',routerLink:"/category"},
-  //         {label:this.category.name,routerLink:"/category/"+category.id}
-  //       ];
-  //     });
-  // }
-
-  getProducts(): void {
+  getPagedProducts(): void {
     this.categoriesService.getCategory(this.id)
       .subscribe(category => {
         this.category = category;
-        this.products = category.products;
         this.menuService.breadcrumb = [
           {icon: 'pi pi-home', routerLink: "/"},
           {label: 'Kategorier', routerLink: "/category"},
@@ -75,20 +64,8 @@ export class CategoriesDetailComponent implements OnInit {
       });
   }
 
-  goBack(): void {
-    this.location.back();
-  }
-
   breakpoint: number | undefined;
 
-  lowValue: number = 0;
-  highValue: number = 20;
-
-  public getPaginatorData(event: PageEvent): PageEvent {
-    this.lowValue = event.pageIndex * event.pageSize;
-    this.highValue = this.lowValue + event.pageSize;
-    return event;
-  }
 
   onResize(event: any) {
     this.breakpoint = (event.target.innerWidth <= 400) ? 1 : 3;
