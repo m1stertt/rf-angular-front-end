@@ -1,4 +1,4 @@
-<app-categories-template >
+<app-categories-template (color)="onColorsChanged($event)" >
   <mat-card>
     <div class="products-grid" *ngIf="isDataAvailable">
       <mat-grid-list rowHeight="1.5:1" gutterSize='15px' [cols]="breakpoint" (window:resize)="onResize($event)">
@@ -6,7 +6,7 @@
           <mat-grid-tile routerLink="/products/{{productDto.id}}">
             {{ productDto.productName}}
             {{ productDto.id}}
-            <img *ngIf="productDto.images.length" src="https://localhost:5001/resources/images/{{productDto.images[0].path}}"/>
+            <img *ngIf="productDto.images.length" src="https://localhost:5001/resources/images/{{productDto.images[0].path}}" alt=""/>
           </mat-grid-tile>
         </ng-container>
       </mat-grid-list>
