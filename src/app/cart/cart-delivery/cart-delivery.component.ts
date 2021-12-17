@@ -4,6 +4,7 @@ import { AppComponent } from 'src/app/app.component';
 import { CartService } from '../shared/cart.service';
 import {Profile} from 'src/app/auth/shared/models/profile';
 import { AuthService } from 'src/app/auth/shared/auth.service';
+import { UserDto } from 'src/app/account/shared/user.dto';
 
 @Component({
   selector: 'app-cart-delivery',
@@ -18,19 +19,15 @@ export class CartDeliveryComponent implements OnInit {
     {label: 'Bekræftelse'}
   ];
   firstFormGroup: FormGroup = new FormGroup({});
-  secondFormGroup: FormGroup = new FormGroup({});
 
-  addressData=this.cartService.userData;
+  addressData=this.authService.getUser();
   loggedIn:Profile | undefined =this.authService.getProfile();
 
-  constructor(private _formBuilder: FormBuilder,private cartService:CartService,public appComponent:AppComponent,private authService:AuthService) {}
+  constructor(private _formBuilder: FormBuilder,public cartService:CartService,public appComponent:AppComponent,private authService:AuthService) {}
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required],
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required],
+      //firstCtrl: ['', Validators.required],
     });
   }
 
@@ -38,16 +35,23 @@ export class CartDeliveryComponent implements OnInit {
 
   }
 
+  saveInfo(){
+    console.log(this.addressData.firstName);
+    if(!this.userManagementForm.valid) return;
+  }
+
   userManagementForm = new FormGroup({
 
     firstName: new FormControl('',
-      []),
-    lastName: new FormControl('', []),
-    email: new FormControl('', []),
-    streetAndNumber: new FormControl('', []),
-    postalCode: new FormControl('', []),
-    city: new FormControl('', []),
-    phoneNumber: new FormControl('', []),
+      [ Validators.required]),
+    lastName: new FormControl('', [ Validators.required]),
+    email: new FormControl('', [ Validators.required]),
+    streetAndNumber: new FormControl('', [ Validators.required]),
+    postalCode: new FormControl('', [ Validators.required,
+      Validators.maxLength(4),Validators.minLength(4)]),
+    city: new FormControl('', [ Validators.required]),
+    phoneNumber: new FormControl('', [ Validators.required,
+      Validators.maxLength(8),Validators.minLength(8)]),
 
   });
 

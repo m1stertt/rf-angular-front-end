@@ -41,6 +41,8 @@ import { CartDeliveryComponent } from './cart/cart-delivery/cart-delivery.compon
 import {MatStepperModule} from '@angular/material/stepper'; 
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSelectModule } from '@angular/material/select';
+import { AccountService } from './account/shared/account.service';
 
 @NgModule({
   declarations: [
@@ -77,11 +79,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ProductsModule,
     MatStepperModule,
     OverlayPanelModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSelectModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
-    , AuthService, AppComponent, MenuService, CategoriesService, SizesService, ColorsService, CartService, DialogService, MessageService,ConfirmationService,
+    , AuthService, AppComponent, MenuService, CategoriesService, SizesService, ColorsService, CartService, DialogService, MessageService,ConfirmationService,AccountService,
     {provide: MatPaginatorIntl, useValue: getDanishPaginatorIntl()}
   ],
   
