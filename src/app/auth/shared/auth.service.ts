@@ -6,6 +6,8 @@ import {TokenInfo} from './models/token-info';
 import {Profile} from './models/profile';
 import {BehaviorSubject, Observable, of} from 'rxjs';
 import {RegistrationDetails} from "./models/registration-details";
+import { UserDto } from 'src/app/account/shared/user.dto';
+import { AccountService } from 'src/app/account/shared/account.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,8 @@ import {RegistrationDetails} from "./models/registration-details";
 export class AuthService {
   redirectUrl: string | undefined;
   profile$ = new BehaviorSubject<Profile | null>(null);
-  constructor(private _http: HttpClient) { }
+  user:UserDto|undefined;
+  constructor(private _http: HttpClient,private accountService:AccountService) { }
 
   login(loginInfo: LoginUser): Promise<string> {
     return this._http
@@ -44,6 +47,11 @@ export class AuthService {
       .pipe(
         tap(p => {
           localStorage.setItem('Profile', JSON.stringify(p))
+          this.accountService.getUser(p.id)?.subscribe(e=>{
+            if(e){
+              localStorage.setItem("User",JSON.stringify(e));
+            }
+          });
           this.profile$.next(p);
         })
       )
@@ -60,13 +68,23 @@ export class AuthService {
     return of(true);
   }
 
-  // getProfile(): Profile | undefined {
-  //   let profile = localStorage.getItem('Profile');
-  //   if(profile) {
-  //     return JSON.parse(profile) as Profile;
-  //   }
-  //   return undefined;
-  // }
+  getProfile(): Profile | null {
+      let profile = localStorage.getItem('Profile');
+      if(profile) {
+        return JSON.parse(profile) as Profile;
+      }
+      return null;
+  }
+
+ getUser(): UserDto {
+    let user = localStorage.getItem('User');
+    if(user) {
+      return JSON.parse(user) as UserDto;
+    }else if(!this.user){
+      this.user={firstName:"",lastName:"",phoneNumber:"",streetAndNumber:"",email:"",postalCode:"",city:""};
+    }
+    return this.user;
+  }
 
   hasPermission(permission: string): Observable<boolean> {
     if(localStorage.getItem('Profile')?.includes(permission)) return of(true);

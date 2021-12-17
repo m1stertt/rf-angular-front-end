@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { UserDto } from 'src/app/account/shared/user.dto';
+import { AuthService } from 'src/app/auth/shared/auth.service';
 import { ProductsService } from 'src/app/products/shared/products.service';
 import { CartItemDto } from './cartItem.dto';
 
@@ -6,8 +8,14 @@ import { CartItemDto } from './cartItem.dto';
   providedIn: 'root'
 })
 export class CartService {
+
   items: CartItemDto[] = [];
-  constructor(private productService:ProductsService) {
+
+  userData: UserDto={id:0,firstName:"",lastName:"",email:"",postalCode:"",streetAndNumber:"",city:"",phoneNumber:""};
+
+  deliveryPrice:number=50;
+
+  constructor(private productService:ProductsService,private authService:AuthService) {
     var cart=localStorage.getItem('cart');
     if(cart!=null){
       console.log("Restored shopping cart");
@@ -35,6 +43,18 @@ export class CartService {
       });
     }
   }
+
+  setDeliveryPrice(int:number){
+    this.deliveryPrice=int;
+  }
+
+  setUserData(userData:UserDto){
+    this.userData=userData;
+  }
+
+  getUserData():UserDto{ return this.userData; }
+
+  
 
   addToCart(product: CartItemDto) { //@todo size stuff.
     let index=this.items.findIndex(e=>e.id===product.id&&e.color===product.color&&e.size===product.size);
@@ -85,6 +105,10 @@ export class CartService {
       }
       return accum;
     }, 0);
+  }
+
+  getPriceAmountWithDelivery(){
+    return this.getPriceAmount()+this.deliveryPrice;
   }
 
   clearCart() {

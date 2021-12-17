@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/guards/auth.guard';
-import { CartConfirmComponent } from './cart/cart-confirm/cart-confirm.component';
 import { CartDeliveryComponent } from './cart/cart-delivery/cart-delivery.component';
 import { CartViewComponent } from './cart/cart-view/cart-view.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -25,8 +24,7 @@ const routes: Routes = [
       .then(f => f.AdminModule)},
   { path: '',component:HomepageComponent},
   { path: 'cart', component: CartViewComponent },
-  { path: 'delivery', component: CartDeliveryComponent },
-  { path: 'confirm', component: CartConfirmComponent },
+  { path: 'checkout', component: CartDeliveryComponent },
   {
     path: 'account',
     loadChildren: () => import('./account/account.module')
