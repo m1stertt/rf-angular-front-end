@@ -15,32 +15,40 @@ export class CartService {
 
   deliveryPrice:number=50;
 
-  constructor(private productService:ProductsService,private authService:AuthService) {
+  constructor(private productService:ProductsService) {
     var cart=localStorage.getItem('cart');
     if(cart!=null){
+      let itemsToRemove: CartItemDto[]=[];
       console.log("Restored shopping cart");
       this.items=JSON.parse(cart);
       this.items.forEach((item, index)=>{
         this.productService.getProduct(item.id).subscribe(product=>{
           this.items[index].name=product.productName;
-          this.items[index].price=product.productPrice;
+          this.items[index].price=product.productDiscountPrice||product.productPrice; //@todo
           this.items[index].image=product.images[0];
           let color=this.items[index].color;
           let size=this.items[index].size;
           if(color){
             if(!product.colors||!product.colors.includes(color)){
+              itemsToRemove.push(item);
+              return;
               //Remove item, not available anymore
             }
             //@todo
           }
           if(size){
             if(!product.sizes||!product.sizes.includes(size)){
+              itemsToRemove.push(item);
+              return;
               //Remove item, not available anymore
             }
             //@todo
           }
         });
       });
+      for(let item of itemsToRemove){
+        this.removeFromCart(item);
+      }
     }
   }
 
@@ -76,7 +84,7 @@ export class CartService {
     this.update();
   }
 
-  removeFromCart(product: CartItemDto,amount:number=1){
+  removeFromCart(product: CartItemDto,amount:number=Infinity){
     let index=this.items.findIndex(e=>e.id===product.id&&e.color===product.color&&e.size===product.size);
     if (index<0) return; //Unable to find item
     this.items[index].amount-=amount;

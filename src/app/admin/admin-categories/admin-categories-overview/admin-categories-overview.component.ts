@@ -3,6 +3,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { CategoriesService } from 'src/app/categories/shared/categories.service';
 import { CategoryDto } from 'src/app/categories/shared/category.dto';
+import { ErrorHandlingMessageService } from 'src/app/errorHandling/shared/error-handling-message.service';
 import { MenuService } from 'src/app/menu/shared/menu.service';
 import { AdminCategoryCreateComponent } from '../admin-category-create/admin-category-create.component';
 
@@ -13,7 +14,7 @@ import { AdminCategoryCreateComponent } from '../admin-category-create/admin-cat
 })
 export class AdminCategoriesOverviewComponent implements OnInit {
 
-  constructor(private menuService:MenuService,private categoryService:CategoriesService, private confirmationService:ConfirmationService,private messageService:MessageService,private dialogService:DialogService) { }
+  constructor(private menuService:MenuService,private categoryService:CategoriesService, private confirmationService:ConfirmationService,private dialogService:DialogService,private errorHandlingMessageService:ErrorHandlingMessageService) { }
 
   cats:CategoryDto[]=[];
   clonedCategories: { [s: string]: CategoryDto; } = {};
@@ -42,20 +43,15 @@ export class AdminCategoriesOverviewComponent implements OnInit {
       header: 'Er du sikker?',
       icon: 'pi pi-info-circle',
       accept: () =>{
-        this.categoryService.delete(category).subscribe(category=>{
-          this.messageService.add({severity:'info', summary:'Kategori slettet', detail:'Kategorien er nu slettet fra systemet.'});
-        },(error)=>{
-          this.messageService.add({severity:'error', summary:'Fejl', detail:'Der er desværre opstået en fejl.\nStatus text: '+error.statusText});
-        });
+        this.categoryService.delete(category).subscribe(
+          ()=>this.errorHandlingMessageService.success('Kategorien er nu slettet fra systemet.'),
+          (error)=>this.errorHandlingMessageService.error(error.statusText));
       }
     });
   }
 
   create(){
-    const ref = this.dialogService.open(AdminCategoryCreateComponent, {
-      header: 'Ny kategori',
-      width: '240px'
-    });
+    const ref = this.dialogService.open(AdminCategoryCreateComponent, { header: 'Ny kategori', width: '240px' });
   }
 
   onRowEditInit(category: CategoryDto) {
@@ -63,11 +59,9 @@ export class AdminCategoriesOverviewComponent implements OnInit {
   }
 
   onRowEditSave(category: CategoryDto) {
-    this.categoryService.update(category).subscribe(category=>{
-      this.messageService.add({severity:'info', summary:'Kategori', detail:'Kategorien er nu opdateret i systemet.'});
-    },(error)=>{
-      this.messageService.add({severity:'error', summary:'Fejl', detail:'Der er desværre opstået en fejl.\nStatus text: '+error.statusText});
-    });
+    this.categoryService.update(category).subscribe(
+      ()=>this.errorHandlingMessageService.success('Kategorien er nu opdateret i systemet.'),
+      (error)=>this.errorHandlingMessageService.error(error.statusText));
   }
 
   onRowEditCancel(category: CategoryDto, index: number) {

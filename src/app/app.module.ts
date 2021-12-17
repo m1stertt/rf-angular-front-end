@@ -43,6 +43,8 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { AccountService } from './account/shared/account.service';
+import { ErrorHandlingMessageService } from './errorHandling/shared/error-handling-message.service';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -80,11 +82,12 @@ import { AccountService } from './account/shared/account.service';
     MatStepperModule,
     OverlayPanelModule,
     MatTooltipModule,
-    MatSelectModule
+    MatSelectModule,
+    ToastModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
-    , AuthService, AppComponent, MenuService, CategoriesService, SizesService, ColorsService, CartService, DialogService, MessageService,ConfirmationService,AccountService,
+    , AuthService, AppComponent, MenuService, CategoriesService, SizesService, ColorsService, CartService, DialogService, MessageService,ConfirmationService,AccountService,ErrorHandlingMessageService,
     {provide: MatPaginatorIntl, useValue: getDanishPaginatorIntl()}
   ],
   
