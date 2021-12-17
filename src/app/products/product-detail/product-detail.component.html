@@ -19,7 +19,7 @@
             <div class="column">
               <div class="details">
                 <h1>{{product.productName}}</h1>
-                <p class="price">{{product.productPrice}},- DKK</p>
+                <p class="price">{{product.productDiscountPrice||product.productPrice}},- DKK</p>
                 <p class="description">A remarkable shoe that's naturally soft, cozy all over, and fits your every move.</p>
                 <div class="columns">
                   <p><mat-button-toggle-group appearance="legacy" [(value)]="colorSelected">
