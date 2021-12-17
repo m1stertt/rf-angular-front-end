@@ -26,6 +26,7 @@ import { UserRegistrationComponent } from './user-registration/user-registration
     MatInputModule,
     MatCardModule,
     MatButtonModule
-  ]
+  ],
+  exports:[LoginComponent]
 })
 export class AuthModule { }

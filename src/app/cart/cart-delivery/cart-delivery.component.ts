@@ -5,6 +5,7 @@ import { CartService } from '../shared/cart.service';
 import {Profile} from 'src/app/auth/shared/models/profile';
 import { AuthService } from 'src/app/auth/shared/auth.service';
 import { UserDto } from 'src/app/account/shared/user.dto';
+import { LoginUser } from 'src/app/auth/shared/models/login-user';
 
 @Component({
   selector: 'app-cart-delivery',
@@ -18,10 +19,12 @@ export class CartDeliveryComponent implements OnInit {
     {label: 'Levering'},
     {label: 'Bekræftelse'}
   ];
+  loginInfo:LoginUser={email:"",password:""};
+  deliveryPrice:number=50;
   firstFormGroup: FormGroup = new FormGroup({});
 
   addressData=this.authService.getUser();
-  loggedIn:Profile | undefined =this.authService.getProfile();
+  loggedIn:Profile | null =this.authService.getProfile();
 
   constructor(private _formBuilder: FormBuilder,public cartService:CartService,public appComponent:AppComponent,private authService:AuthService) {}
 
@@ -31,8 +34,26 @@ export class CartDeliveryComponent implements OnInit {
     });
   }
 
-  saveData():void{
+  login(){
+    this.authService.login(this.loginInfo).then((token)=>{
+      if(token) {
+        this.authService.fetchProfile()
+          .toPromise().then((profile) => {
+            this.loggedIn=profile;
+        });
+      } else {
+        console.log('Oh no! ')
+      }
+    },(rejected)=>{
+      console.log("rejected:",rejected);
+    }).catch((reason=>{
+      console.log("catch:",reason);
+    }));
+  }
 
+  setDeliveryPrice(){
+    this.cartService.setDeliveryPrice(this.deliveryPrice);
+    console.log(this.deliveryPrice);
   }
 
   saveInfo(){
@@ -45,7 +66,7 @@ export class CartDeliveryComponent implements OnInit {
     firstName: new FormControl('',
       [ Validators.required]),
     lastName: new FormControl('', [ Validators.required]),
-    email: new FormControl('', [ Validators.required]),
+    email: new FormControl('', []),
     streetAndNumber: new FormControl('', [ Validators.required]),
     postalCode: new FormControl('', [ Validators.required,
       Validators.maxLength(4),Validators.minLength(4)]),

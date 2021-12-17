@@ -68,12 +68,12 @@ export class AuthService {
     return of(true);
   }
 
-  getProfile(): Profile | undefined {
+  getProfile(): Profile | null {
       let profile = localStorage.getItem('Profile');
       if(profile) {
         return JSON.parse(profile) as Profile;
       }
-      return undefined;
+      return null;
   }
 
  getUser(): UserDto {

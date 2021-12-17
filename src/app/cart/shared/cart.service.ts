@@ -44,6 +44,10 @@ export class CartService {
     }
   }
 
+  setDeliveryPrice(int:number){
+    this.deliveryPrice=int;
+  }
+
   setUserData(userData:UserDto){
     this.userData=userData;
   }

@@ -1,22 +1,21 @@
 <div class="grid">
-  <div class="col-12 md:col-6 md:col-offset-2 lg:col-4 lg:col-offset-3">
+  <div class="col-12 md:col-8 md:col-offset-2 lg:col-6 lg:col-offset-3">
     <mat-stepper orientation="vertical" [linear]="true" #stepper>
       <mat-step *ngIf="!loggedIn" [optional]="true" [completed]="loggedIn" [stepControl]="firstFormGroup">
-        <form>
           <ng-template matStepLabel>Login</ng-template>
           <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
-            <input matInput type="email" placeholder="Email">
+            <input matInput [(ngModel)]="loginInfo.email" type="email" placeholder="Email">
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Adgangskode</mat-label>
-            <input type="password" matInput placeholder="Adgangskode">
+            <input type="password" [(ngModel)]="loginInfo.password" matInput placeholder="Adgangskode">
           </mat-form-field>
           <div>
-            <button mat-raised-button matStepperNext>Login</button>
+            <button mat-raised-button (click)="login()">Login</button>
+            <button mat-raised-button style="margin-left:10px;">Lav en bruger</button>
             <button mat-button matStepperNext>Fortsæt som gæst</button>
           </div>
-        </form>
       </mat-step>
       <mat-step [stepControl]="userManagementForm">
         <div *ngIf="loggedIn">Du er logget ind som {{loggedIn.email}}</div>
@@ -30,9 +29,9 @@
             <mat-label>Efternavn</mat-label>
             <input id="lastName"  [(ngModel)]="addressData.lastName" formControlName="lastName" matInput placeholder="Placeholder" >
           </mat-form-field>
-          <mat-form-field disabled appearance="outline" >
+          <mat-form-field *ngIf="!loggedIn" disabled appearance="outline" >
             <mat-label>Email</mat-label>
-            <input id="email" type="email" formControlName="email"  [(ngModel)]="addressData.email" matInput placeholder="Placeholder" >
+            <input id="email" type="email" formControlName="email" required [(ngModel)]="addressData.email" matInput placeholder="Placeholder" >
           </mat-form-field>
           <mat-form-field disabled appearance="outline">
             <mat-label>Gade og husnummer</mat-label>
@@ -58,29 +57,35 @@
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Levering</ng-template>
-        <p>Vælg levering....</p>
-        <h4>Basic mat-select</h4>
         <mat-form-field appearance="fill">
-          <mat-label>Favorite food</mat-label>
-          <mat-select>
-            <mat-option [value]="50">
+          <mat-label>Vælg levering...</mat-label>
+          <mat-select [(ngModel)]='deliveryPrice'>
+            <mat-option [value]=50>
               4-7 hverdage 50,- DKK
             </mat-option>
-            <mat-option [value]="125">
+            <mat-option [value]=125>
               1-3 hverdage 125,- DKK
             </mat-option>
           </mat-select>
         </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-button matStepperNext (click)="setDeliveryPrice()">Next</button>
         </div>
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Bekræft din ordre</ng-template>
         <p>Bekræft venligst din ordre...</p>
         <app-cart-view></app-cart-view>
-        <p>Total pris: {{this.cartService.getPriceAmountWithDelivery()}}</p>
+        <p>Din ordre sendes til:</p>
+        <p>{{addressData.firstName}} {{addressData.lastName}}</p>
+        <p>{{addressData.streetAndNumber}}</p>
+        <p>{{addressData.city}}, {{addressData.postalCode}}</p><br>
+        <p>Pris: {{this.cartService.getPriceAmount()}},- DKK</p>
+        <p>Levering: {{this.deliveryPrice}},- DKK</p>
+        <p>I alt: {{this.cartService.getPriceAmountWithDelivery()}},- DKK</p>
+        <p *ngIf="!loggedIn">Din ordre bekræftelse sendes til email {{addressData.email}}</p>
+        <p *ngIf="loggedIn">Din ordre bekræftelse sendes til email {{loggedIn.email}}</p>
         <div>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button (click)="stepper.reset()">Reset</button>
@@ -88,10 +93,5 @@
         </div>
       </mat-step>
     </mat-stepper>
-  </div>
-  <div class="hidden md:inline md:col-4 lg:col-4">
-    <mat-card>
-      Indkøbskurv
-    </mat-card>
   </div>
 </div>
