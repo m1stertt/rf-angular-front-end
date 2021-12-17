@@ -5,6 +5,7 @@ import { MenuService } from 'src/app/menu/shared/menu.service';
 import {ConfirmationService, ConfirmEventType, MessageService} from 'primeng/api';
 import { AdminColorCreateComponent } from '../admin-color-create/admin-color-create.component';
 import { DialogService } from 'primeng/dynamicdialog';
+import { ErrorHandlingMessageService } from 'src/app/errorHandling/shared/error-handling-message.service';
 
 @Component({
   selector: 'app-admin-colors-overview',
@@ -13,7 +14,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 })
 export class AdminColorsOverviewComponent implements OnInit {
 
-  constructor(private menuService:MenuService,private colorsService:ColorsService,private confirmationService:ConfirmationService,private messageService:MessageService,private dialogService:DialogService) { }
+  constructor(private menuService:MenuService,private colorsService:ColorsService,private confirmationService:ConfirmationService,private messageService:MessageService,private dialogService:DialogService,private errorHandlingMessageService:ErrorHandlingMessageService) { }
 
   cats:ColorDto[]=[];
   color2: string = '#1976D2';
@@ -57,7 +58,7 @@ export class AdminColorsOverviewComponent implements OnInit {
       if(this.editing){
         this.editing.colorString=oldColor;
       }
-      this.messageService.add({severity:'error', summary:'Fejl', detail:'Der er desværre opstået en fejl.\nStatus text: '+error.statusText});
+      this.errorHandlingMessageService.error(error.statusText);
     });
   }
 
@@ -73,9 +74,7 @@ export class AdminColorsOverviewComponent implements OnInit {
       accept: () =>{
         this.colorsService.delete(color.id).subscribe(color=>{
           this.messageService.add({severity:'info', summary:'Farve slettet', detail:'Farven er nu slettet fra systemet.'});
-        },(error)=>{
-          this.messageService.add({severity:'error', summary:'Fejl', detail:'Der er desværre opstået en fejl.\nStatus text: '+error.statusText});
-        });
+        },(error)=>this.errorHandlingMessageService.error(error.statusText));
       }
     });
   }

@@ -15,7 +15,7 @@ export class CartService {
 
   deliveryPrice:number=50;
 
-  constructor(private productService:ProductsService,private authService:AuthService) {
+  constructor(private productService:ProductsService) {
     var cart=localStorage.getItem('cart');
     if(cart!=null){
       let itemsToRemove: CartItemDto[]=[];
@@ -24,7 +24,7 @@ export class CartService {
       this.items.forEach((item, index)=>{
         this.productService.getProduct(item.id).subscribe(product=>{
           this.items[index].name=product.productName;
-          this.items[index].price=product.productPrice;
+          this.items[index].price=product.productDiscountPrice||product.productPrice; //@todo
           this.items[index].image=product.images[0];
           let color=this.items[index].color;
           let size=this.items[index].size;
