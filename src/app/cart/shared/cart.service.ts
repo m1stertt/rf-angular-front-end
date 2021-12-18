@@ -34,7 +34,6 @@ export class CartService {
               return;
               //Remove item, not available anymore
             }
-            //@todo
           }
           if(size){
             if(!product.sizes||!product.sizes.includes(size)){
@@ -42,7 +41,6 @@ export class CartService {
               return;
               //Remove item, not available anymore
             }
-            //@todo
           }
         });
       });
@@ -64,7 +62,7 @@ export class CartService {
 
   
 
-  addToCart(product: CartItemDto) { //@todo size stuff.
+  addToCart(product: CartItemDto) {
     let index=this.items.findIndex(e=>e.id===product.id&&e.color===product.color&&e.size===product.size);
     if (index>=0) {
       this.items[index].amount+=product.amount;
@@ -74,7 +72,7 @@ export class CartService {
     this.update();
   }
 
-  incrementCartItem(product: CartItemDto) { //@todo size stuff.
+  incrementCartItem(product: CartItemDto) {
     let index=this.items.findIndex(e=>e.id===product.id&&e.color===product.color&&e.size===product.size);
     if (index>=0) {
       this.items[index].amount+=product.amount;

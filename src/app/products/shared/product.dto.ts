@@ -2,6 +2,7 @@ import { CategoryDto } from "src/app/categories/shared/category.dto";
 import { ColorDto } from "src/app/colors/shared/color.dto";
 import { ImageDto } from "src/app/images/shared/image.dto";
 import { SizeDto } from "src/app/sizes/shared/size.dto";
+import { InventoryStockDto } from "./inventoryStock.dto";
 
 export interface ProductDto {
   id: number;
@@ -17,4 +18,5 @@ export interface ProductDto {
   colors: ColorDto[];
   sizes: SizeDto[];
   images: ImageDto[];
+  inventoryStocks: InventoryStockDto[];
 }

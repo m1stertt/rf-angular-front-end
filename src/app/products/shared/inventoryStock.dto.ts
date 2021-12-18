@@ -5,7 +5,7 @@ import { ProductDto } from "./product.dto";
 export interface InventoryStockDto {
   id: number;
   product: ProductDto;
-  Color: ColorDto;
-  Size: SizeDto;
+  color?: ColorDto;
+  size?: SizeDto;
   amount:number;
 }
