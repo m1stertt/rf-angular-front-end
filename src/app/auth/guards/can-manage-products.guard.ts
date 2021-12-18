@@ -12,11 +12,8 @@ export class CanManageProductsGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      let profile=this._authService.getProfile();
-      if(profile==null) return this.router.parseUrl('/');
-      if(!profile.permissions.includes("CanManageProducts")) return this.router.parseUrl('/');
-      console.log("hello world",profile);
-      return true;
+    if(this._authService.hasPermission('CanManageProducts')||this._authService.hasPermission('Admin')) return true;
+    return this.router.parseUrl('/');
   }
 
 }
