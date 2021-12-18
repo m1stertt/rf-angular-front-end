@@ -19,6 +19,7 @@ import { ToastModule } from 'primeng/toast';
 import {EditorModule} from 'primeng/editor';
 import { ChipModule } from 'primeng/chip';
 import { AdminProductInventoryStockCreateComponent } from './admin-product-inventory-stock-create/admin-product-inventory-stock-create.component';
+import { AdminProductInventoryStockViewComponent } from './admin-product-inventory-stock-view/admin-product-inventory-stock-view.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AdminProductInventoryStockCreateComponent } from './admin-product-inven
     ProductOverviewComponent,
     AdminProductCreateComponent,
     AdminProductCreateComponent,
-    AdminProductInventoryStockCreateComponent
+    AdminProductInventoryStockCreateComponent,
+    AdminProductInventoryStockViewComponent
   ],
   imports: [
     CommonModule,

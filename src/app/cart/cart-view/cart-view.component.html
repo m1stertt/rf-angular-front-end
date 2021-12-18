@@ -1,43 +1,44 @@
 <div class="grid">
   <div class="col-12 md:col-10 md:col-offset-1 lg:col-8 lg:col-offset-2">
-<p-table [value]="items" responsiveLayout="scroll">
-  <ng-template pTemplate="caption">
-      <div class="p-d-flex p-ai-center p-jc-between">
-          DIN KURV
-      </div>
-  </ng-template>
-  <ng-template pTemplate="header">
-      <tr>
-          <th style="width:6rem;"></th>
-          <th>Navn</th>
-          <th>Detaljer</th>
-          <th>Mængde</th>
-          <th></th>
-          <th>Pris</th>
-      </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-product>
-      <tr>
-          <td><img *ngIf="product.image" src="https://localhost:5001/resources/images/{{product.image.path}}" [alt]="product.image.desc" width="100" class="p-shadow-4" /></td>
-          <td>{{product.name}}</td>
-          <td>
-            <div *ngIf="product.color"> {{product.color.title}}</div>
-            <div *ngIf="product.size"> {{product.size.title}}</div>
-          </td>
-          <td>{{product.amount}}</td>
-          <td>
-            <button pButton type="button" class="p-button-text p-button-icon-only" (click)="removeFromCart(product)">-</button>
-            <button pButton type="button" class="p-button-text p-button-icon-only" (click)="incrementCartItem(product)">+</button>
-          </td>
-          <td>{{(product.price*product.amount) | currency:'DKK'}}</td>
-      </tr>
-  </ng-template>
-  <ng-template pTemplate="summary">
-      <div class="p-d-flex p-ai-center p-jc-between">
-          Der er i alt {{amount()}} varer.<br>
-          Total pris: {{sum()}},- DKK<br>
-          <button mat-raised-button (click)="nextPage()" style="width:80%; background:#305a66; color:white; margin-left:10%;margin-top:5px;">Checkout</button>
-      </div>
-  </ng-template>
-</p-table>
-</div></div>
+    <p-table [value]="items" responsiveLayout="scroll">
+      <ng-template pTemplate="caption">
+          <div class="p-d-flex p-ai-center p-jc-between">
+              DIN KURV
+          </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+          <tr>
+              <th style="width:6rem;"></th>
+              <th>Navn</th>
+              <th>Detaljer</th>
+              <th>Mængde</th>
+              <th></th>
+              <th>Pris</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-productCartItem>
+          <tr>
+              <td><img *ngIf="productCartItem.image" src="https://localhost:5001/resources/images/{{productCartItem.image.path}}" [alt]="productCartItem.image.desc" width="100" class="p-shadow-4" /></td>
+              <td>{{productCartItem.name}}</td>
+              <td>
+                <div *ngIf="productCartItem.color"> {{productCartItem.color.title}}</div>
+                <div *ngIf="productCartItem.size"> {{productCartItem.size.title}}</div>
+              </td>
+              <td>{{productCartItem.amount}}</td>
+              <td>
+                <button pButton type="button" class="p-button-text p-button-icon-only" (click)="removeFromCart(productCartItem)">-</button>
+                <button pButton type="button" class="p-button-text p-button-icon-only" (click)="incrementCartItem(productCartItem)">+</button>
+              </td>
+              <td>{{(productCartItem.price*productCartItem.amount) | currency:'DKK'}}</td>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+          <div class="p-d-flex p-ai-center p-jc-between">
+              Der er i alt {{amount()}} varer.<br>
+              Total pris: {{sum()}},- DKK<br>
+              <button mat-raised-button (click)="nextPage()" style="width:80%; background:#305a66; color:white; margin-left:10%;margin-top:5px;">Checkout</button>
+          </div>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
