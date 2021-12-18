@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductDto } from 'src/app/products/shared/product.dto';
-import {ActivatedRoute, Router} from "@angular/router";
+import { Router} from "@angular/router";
 import {ProductsService} from "src/app/products/shared/products.service";
-import {Location} from "@angular/common";
+import { ErrorHandlingMessageService } from 'src/app/errorHandling/shared/error-handling-message.service';
 
 @Component({
   selector: 'app-admin-product-create',
@@ -12,27 +12,20 @@ import {Location} from "@angular/common";
 export class AdminProductCreateComponent implements OnInit {
   product: ProductDto;
 
-  constructor(private route: ActivatedRoute,
-              private productsService: ProductsService,
-              private location: Location,
-              private router: Router) {
+  constructor(private productsService: ProductsService,
+              private router: Router,
+              private errorHandlingMessageService:ErrorHandlingMessageService) {
     this.product = {id: 0, productName:'', productPrice: 0, productDiscountPrice:0,productDescription: '', productImageUrl: '',productFeatured:false,categories:[],sizes:[],colors:[],images:[],inventoryStocks:[]}
   }
 
   ngOnInit(): void {
   }
 
-  goBack(): void {
-    this.location.back();
-  }
-
   create() {
-    this.productsService.create(this.product).subscribe(() => {
-        this.router.navigateByUrl('/products')
+    this.productsService.create(this.product).subscribe((res) => {
+        if(!res) return this.errorHandlingMessageService.error("Der var en fejl med at lave produktet.");
+        this.router.navigateByUrl('/admin/products/'+res.id)
       },
-      error => {
-        console.log(error)
-      });
-
+      error => this.errorHandlingMessageService.error(error.statusText));
   }
 }

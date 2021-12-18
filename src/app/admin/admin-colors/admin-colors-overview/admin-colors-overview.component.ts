@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ColorDto } from 'src/app/colors/shared/color.dto';
 import { ColorsService } from 'src/app/colors/shared/colors.service';
 import { MenuService } from 'src/app/menu/shared/menu.service';
-import {ConfirmationService, ConfirmEventType, MessageService} from 'primeng/api';
+import {ConfirmationService } from 'primeng/api';
 import { AdminColorCreateComponent } from '../admin-color-create/admin-color-create.component';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ErrorHandlingMessageService } from 'src/app/errorHandling/shared/error-handling-message.service';
@@ -14,7 +14,7 @@ import { ErrorHandlingMessageService } from 'src/app/errorHandling/shared/error-
 })
 export class AdminColorsOverviewComponent implements OnInit {
 
-  constructor(private menuService:MenuService,private colorsService:ColorsService,private confirmationService:ConfirmationService,private messageService:MessageService,private dialogService:DialogService,private errorHandlingMessageService:ErrorHandlingMessageService) { }
+  constructor(private menuService:MenuService,private colorsService:ColorsService,private confirmationService:ConfirmationService,private dialogService:DialogService,private errorHandlingMessageService:ErrorHandlingMessageService) { }
 
   cats:ColorDto[]=[];
   color2: string = '#1976D2';
@@ -52,9 +52,8 @@ export class AdminColorsOverviewComponent implements OnInit {
     if(!this.editing) return;
     let oldColor=this.editing.colorString;
     this.editing.colorString=this.color2;
-    this.colorsService.updateColor(this.editing).subscribe((res)=>{
-      this.messageService.add({severity:'info', summary:'Farve indikator er ændret.', detail:'Farve indikator er blevet ændret i systemet.'});
-    },(error)=>{
+    this.colorsService.updateColor(this.editing).subscribe((res)=>this.errorHandlingMessageService.success("Farve indikator er blevet ændret i systemet."),
+    (error)=>{
       if(this.editing){
         this.editing.colorString=oldColor;
       }
@@ -72,9 +71,9 @@ export class AdminColorsOverviewComponent implements OnInit {
       header: 'Er du sikker?',
       icon: 'pi pi-info-circle',
       accept: () =>{
-        this.colorsService.delete(color.id).subscribe(color=>{
-          this.messageService.add({severity:'info', summary:'Farve slettet', detail:'Farven er nu slettet fra systemet.'});
-        },(error)=>this.errorHandlingMessageService.error(error.statusText));
+        this.colorsService.delete(color.id).subscribe(
+          color=>this.errorHandlingMessageService.success('Farven er nu slettet fra systemet.'),
+          error=>this.errorHandlingMessageService.error(error.statusText));
       }
     });
   }

@@ -20,6 +20,8 @@ import {EditorModule} from 'primeng/editor';
 import { ChipModule } from 'primeng/chip';
 import { AdminProductInventoryStockCreateComponent } from './admin-product-inventory-stock-create/admin-product-inventory-stock-create.component';
 import { AdminProductInventoryStockViewComponent } from './admin-product-inventory-stock-view/admin-product-inventory-stock-view.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { PanelModule } from 'primeng/panel';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { AdminProductInventoryStockViewComponent } from './admin-product-invento
     TableModule,
     ToastModule,
     EditorModule,
-    ChipModule
+    ChipModule,
+    PanelModule
   ]
 })
 export class AdminProductsModule { }

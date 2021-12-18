@@ -58,7 +58,7 @@
                 <img style="width:100%;" (click)="editImage(image)" src="https://localhost:5001/resources/images/{{image.path}}">
               </div>
             </div>
-            <p-button (click)="createSize()">Nyt billed</p-button>
+            <p-button (click)="createImage()">Nyt billed</p-button>
           </p-tabPanel>
           <p-tabPanel header="Farver">
             <p-table [value]="product.colors" responsiveLayout="scroll">
