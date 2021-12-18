@@ -1,1 +1,16 @@
-<p>admin-product-inventory-stock-create works!</p>
+<mat-form-field style="display:block;" appearance="fill">
+  <mat-label>Farver</mat-label>
+  <mat-select [(ngModel)]="color" [formControl]="colors_">
+    <mat-option *ngFor="let _color of product.colors" [value]="_color" >{{_color.title}}</mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field style="display:block;" appearance="fill">
+  <mat-label>Størrelser</mat-label>
+  <mat-select [(ngModel)]="size" [formControl]="sizes_">
+    <mat-option *ngFor="let _size of product.sizes" [value]="_size" >{{_size.title}}</mat-option>
+  </mat-select>
+</mat-form-field>
+<span class="p-float-label" style="margin-bottom:15px;">
+  <input id="float-input" type="number" pInputText [(ngModel)]="amount"> 
+  <label for="float-input">Mængde</label>
+</span>

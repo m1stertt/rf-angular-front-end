@@ -4,6 +4,7 @@ import { ColorDto } from 'src/app/colors/shared/color.dto';
 import { ColorsService } from 'src/app/colors/shared/colors.service';
 import { ErrorHandlingMessageService } from 'src/app/errorHandling/shared/error-handling-message.service';
 import { InventoryStocksService } from 'src/app/products/shared/inventory-stocks.service';
+import { InventoryStockDto } from 'src/app/products/shared/inventoryStock.dto';
 import { ProductDto } from 'src/app/products/shared/product.dto';
 import { SizeDto } from 'src/app/sizes/shared/size.dto';
 import { SizesService } from 'src/app/sizes/shared/sizes.service';
@@ -14,7 +15,6 @@ import { SizesService } from 'src/app/sizes/shared/sizes.service';
   styleUrls: ['./admin-product-inventory-stock-create.component.scss']
 })
 export class AdminProductInventoryStockCreateComponent implements OnInit {
-
   product:ProductDto|undefined;
   amount:number=0;
   color:ColorDto|undefined;
