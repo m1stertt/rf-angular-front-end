@@ -19,11 +19,6 @@ export class CartViewComponent implements OnInit {
   items = this.cartService.getItems();
   constructor(private cartService: CartService,private menuService:MenuService,private router:Router) { }
 
-  nextPage():void{
-    if(this.amount()<=0) return;
-    this.router.navigateByUrl("/checkout");
-  }
-
   ngOnInit(): void {
     console.log(this.items);
     this.menuService.breadcrumb=[
@@ -40,14 +35,6 @@ export class CartViewComponent implements OnInit {
   incrementCartItem(product: CartItemDto){
     this.cartService.incrementCartItem(product);
     this.items = this.cartService.getItems();
-  }
-
-  sum(){
-    return this.cartService.getPriceAmount();
-  }
-
-  amount(){
-    return this.cartService.getAmount();
   }
 
   groupBy(xs: any[], key: string) {

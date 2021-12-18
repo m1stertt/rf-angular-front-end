@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { ErrorHandlingMessageService } from 'src/app/errorHandling/shared/error-handling-message.service';
 import { SizeDto } from 'src/app/sizes/shared/size.dto';
 import { SizesService } from 'src/app/sizes/shared/sizes.service';
 
@@ -12,7 +13,7 @@ import { SizesService } from 'src/app/sizes/shared/sizes.service';
 export class AdminSizeCreateComponent implements OnInit {
 
   size:SizeDto={id:0,title:"",products:[]};
-  constructor(private sizesService:SizesService,private messageService:MessageService,private config: DynamicDialogConfig) { }
+  constructor(private sizesService:SizesService,private messageService:MessageService,private config: DynamicDialogConfig,private errorHandlingMessageService:ErrorHandlingMessageService) { }
 
   ngOnInit(): void {
     if(this.config.data.product){
@@ -21,10 +22,7 @@ export class AdminSizeCreateComponent implements OnInit {
   }
 
   create(){
-    this.sizesService.create(this.size).subscribe((res)=>{
-      //@todo
-    },(error)=>{
-      this.messageService.add({severity:'error', summary:'Fejl', detail:'Der er desværre opstået en fejl.\nStatus text: '+error.statusText});
-    });
+    this.sizesService.create(this.size).subscribe((res)=>this.errorHandlingMessageService.success("Størrelsen er nu lavet."),
+    (error)=>this.errorHandlingMessageService.error(error.statusText));
   }
 }

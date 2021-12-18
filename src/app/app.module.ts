@@ -45,6 +45,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { AccountService } from './account/shared/account.service';
 import { ErrorHandlingMessageService } from './errorHandling/shared/error-handling-message.service';
 import { ToastModule } from 'primeng/toast';
+import { InventoryStocksService } from './products/shared/inventory-stocks.service';
+import { CartSummaryComponent } from './cart/cart-summary/cart-summary.component';
+import { CartPageComponent } from './cart/cart-page/cart-page.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +56,8 @@ import { ToastModule } from 'primeng/toast';
     CartViewComponent,
     HomepageComponent,
     CartDeliveryComponent,
+    CartSummaryComponent,
+    CartPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,7 +92,7 @@ import { ToastModule } from 'primeng/toast';
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
-    , AuthService, AppComponent, MenuService, CategoriesService, SizesService, ColorsService, CartService, DialogService, MessageService,ConfirmationService,AccountService,ErrorHandlingMessageService,
+    , AuthService, AppComponent, MenuService, CategoriesService, SizesService, ColorsService, CartService, DialogService, MessageService,ConfirmationService,AccountService,ErrorHandlingMessageService,InventoryStocksService,
     {provide: MatPaginatorIntl, useValue: getDanishPaginatorIntl()}
   ],
   

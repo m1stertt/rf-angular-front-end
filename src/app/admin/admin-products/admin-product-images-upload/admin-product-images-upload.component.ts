@@ -2,11 +2,11 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-admin-images-upload',
-  templateUrl: './admin-images-upload.component.html',
-  styleUrls: ['./admin-images-upload.component.scss']
+  selector: 'app-admin-product-images-upload',
+  templateUrl: './admin-product-images-upload.component.html',
+  styleUrls: ['./admin-product-images-upload.component.scss']
 })
-export class AdminImagesUploadComponent implements OnInit {
+export class AdminProductImagesUploadComponent implements OnInit {
 
   public progress: number | undefined;
   public message: string | undefined;
