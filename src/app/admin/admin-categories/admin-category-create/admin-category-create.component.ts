@@ -3,6 +3,7 @@ import { MessageService } from 'primeng/api';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { CategoriesService } from 'src/app/categories/shared/categories.service';
 import { CategoryDto } from 'src/app/categories/shared/category.dto';
+import { ErrorHandlingMessageService } from 'src/app/errorHandling/shared/error-handling-message.service';
 
 @Component({
   selector: 'app-admin-category-create',
@@ -12,7 +13,7 @@ import { CategoryDto } from 'src/app/categories/shared/category.dto';
 export class AdminCategoryCreateComponent implements OnInit {
 
   category:CategoryDto={id:0,name:"",products:[]};
-  constructor(private categoriesService:CategoriesService,private messageService:MessageService,private config: DynamicDialogConfig) { }
+  constructor(private categoriesService:CategoriesService,private messageService:MessageService,private config: DynamicDialogConfig,private errorHandlingMessageService:ErrorHandlingMessageService) { }
 
   ngOnInit(): void {
     if(this.config.data.product){
@@ -21,10 +22,7 @@ export class AdminCategoryCreateComponent implements OnInit {
   }
 
   create(){
-    this.categoriesService.create(this.category).subscribe((res)=>{
-      //@todo
-    },(error)=>{
-      this.messageService.add({severity:'error', summary:'Fejl', detail:'Der er desværre opstået en fejl.\nStatus text: '+error.statusText});
-    });
+    this.categoriesService.create(this.category).subscribe((res)=>this.errorHandlingMessageService.success("Kategorien er nu lavet."),
+    (error)=>this.errorHandlingMessageService.error(error.statusText));
   }
 }

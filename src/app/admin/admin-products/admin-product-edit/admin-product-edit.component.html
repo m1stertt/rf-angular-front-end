@@ -55,7 +55,7 @@
           <p-tabPanel header="Billeder">
             <div class="grid">
               <div class="col-6 md:col-4 lg:col-4" *ngFor="let image of product.images">
-                <img style="width:100%;" src="https://localhost:5001/resources/images/{{image.path}}">
+                <img style="width:100%;" (click)="editImage(image)" src="https://localhost:5001/resources/images/{{image.path}}">
               </div>
             </div>
             <p-button (click)="createSize()">Nyt billed</p-button>
@@ -91,25 +91,11 @@
             <p-button (click)="createSize()">Ny størrelse</p-button>
           </p-tabPanel>
           <p-tabPanel header="Inventar">
+            <app-product-inventory-stock-view></app-product-inventory-stock-view>
             <p-button (click)="createInventoryStock()">Ny inventar kombination</p-button>
           </p-tabPanel>
         </p-tabView>
-        <!--
-      <mat-form-field style="display:block;" appearance="fill">
-        <mat-label>Edit colors</mat-label>
-        <mat-select [(ngModel)]="product.colors" [formControl]="colors_" multiple [compareWith]="compareWithFunc">
-          <mat-option *ngFor="let color of colors" [value]="color" >{{color.title}}</mat-option>
-          <p-button (click)="createSize()">Ny farve</p-button>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field style="display:block;" appearance="fill">
-        <mat-label>Edit sizes</mat-label>
-        <mat-select [(ngModel)]="product.sizes" [formControl]="sizes_" multiple [compareWith]="compareWithFunc">
-          <mat-option *ngFor="let size of sizes" [value]="size" >{{size.title}}</mat-option>
-          <div class="p-fluid"><p-button (click)="createSize()">Ny størrelse</p-button></div>
-        </mat-select>
-      </mat-form-field>-->
-    </div>
+      </div>
       </div><div class="col-12 md:col-4 lg:col-2">
         <div style="padding-top:10px;">
           <div class="p-fluid"><p-button (click)="update()">Opdater</p-button></div>

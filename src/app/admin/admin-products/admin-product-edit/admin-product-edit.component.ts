@@ -17,6 +17,7 @@ import { AdminColorCreateComponent } from '../../admin-colors/admin-color-create
 import { InventoryStocksService } from 'src/app/products/shared/inventory-stocks.service';
 import { ErrorHandlingMessageService } from 'src/app/errorHandling/shared/error-handling-message.service';
 import { AdminProductInventoryStockCreateComponent } from '../admin-product-inventory-stock-create/admin-product-inventory-stock-create.component';
+import { ImageDto } from 'src/app/images/shared/image.dto';
 
 @Component({
   selector: 'app-admin-product-edit',
@@ -104,6 +105,10 @@ export class AdminProductEditComponent implements OnInit {
       this.errorHandlingMessageService.success("Opdateret produktet, id: "+this.product?.id)
         //this.location.back();
     },this.errorHandlingMessageService.error);
+  }
+
+  editImage(image:ImageDto){
+    //@todo
   }
   compareWithFunc(a: CategoryDto, b:CategoryDto) { return a.id === b.id; }
 }

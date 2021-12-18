@@ -12,15 +12,6 @@ export class AdminSidepanelComponent implements OnInit {
       //icon: 'pi pi-pw pi-tags',
       routerLink:"/admin/"
     },
-    {
-      label: 'Brugere',
-      icon: 'pi pi-pw pi-user',
-      items: [
-        { label: 'Ny bruger', icon: 'pi pi-fw pi-user-plus' },
-        {label: 'Se/Rediger brugere', icon: 'pi pi-fw pi-users'}
-      ],
-      disabled:true
-    },
     /*{
       label: 'Ordre',
       icon: 'pi pi-pw pi-clone',

@@ -36,9 +36,9 @@ export class AdminProductInventoryStockCreateComponent implements OnInit {
     this.inventoryStockService.create({id:0,product:this.product,color:this.color,size:this.size,amount:this.amount}).subscribe((result)=>{
       if(result){
         this.product?.inventoryStocks.push(result);
-        this.errorHandlingMessageService.success("... Success id: "+result.id);
+        this.errorHandlingMessageService.success("Inventar forhold er nu lavet. Inventar Id: "+result.id);
       }else{
-        this.errorHandlingMessageService.error("Fejl med at lave @todo");
+        this.errorHandlingMessageService.error("Fejl med at indsætte inventar i databasen...");
       }
     },this.errorHandlingMessageService.error);
   }

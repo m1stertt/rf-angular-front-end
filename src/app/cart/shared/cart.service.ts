@@ -29,17 +29,15 @@ export class CartService {
           let color=this.items[index].color;
           let size=this.items[index].size;
           if(color){
-            if(!product.colors||!product.colors.includes(color)){
+            if(!product.colors||!product.colors.includes(color)){ //Remove item, not available anymore
               itemsToRemove.push(item);
               return;
-              //Remove item, not available anymore
             }
           }
           if(size){
-            if(!product.sizes||!product.sizes.includes(size)){
+            if(!product.sizes||!product.sizes.includes(size)){ //Remove item, not available anymore
               itemsToRemove.push(item);
               return;
-              //Remove item, not available anymore
             }
           }
         });
