@@ -22,6 +22,7 @@ import { AdminProductInventoryStockCreateComponent } from './admin-product-inven
 import { AdminProductInventoryStockViewComponent } from './admin-product-inventory-stock-view/admin-product-inventory-stock-view.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { PanelModule } from 'primeng/panel';
+import { AdminProductImagesEditComponent } from './admin-product-images-edit/admin-product-images-edit.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { PanelModule } from 'primeng/panel';
     AdminProductCreateComponent,
     AdminProductCreateComponent,
     AdminProductInventoryStockCreateComponent,
-    AdminProductInventoryStockViewComponent
+    AdminProductInventoryStockViewComponent,
+    AdminProductImagesEditComponent
   ],
   imports: [
     CommonModule,

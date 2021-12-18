@@ -19,6 +19,7 @@ import { ErrorHandlingMessageService } from 'src/app/errorHandling/shared/error-
 import { AdminProductInventoryStockCreateComponent } from '../admin-product-inventory-stock-create/admin-product-inventory-stock-create.component';
 import { ImageDto } from 'src/app/images/shared/image.dto';
 import { AdminProductImagesUploadComponent } from '../admin-product-images-upload/admin-product-images-upload.component';
+import { AdminProductImagesEditComponent } from '../admin-product-images-edit/admin-product-images-edit.component';
 
 @Component({
   selector: 'app-admin-product-edit',
@@ -112,7 +113,7 @@ export class AdminProductEditComponent implements OnInit {
   }
 
   editImage(image:ImageDto){
-    //@todo
+    this.dialogService.open(AdminProductImagesEditComponent,{ data:{ image:image }, header: 'Rediger billede', width: '240px' });
   }
   compareWithFunc(a: CategoryDto, b:CategoryDto) { return a.id === b.id; }
 }

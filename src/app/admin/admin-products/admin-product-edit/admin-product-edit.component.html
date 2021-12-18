@@ -12,15 +12,15 @@
       </mat-select>
     </mat-form-field>
       <span class="p-float-label" style="margin-bottom:15px;">
-        <input id="float-input" type="text" pInputText [(ngModel)]="product.productName"> 
+        <input id="float-input" type="text" pInputText required [(ngModel)]="product.productName"> 
         <label for="float-input">Produkt navn</label>
       </span>
       <span class="p-float-label" style="margin-bottom:15px;">
-        <input id="float-input" type="text" pInputText [(ngModel)]="product.productPrice"> 
+        <input id="float-input" type="text" min=0 required pInputText [(ngModel)]="product.productPrice"> 
         <label for="float-input">Pris</label>
       </span>
       <span class="p-float-label" style="margin-bottom:15px;">
-        <input id="float-input" type="text" pInputText [(ngModel)]="product.productDiscountPrice"> 
+        <input id="float-input" type="text" pInputText min=0 [(ngModel)]="product.productDiscountPrice"> 
         <label for="float-input">Tilbuds pris</label>
       </span>
     
