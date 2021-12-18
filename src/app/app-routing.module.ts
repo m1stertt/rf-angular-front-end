@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { CartDeliveryComponent } from './cart/cart-delivery/cart-delivery.component';
-import { CartViewComponent } from './cart/cart-view/cart-view.component';
+import { CartPageComponent } from './cart/cart-page/cart-page.component';
 import { HomepageComponent } from './homepage/homepage.component';
 
 const routes: Routes = [
@@ -23,7 +23,7 @@ const routes: Routes = [
     import('./admin/admin.module')
       .then(f => f.AdminModule)},
   { path: '',component:HomepageComponent},
-  { path: 'cart', component: CartViewComponent },
+  { path: 'cart', component: CartPageComponent },
   { path: 'checkout', component: CartDeliveryComponent },
   {
     path: 'account',

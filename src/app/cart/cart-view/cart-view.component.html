@@ -33,11 +33,7 @@
           </tr>
       </ng-template>
       <ng-template pTemplate="summary">
-          <div class="p-d-flex p-ai-center p-jc-between">
-              Der er i alt {{amount()}} varer.<br>
-              Total pris: {{sum()}},- DKK<br>
-              <button mat-raised-button (click)="nextPage()" style="width:80%; background:#305a66; color:white; margin-left:10%;margin-top:5px;">Checkout</button>
-          </div>
+        <ng-content></ng-content>
       </ng-template>
     </p-table>
   </div>

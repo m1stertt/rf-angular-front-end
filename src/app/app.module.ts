@@ -46,6 +46,8 @@ import { AccountService } from './account/shared/account.service';
 import { ErrorHandlingMessageService } from './errorHandling/shared/error-handling-message.service';
 import { ToastModule } from 'primeng/toast';
 import { InventoryStocksService } from './products/shared/inventory-stocks.service';
+import { CartSummaryComponent } from './cart/cart-summary/cart-summary.component';
+import { CartPageComponent } from './cart/cart-page/cart-page.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import { InventoryStocksService } from './products/shared/inventory-stocks.servi
     CartViewComponent,
     HomepageComponent,
     CartDeliveryComponent,
+    CartSummaryComponent,
+    CartPageComponent,
   ],
   imports: [
     BrowserModule,

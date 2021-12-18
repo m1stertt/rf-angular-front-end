@@ -1,4 +1,4 @@
-<p-table [value]="product.inventoryStocks" responsiveLayout="scroll">
+<p-table *ngIf="product" [value]="product.inventoryStocks" responsiveLayout="scroll">
   <ng-template pTemplate="header">
       <tr>
           <th>Name</th>
