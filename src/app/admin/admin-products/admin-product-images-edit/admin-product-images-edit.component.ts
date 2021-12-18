@@ -15,21 +15,20 @@ export class AdminProductImagesEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.image=this.config.data.image;
-    console.log(this.image);
   }
 
   delete(){
     if(this.image==undefined) return;
-    this.imagesService.delete(this.image.id).subscribe(res=>{
-      //@todo
-    },(error)=>this.errorHandlingMessageService.error(error.statusText));
+    this.imagesService.delete(this.image.id).subscribe(
+      res=>this.errorHandlingMessageService.success("Billedet er nu slettet."),
+      error=>this.errorHandlingMessageService.error(error.statusText));
   }
 
   update(){
     if(this.image==undefined) return;
-    this.imagesService.update(this.image).subscribe(res=>{
-      //@todo
-    },(error)=>this.errorHandlingMessageService.error(error.statusText));
+    this.imagesService.update(this.image).subscribe(
+      res=>this.errorHandlingMessageService.success("Billedet er nu opdateret."),
+      error=>this.errorHandlingMessageService.error(error.statusText));
   }
 
 }
