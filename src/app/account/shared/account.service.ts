@@ -22,8 +22,8 @@ export class AccountService {
     return this._http.get<UserDto>(`${this.configurationService.getServerEndPoint()}User/${id}`);
   }
 
-  delete(id: number) {
-    return this._http.delete<UserDto>(`${this.configurationService.getServerEndPoint()}User/${id}`);
+  delete() {
+    return this._http.delete<UserDto>(`${this.configurationService.getServerEndPoint()}User`);
   }
 
   updateUser(user: UserDto): Observable<UserDto> {

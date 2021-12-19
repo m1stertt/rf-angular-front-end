@@ -6,13 +6,13 @@ import {AuthService} from '../shared/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class CanManageAccountPageGuard implements CanActivate {
+export class CanManageColorsGuard implements CanActivate {
   constructor(private _authService: AuthService,private router: Router) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if(this._authService.hasPermission('CanManageAccount')||this._authService.hasPermission('Admin')) return true;
+    if(this._authService.hasPermission('CanManageColors')||this._authService.hasPermission('Admin')) return true;
     return this.router.navigateByUrl('/');
   }
 
