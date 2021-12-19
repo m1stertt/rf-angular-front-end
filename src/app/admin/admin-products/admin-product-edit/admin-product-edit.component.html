@@ -1,0 +1,93 @@
+<app-admin-template>
+  <div *ngIf="product">
+    <div class="grid">
+      <div class="col-12 lg:col-4 p-fluid">
+
+    <h2>{{product.productName | uppercase}} Detaljer <p-chip label="ID: {{product.id}}"></p-chip> </h2>
+    <mat-form-field style="display:block;" appearance="fill">
+      <mat-label>Kategorier</mat-label>
+      <mat-select [(ngModel)]="product.categories" [formControl]="categories_" multiple [compareWith]="compareWithFunc">
+        <mat-option *ngFor="let category of categories" [value]="category" >{{category.name}}</mat-option>
+        <p-button (click)="createSize()">Ny kategori</p-button>
+      </mat-select>
+    </mat-form-field>
+      <span class="p-float-label" style="margin-bottom:15px;">
+        <input id="float-input" type="text" pInputText required [(ngModel)]="product.productName">
+        <label for="float-input">Produkt navn</label>
+      </span>
+      <span class="p-float-label" style="margin-bottom:15px;">
+        <input id="float-input" type="text" min=0 required pInputText [(ngModel)]="product.productPrice">
+        <label for="float-input">Pris</label>
+      </span>
+      <span class="p-float-label" style="margin-bottom:15px;">
+        <input id="float-input" type="text" pInputText min=0 [(ngModel)]="product.productDiscountPrice">
+        <label for="float-input">Tilbuds pris</label>
+      </span>
+      <textarea [rows]="5" [cols]="30"  [(ngModel)]="product.productDescription" placeholder="Produkt beskrivelse..." pInputTextarea autoResize="autoResize"></textarea>
+    <div class="p-field-checkbox">
+      <p-checkbox [binary]="true" [(ngModel)]="product.productFeatured" inputId="check"></p-checkbox>
+      <label for="check">Udvalgt produkt</label>
+    </div>
+    </div> <div class="col-12 lg:col-6">
+      <div style="margin-top:15px;">
+        <p-tabView>
+          <p-tabPanel header="Billeder">
+            <div class="grid">
+              <div class="col-6 md:col-4 lg:col-4" *ngFor="let image of product.images">
+                <img style="width:100%;" (click)="editImage(image)" src="{{serverUrl}}resources/images/{{image.path}}">
+              </div>
+            </div>
+            <p-button (click)="createImage()">Nyt billed</p-button>
+          </p-tabPanel>
+          <p-tabPanel header="Farver">
+            
+            <mat-form-field style="display:block;" appearance="fill">
+              <mat-label>Farver</mat-label>
+              <mat-select [(ngModel)]="product.colors" [formControl]="colors_" multiple [compareWith]="compareWithFunc">
+                <mat-option *ngFor="let category of colors" [value]="category" >{{category.title}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <p-button (click)="createColor(product)">Ny farve</p-button>
+          </p-tabPanel>
+          <p-tabPanel header="Størrelser">
+            <mat-form-field style="display:block;" appearance="fill">
+              <mat-label>Størrelser</mat-label>
+              <mat-select [(ngModel)]="product.sizes" [formControl]="sizes_" multiple [compareWith]="compareWithFunc">
+                <mat-option *ngFor="let size of sizes" [value]="size" >{{size.title}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <p-button (click)="createSize()">Ny størrelse</p-button>
+          </p-tabPanel>
+          <p-tabPanel header="Inventar">
+            <p-table *ngIf="product" [value]="product.inventoryStocks" responsiveLayout="scroll">
+              <ng-template pTemplate="header">
+                  <tr>
+                    <th>Id</th>
+                    <th>Mængde</th>
+                    <th>Farve</th>
+                    <th>Størrelse</th>
+                  </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-category>
+                  <tr>
+                    <td>{{category.id}}</td>
+                    <td>{{category.amount}}</td>
+                    <td>{{category.color.title}}</td>
+                    <td>{{category.size.title}}</td>
+                  </tr>
+              </ng-template>
+            </p-table>
+            <p-button (click)="createInventoryStock()">Ny inventar kombination</p-button>
+          </p-tabPanel>
+        </p-tabView>
+      </div>
+      </div><div class="col-12 md:col-4 lg:col-2">
+        <div style="padding-top:10px;">
+          <div class="p-fluid"><p-button (click)="update()">Opdater</p-button></div>
+          <button mat-button (click)="location.back()" color="primary">Tilbage</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-admin-template>
+<p-toast [style]="{'white-space': 'pre-line'}"></p-toast>

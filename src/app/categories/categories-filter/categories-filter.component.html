@@ -1,0 +1,10 @@
+<mat-card>
+  <h2>Farver:</h2>
+  <section class="example-section" [formGroup]="formGroup">
+    <div formArrayName="colors" *ngFor="let color of colorsFormArray.controls; let i = index">
+      <mat-checkbox (change)="onColorChange()" [formControlName]="i">
+        {{colorsData[i].title}}
+      </mat-checkbox>
+    </div>
+  </section>
+</mat-card>

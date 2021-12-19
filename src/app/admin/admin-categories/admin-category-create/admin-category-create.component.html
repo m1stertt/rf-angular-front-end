@@ -1,0 +1,5 @@
+<mat-form-field style="width:100%;" appearance="fill">
+  <mat-label>Titel</mat-label>
+  <input [(ngModel)]="category.name" matInput required placeholder="Ex. Sneakers">
+</mat-form-field>
+<button mat-raised-button (click)="create()" color="primary" style="width:100%;">Lav kategori</button>

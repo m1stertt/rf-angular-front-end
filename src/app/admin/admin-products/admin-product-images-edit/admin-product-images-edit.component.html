@@ -1,0 +1,9 @@
+<div *ngIf="image">
+  <img src="{{serverUrl}}resources/images/{{image.path}}"/>
+  <mat-form-field appearance="fill">
+    <mat-label>Billed titel</mat-label>
+    <input matInput [(ngModel)]="image.title">
+  </mat-form-field>
+  <button mat-button color="primary" (click)="update()">Gem billed</button>
+  <button mat-button color="warn" (click)="delete()">Slet billed</button>
+</div>

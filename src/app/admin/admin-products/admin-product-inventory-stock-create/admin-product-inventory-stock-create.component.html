@@ -1,0 +1,20 @@
+<div *ngIf="product">
+
+  <mat-form-field style="display:block;" appearance="fill">
+    <mat-label>Farver</mat-label>
+    <mat-select [(ngModel)]="color">
+      <mat-option *ngFor="let color1 of product.colors" [value]="color1" >{{color1.title}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field style="display:block;" appearance="fill">
+    <mat-label>Størrelser</mat-label>
+    <mat-select [(ngModel)]="size">
+      <mat-option *ngFor="let size1 of product.sizes" [value]="size1" >{{size1.title}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <span class="p-float-label" style="margin-bottom:15px;">
+    <input id="float-input" type="number" min=1 pInputText [(ngModel)]="amount"> 
+    <label for="float-input">Mængde</label>
+  </span>
+  <p-button (click)="createInventoryStock()">Ny inventar</p-button>
+</div>

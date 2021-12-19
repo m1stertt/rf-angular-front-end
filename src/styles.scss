@@ -1,1 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; box-sizing: border-box; margin: 0; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.grid{width:99%;}
+a, a:visited, a:active {
+  color: inherit;
+}
+#nonFooter {
+  min-height: 100%;
+  position:relative;
+  /* Firefox */
+  min-height: -moz-calc(100% - 200px);
+  /* WebKit */
+  min-height: -webkit-calc(100% - 200px);
+  /* Opera */
+  min-height: -o-calc(100% - 200px);
+  /* Standard */
+  min-height: calc(100% - 200px);
+}
+
+.megamenu {
+  min-width:100% !important;
+  position:fixed;
+  left:0px;
+  top:64px;
+  padding-left:10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .megamenu {
+    top:56px;
+  }
+}
+
+.megamenu-item{
+  width:100px !important;
+  display:inline !important;
+  text-align:center !important;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}

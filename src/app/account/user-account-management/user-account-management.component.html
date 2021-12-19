@@ -1,0 +1,48 @@
+<mat-card *ngIf="this.appComponent.profile$ | async as profile" style="margin-top:15px;margin-bottom:15px;">
+  <form [formGroup]="userManagementForm" (ngSubmit)="saveChanges()">
+    <h1>Mine Oplysninger</h1>
+    <div>
+      <mat-form-field disabled appearance="outline">
+        <mat-label>Fornavn</mat-label>
+        <input id="firstName" formControlName="firstName" matInput placeholder="Placeholder">
+        <mat-icon matSuffix>edit</mat-icon>
+      </mat-form-field>
+      <mat-form-field disabled appearance="outline">
+        <mat-label>Efternavn</mat-label>
+        <input id="lastName" formControlName="lastName" matInput placeholder="Placeholder" >
+        <mat-icon matSuffix>edit</mat-icon>
+      </mat-form-field>
+      <mat-form-field disabled appearance="outline" >
+        <mat-label>Email</mat-label>
+        <input id="email" formControlName="email" matInput placeholder="Placeholder" >
+        <mat-icon matSuffix>edit</mat-icon>
+      </mat-form-field>
+      <mat-form-field disabled appearance="outline">
+        <mat-label>Gade og husnummer</mat-label>
+        <input id="streetAndNumber" formControlName="streetAndNumber" matInput placeholder="Placeholder">
+        <mat-icon matSuffix>edit</mat-icon>
+      </mat-form-field>
+      <mat-form-field disabled appearance="outline">
+        <mat-label>Postnummer</mat-label>
+        <input id="postalCode" formControlName="postalCode" matInput placeholder="Placeholder">
+        <mat-icon matSuffix>edit</mat-icon>
+      </mat-form-field>
+      <mat-form-field disabled appearance="outline">
+        <mat-label>By</mat-label>
+        <input id="city" formControlName="city" matInput placeholder="Placeholder">
+        <mat-icon matSuffix>edit</mat-icon>
+      </mat-form-field>
+      <mat-form-field disabled appearance="outline">
+        <mat-label>Telefon</mat-label>
+        <input id="phoneNumber" formControlName="phoneNumber" matInput placeholder="Placeholder" >
+        <mat-icon matSuffix>edit</mat-icon>
+      </mat-form-field>
+
+    </div>
+    <div>
+      <button mat-raised-button style="width:100%;" color="primary">Gem Ændringer</button>
+
+    </div>
+  </form>
+  <button (click)="deleteUser()" style="width:100%; margin-top:15px;" mat-raised-button color="warn" >Slet konto </button>
+</mat-card>
