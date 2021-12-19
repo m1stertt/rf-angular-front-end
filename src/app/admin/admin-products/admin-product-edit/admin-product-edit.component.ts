@@ -105,6 +105,7 @@ export class AdminProductEditComponent implements OnInit {
 
   getImages(){
     this.imagesService.getByProductID(Number(this.route.snapshot.paramMap.get('id'))).subscribe(images=>{
+      console.log(images);
       if(this.product){
         this.product.images=images;
       }
@@ -130,7 +131,7 @@ export class AdminProductEditComponent implements OnInit {
     if(!this.product.productName.length) return;
     this.productsService.updateProduct(this.product).subscribe(
       (product) =>this.errorHandlingMessageService.success("Opdateret produktet, id: "+product.id),
-      error=>this.errorHandlingMessageService.error("T3"+error.statusText));
+      error=>this.errorHandlingMessageService.error(error.statusText));
   }
 
   editImage(image:ImageDto){

@@ -8,7 +8,6 @@ import {
 import {Observable, throwError} from 'rxjs';
 import {AuthService} from '../shared/auth.service';
 import {catchError} from 'rxjs/operators';
-import jwtDecode from "jwt-decode";
 const TOKEN_HEADER_KEY = 'Authorization';
 
 @Injectable()
