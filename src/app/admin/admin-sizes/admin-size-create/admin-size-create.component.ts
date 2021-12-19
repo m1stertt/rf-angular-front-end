@@ -16,7 +16,7 @@ export class AdminSizeCreateComponent implements OnInit {
   constructor(private sizesService:SizesService,private messageService:MessageService,private config: DynamicDialogConfig,private errorHandlingMessageService:ErrorHandlingMessageService) { }
 
   ngOnInit(): void {
-    if(this.config.data.product){
+    if(this.config&&this.config.data&&this.config.data.product){
       this.size.products.push(this.config.data.product);
     }
   }

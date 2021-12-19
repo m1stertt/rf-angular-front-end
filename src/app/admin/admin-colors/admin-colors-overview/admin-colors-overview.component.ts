@@ -64,8 +64,11 @@ export class AdminColorsOverviewComponent implements OnInit {
     });
   }
 
-  setNewTitle(){
-    //@todo
+  setNewTitle(color:ColorDto){
+    this.colorsService.updateColor(color).subscribe((res)=>this.errorHandlingMessageService.success("Farve titel er blevet ændret i systemet."),
+    (error)=>{
+      this.errorHandlingMessageService.error(error.statusText);
+    });
   }
 
   confirmDelete(color:ColorDto) {

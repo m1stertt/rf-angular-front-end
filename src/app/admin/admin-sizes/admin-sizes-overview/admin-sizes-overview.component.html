@@ -4,7 +4,7 @@
       <ng-template pTemplate="caption">
         <div class="p-d-flex p-ai-center p-jc-between">
             <div style="font-size:36px; display:inline-block;">Størrelser</div>
-            <p-button label="Lav ny størrelse" icon="pi pi-plus" styleClass="p-button-sm" style="float:right;" (click)="create()"></p-button>
+            <p-button label="Lav ny størrelse" icon="pi pi-plus" styleClass="p-button-sm" [style]="{float: 'right'}" (click)="create()"></p-button>
         </div>
       </ng-template>
       <ng-template pTemplate="header">
