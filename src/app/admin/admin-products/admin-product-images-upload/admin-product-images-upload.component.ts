@@ -30,11 +30,8 @@ export class AdminProductImagesUploadComponent implements OnInit {
           if(event.total){
             this.progress = Math.round(100 * event.loaded / event.total);
           }
-          if(this.progress==100){
-            this.ref.close();
-          }
         }else if (event.type === HttpEventType.Response) {
-          this.message = 'Upload success.';
+          this.message = 'Upload af billede gennemført, du kan nu lukke vinduet.';
           this.onUploadFinished.emit(event.body);
         }
       });

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { CategoriesService } from 'src/app/categories/shared/categories.service';
 import { CategoryDto } from 'src/app/categories/shared/category.dto';
-import { ErrorHandlingMessageService } from 'src/app/errorHandling/shared/error-handling-message.service';
+import { MessageHandlingService } from 'src/app/errorHandling/shared/message-handling.service';
 
 @Component({
   selector: 'app-admin-category-create',
@@ -12,7 +12,7 @@ import { ErrorHandlingMessageService } from 'src/app/errorHandling/shared/error-
 export class AdminCategoryCreateComponent implements OnInit {
 
   category:CategoryDto={id:0,name:"",products:[]};
-  constructor(private categoriesService:CategoriesService,private ref:DynamicDialogRef,private config: DynamicDialogConfig,private errorHandlingMessageService:ErrorHandlingMessageService) { }
+  constructor(private categoriesService:CategoriesService,private ref:DynamicDialogRef,private config: DynamicDialogConfig,private messageHandlingService:MessageHandlingService) { }
 
   ngOnInit(): void {
     if(this.config.data.product){
@@ -22,9 +22,9 @@ export class AdminCategoryCreateComponent implements OnInit {
 
   create(){
     this.categoriesService.create(this.category).subscribe((res)=>{
-      this.errorHandlingMessageService.success("Kategorien er nu lavet.");
+      this.messageHandlingService.success("Kategorien er nu lavet.");
       this.ref.close();
     },
-    (error)=>this.errorHandlingMessageService.error(error.statusText));
+    (error)=>this.messageHandlingService.error(error.statusText));
   }
 }

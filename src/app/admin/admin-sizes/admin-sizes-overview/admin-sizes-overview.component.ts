@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
-import { CategoryDto } from 'src/app/categories/shared/category.dto';
-import { ErrorHandlingMessageService } from 'src/app/errorHandling/shared/error-handling-message.service';
+import { MessageHandlingService } from 'src/app/errorHandling/shared/message-handling.service';
 import { MenuService } from 'src/app/menu/shared/menu.service';
 import { SizeDto } from 'src/app/sizes/shared/size.dto';
 import { SizesService } from 'src/app/sizes/shared/sizes.service';
@@ -14,7 +13,7 @@ import { AdminSizeCreateComponent } from '../admin-size-create/admin-size-create
   styleUrls: ['./admin-sizes-overview.component.scss']
 })
 export class AdminSizesOverviewComponent implements OnInit {
-  constructor(private menuService:MenuService,private sizesService:SizesService, private confirmationService:ConfirmationService,private messageService:MessageService,private dialogService:DialogService,private errorHandlingMessageService:ErrorHandlingMessageService) { }
+  constructor(private menuService:MenuService,private sizesService:SizesService, private confirmationService:ConfirmationService,private dialogService:DialogService,private messageHandlingService:MessageHandlingService) { }
 
   sizes:SizeDto[]=[];
   clonedSizes: { [s: string]: SizeDto; } = {};
@@ -40,10 +39,10 @@ export class AdminSizesOverviewComponent implements OnInit {
       accept: () =>{
         this.sizesService.delete(size.id).subscribe(
           ()=>{
-            this.errorHandlingMessageService.success('Størrelsen er nu slettet fra systemet.');
+            this.messageHandlingService.success('Størrelsen er nu slettet fra systemet.');
             this.sizesService.getAll().subscribe(e=>this.sizes=e);
           },
-          (error)=>this.errorHandlingMessageService.error(error.statusText));
+          (error)=>this.messageHandlingService.error(error.statusText));
       }
     });
   }
@@ -63,9 +62,9 @@ export class AdminSizesOverviewComponent implements OnInit {
   onRowEditSave(size: SizeDto) {
     if(size.title=="") return;
     this.sizesService.updateSize(size).subscribe(s=>{
-      this.messageService.add({severity:'info', summary:'Størrelse', detail:'Størrelsen er nu opdateret i systemet.'});
+      this.messageHandlingService.success("Størrelsen er nu opdateret i systemet.");
       this.sizesService.getAll().subscribe(e=>this.sizes=e);
-    },(error)=>this.errorHandlingMessageService.error(error.statusText));
+    },(error)=>this.messageHandlingService.error(error.statusText));
   }
 
   onRowEditCancel(size: SizeDto, index: number) {

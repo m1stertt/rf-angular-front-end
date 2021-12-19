@@ -5,7 +5,7 @@ import { MenuService } from 'src/app/menu/shared/menu.service';
 import {ConfirmationService } from 'primeng/api';
 import { AdminColorCreateComponent } from '../admin-color-create/admin-color-create.component';
 import { DialogService } from 'primeng/dynamicdialog';
-import { ErrorHandlingMessageService } from 'src/app/errorHandling/shared/error-handling-message.service';
+import { MessageHandlingService } from 'src/app/errorHandling/shared/message-handling.service';
 
 @Component({
   selector: 'app-admin-colors-overview',
@@ -14,7 +14,7 @@ import { ErrorHandlingMessageService } from 'src/app/errorHandling/shared/error-
 })
 export class AdminColorsOverviewComponent implements OnInit {
 
-  constructor(private menuService:MenuService,private colorsService:ColorsService,private confirmationService:ConfirmationService,private dialogService:DialogService,private errorHandlingMessageService:ErrorHandlingMessageService) { }
+  constructor(private menuService:MenuService,private colorsService:ColorsService,private confirmationService:ConfirmationService,private dialogService:DialogService,private messageHandlingService:MessageHandlingService) { }
 
   cats:ColorDto[]=[];
   color2: string = '#1976D2';
@@ -55,19 +55,19 @@ export class AdminColorsOverviewComponent implements OnInit {
     if(!this.editing) return;
     let oldColor=this.editing.colorString;
     this.editing.colorString=this.color2;
-    this.colorsService.updateColor(this.editing).subscribe((res)=>this.errorHandlingMessageService.success("Farve indikator er blevet ændret i systemet."),
+    this.colorsService.updateColor(this.editing).subscribe((res)=>this.messageHandlingService.success("Farve indikator er blevet ændret i systemet."),
     (error)=>{
       if(this.editing){
         this.editing.colorString=oldColor;
       }
-      this.errorHandlingMessageService.error(error.statusText);
+      this.messageHandlingService.error(error.statusText);
     });
   }
 
   setNewTitle(color:ColorDto){
-    this.colorsService.updateColor(color).subscribe((res)=>this.errorHandlingMessageService.success("Farve titel er blevet ændret i systemet."),
+    this.colorsService.updateColor(color).subscribe((res)=>this.messageHandlingService.success("Farve titel er blevet ændret i systemet."),
     (error)=>{
-      this.errorHandlingMessageService.error(error.statusText);
+      this.messageHandlingService.error(error.statusText);
     });
   }
 
@@ -79,10 +79,10 @@ export class AdminColorsOverviewComponent implements OnInit {
       accept: () =>{
         this.colorsService.delete(color.id).subscribe(
           color=>{
-            this.errorHandlingMessageService.success('Farven er nu slettet fra systemet.')
+            this.messageHandlingService.success('Farven er nu slettet fra systemet.')
             this.colorsService.getAll().subscribe(e=>this.cats=e)
           },
-          error=>this.errorHandlingMessageService.error(error.statusText));
+          error=>this.messageHandlingService.error(error.statusText));
       }
     });
   }
