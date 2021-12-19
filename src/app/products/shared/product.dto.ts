@@ -9,7 +9,6 @@ export interface ProductDto {
   productName: string;
   productPrice: number;
   productDescription: string;
-  productImageUrl: string;
   productFeatured: boolean;
   productDiscountPrice:number;
 

@@ -2,11 +2,10 @@
 <div *ngIf="product">
 
   <div>
-    <label for="product-name">Product name: </label>
-    <input id="product-name" [(ngModel)]="product.productName" placeholder="name">
-    <button (click)="create()">Create</button>
+    <label for="product-name">Produkt navn: </label>
+    <input id="product-name" [(ngModel)]="product.productName" required placeholder="Produkt navn">
+    <button (click)="create()">Lav produkt og gå til redigering -></button>
   </div>
 
 </div>
-<button (click)="goBack()">go back</button>
 </app-admin-template>

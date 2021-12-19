@@ -2,7 +2,6 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { InventoryStockDto } from './inventoryStock.dto';
-import { ProductDto } from './product.dto';
 
 @Injectable({
   providedIn: 'root'

@@ -12,7 +12,6 @@ import {ColorPickerModule} from 'primeng/colorpicker';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
-import { ToastModule } from 'primeng/toast';
 import { MatInputModule } from '@angular/material/input';
 
 
@@ -30,7 +29,6 @@ import { MatInputModule } from '@angular/material/input';
     ColorPickerModule,
     InputTextModule,
     ConfirmDialogModule,
-    ToastModule,
     MatInputModule
   ]
 })

@@ -16,7 +16,7 @@ export class CartSummaryComponent implements OnInit {
 
   nextPage():void{
     if(this.cartService.getAmount()<=0) return;
-    this.router.navigateByUrl("/checkout");
+    this.router.navigateByUrl("/cart/checkout");
   }
 
 }

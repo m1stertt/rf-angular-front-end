@@ -18,6 +18,8 @@ import { InventoryStocksService } from 'src/app/products/shared/inventory-stocks
 import { ErrorHandlingMessageService } from 'src/app/errorHandling/shared/error-handling-message.service';
 import { AdminProductInventoryStockCreateComponent } from '../admin-product-inventory-stock-create/admin-product-inventory-stock-create.component';
 import { ImageDto } from 'src/app/images/shared/image.dto';
+import { AdminProductImagesUploadComponent } from '../admin-product-images-upload/admin-product-images-upload.component';
+import { AdminProductImagesEditComponent } from '../admin-product-images-edit/admin-product-images-edit.component';
 
 @Component({
   selector: 'app-admin-product-edit',
@@ -70,6 +72,10 @@ export class AdminProductEditComponent implements OnInit {
     this.dialogService.open(AdminProductInventoryStockCreateComponent,{ data:{ product:this.product }, header: 'Ny lager...', width: '240px' });
   }
 
+  createImage(){
+    this.dialogService.open(AdminProductImagesUploadComponent,{ data:{ product:this.product }, header: 'Nyt billede', width: '240px' });
+  }
+
   getProduct(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.productsService.getProduct(id)
@@ -101,14 +107,13 @@ export class AdminProductEditComponent implements OnInit {
 
   update() {
     if (!this.product) return this.errorHandlingMessageService.error("Der er et problem med at indhente produktet.");
-    this.productsService.updateProduct(this.product).subscribe(() => {
-      this.errorHandlingMessageService.success("Opdateret produktet, id: "+this.product?.id)
-        //this.location.back();
-    },this.errorHandlingMessageService.error);
+    this.productsService.updateProduct(this.product).subscribe(
+      (product) =>this.errorHandlingMessageService.success("Opdateret produktet, id: "+product.id),
+      this.errorHandlingMessageService.error);
   }
 
   editImage(image:ImageDto){
-    //@todo
+    this.dialogService.open(AdminProductImagesEditComponent,{ data:{ image:image }, header: 'Rediger billede', width: '240px' });
   }
   compareWithFunc(a: CategoryDto, b:CategoryDto) { return a.id === b.id; }
 }
