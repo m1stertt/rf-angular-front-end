@@ -73,7 +73,7 @@ export class CartService {
   incrementCartItem(product: CartItemDto) {
     let index=this.items.findIndex(e=>e.id===product.id&&e.color===product.color&&e.size===product.size);
     if (index>=0) {
-      this.items[index].amount+=product.amount;
+      this.items[index].amount+=1;
     }else{
       this.items.push(product)
     }
