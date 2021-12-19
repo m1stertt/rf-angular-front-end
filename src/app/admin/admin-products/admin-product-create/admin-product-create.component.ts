@@ -15,7 +15,7 @@ export class AdminProductCreateComponent implements OnInit {
   constructor(private productsService: ProductsService,
               private router: Router,
               private errorHandlingMessageService:ErrorHandlingMessageService) {
-    this.product = {id: 0, productName:'', productPrice: 0, productDiscountPrice:0,productDescription: '', productImageUrl: '',productFeatured:false,categories:[],sizes:[],colors:[],images:[],inventoryStocks:[]}
+    this.product = {id: 0, productName:'', productPrice: 0, productDiscountPrice:0,productDescription: '',productFeatured:false,categories:[],sizes:[],colors:[],images:[],inventoryStocks:[]}
   }
 
   ngOnInit(): void {
