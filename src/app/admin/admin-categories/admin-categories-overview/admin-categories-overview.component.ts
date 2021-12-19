@@ -52,7 +52,10 @@ export class AdminCategoriesOverviewComponent implements OnInit {
 
   create(){
     const ref = this.dialogService.open(AdminCategoryCreateComponent, { header: 'Ny kategori', width: '240px' });
-    ref.onClose.subscribe(r=>this.categoryService.getAll().subscribe(r=>this.cats=r));
+    ref.onClose.subscribe(r=>{
+      this.categoryService.getAll().subscribe(r=>this.cats=r)
+      this.menuService.update();
+    });
   }
 
   onRowEditInit(category: CategoryDto) {
@@ -62,7 +65,8 @@ export class AdminCategoriesOverviewComponent implements OnInit {
   onRowEditSave(category: CategoryDto) {
     this.categoryService.update(category).subscribe(
       ()=>{
-        this.messageHandlingService.success('Kategorien er nu opdateret i systemet.')
+        this.messageHandlingService.success('Kategorien er nu opdateret i systemet.');
+        this.menuService.update();
       },
       (error)=>this.messageHandlingService.error(error.statusText));
   }
