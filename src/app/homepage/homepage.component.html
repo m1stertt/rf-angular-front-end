@@ -6,7 +6,7 @@
             <div class="product-item" style="text-align:center;" routerLink="products/{{product.id}}">
                 <div class="product-item-content">
                     <div class="p-mb-3">
-                      <img *ngIf="product.images" src="https://localhost:5001/resources/images/{{product.images[0].path}}" [alt]="product.images[0].desc" class="product-image"/>
+                      <img *ngIf="product.images" src="{{serverUrl}}resources/images/{{product.images[0].path}}" [alt]="product.images[0].desc" class="product-image"/>
                     </div>
                     <div>
                         <h4 class="p-mb-1">{{product.productName}}</h4>

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MenuService } from 'src/app/menu/shared/menu.service';
 import { CartService } from '../shared/cart.service';
 import { CartItemDto } from '../shared/cartItem.dto';
+import {ConfigurationService} from "../../configuration.service";
 
 @Component({
   selector: 'app-cart-view',
@@ -10,14 +11,16 @@ import { CartItemDto } from '../shared/cartItem.dto';
   styleUrls: ['./cart-view.component.scss']
 })
 export class CartViewComponent implements OnInit {
-
+  serverUrl: string;
   steps=[
     {label: 'Kurv'},
     {label: 'Levering'},
     {label: 'Bekræftelse'}
   ];
   items = this.cartService.getItems();
-  constructor(private cartService: CartService,private menuService:MenuService,private router:Router) { }
+  constructor(private cartService: CartService,private menuService:MenuService,private router:Router, private configurationService: ConfigurationService) {
+    this.serverUrl = configurationService.getServerUrl();
+  }
 
   ngOnInit(): void {
     console.log(this.items);

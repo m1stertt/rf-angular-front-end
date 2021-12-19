@@ -12,21 +12,18 @@
       </mat-select>
     </mat-form-field>
       <span class="p-float-label" style="margin-bottom:15px;">
-        <input id="float-input" type="text" pInputText required [(ngModel)]="product.productName"> 
+        <input id="float-input" type="text" pInputText required [(ngModel)]="product.productName">
         <label for="float-input">Produkt navn</label>
       </span>
       <span class="p-float-label" style="margin-bottom:15px;">
-        <input id="float-input" type="text" min=0 required pInputText [(ngModel)]="product.productPrice"> 
+        <input id="float-input" type="text" min=0 required pInputText [(ngModel)]="product.productPrice">
         <label for="float-input">Pris</label>
       </span>
       <span class="p-float-label" style="margin-bottom:15px;">
-        <input id="float-input" type="text" pInputText min=0 [(ngModel)]="product.productDiscountPrice"> 
+        <input id="float-input" type="text" pInputText min=0 [(ngModel)]="product.productDiscountPrice">
         <label for="float-input">Tilbuds pris</label>
       </span>
-
       <textarea [rows]="5" [cols]="30"  [(ngModel)]="product.productDescription" placeholder="Produkt beskrivelse..." pInputTextarea autoResize="autoResize"></textarea>
-
-
     <div class="p-field-checkbox">
       <p-checkbox [binary]="true" [(ngModel)]="product.productFeatured" inputId="check"></p-checkbox>
       <label for="check">Udvalgt produkt</label>
@@ -37,7 +34,7 @@
           <p-tabPanel header="Billeder">
             <div class="grid">
               <div class="col-6 md:col-4 lg:col-4" *ngFor="let image of product.images">
-                <img style="width:100%;" (click)="editImage(image)" src="https://localhost:5001/resources/images/{{image.path}}">
+                <img style="width:100%;" (click)="editImage(image)" src="{{serverUrl}}resources/images/{{image.path}}">
               </div>
             </div>
             <p-button (click)="createImage()">Nyt billed</p-button>

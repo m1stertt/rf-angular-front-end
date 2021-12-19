@@ -22,6 +22,7 @@ import { AdminProductImagesUploadComponent } from '../admin-product-images-uploa
 import { AdminProductImagesEditComponent } from '../admin-product-images-edit/admin-product-images-edit.component';
 import { ImagesService } from 'src/app/images/shared/images.service';
 
+import {ConfigurationService} from "../../../configuration.service";
 @Component({
   selector: 'app-admin-product-edit',
   templateUrl: './admin-product-edit.component.html',
@@ -37,7 +38,7 @@ export class AdminProductEditComponent implements OnInit {
   sizes: SizeDto[]=[];
   sizes_=new FormControl();
   text: string="";
-
+  serverUrl: string;
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
               public location: Location,
@@ -48,7 +49,9 @@ export class AdminProductEditComponent implements OnInit {
               private dialogService:DialogService,
               private inventoryStockService:InventoryStocksService,
               private errorHandlingMessageService:ErrorHandlingMessageService,
-              private imagesService:ImagesService ) {
+              private imagesService:ImagesService,
+              private configurationService: ConfigurationService) {
+    this.serverUrl = this.configurationService.getServerUrl();
   }
   editoropts:string[]=['bold', 'italic', 'underline', 'strike','link','size','underline','script','font'];
   ngOnInit(): void {

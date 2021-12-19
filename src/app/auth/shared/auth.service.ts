@@ -8,6 +8,8 @@ import {BehaviorSubject, Observable, of} from 'rxjs';
 import {RegistrationDetails} from "./models/registration-details";
 import { UserDto } from 'src/app/account/shared/user.dto';
 import { AccountService } from 'src/app/account/shared/account.service';
+import {ConfigurationService} from "../../configuration.service";
+import {CategoryDto} from "../../categories/shared/category.dto";
 
 @Injectable({
   providedIn: 'root'
@@ -16,13 +18,11 @@ export class AuthService {
   redirectUrl: string | undefined;
   profile$ = new BehaviorSubject<Profile | null>(null);
   user:UserDto|undefined;
-  constructor(private _http: HttpClient,private accountService:AccountService) { 
-    
-  }
+  constructor(private _http: HttpClient,private accountService:AccountService, private configurationService: ConfigurationService) { }
 
   login(loginInfo: LoginUser): Promise<string> {
     return this._http
-      .post<TokenInfo>('https://localhost:5001/api' + '/auth/login'
+      .post<TokenInfo>(this.configurationService.getServerEndPoint() + 'auth/login'
         , loginInfo)
       .pipe(
         tap(tokenInfo => {
@@ -36,7 +36,7 @@ export class AuthService {
   }
 
   register(registrationDetails: RegistrationDetails): Observable<RegistrationDetails> {
-    return this._http.post<RegistrationDetails>('https://localhost:5001/api' + '/auth/registeruser', registrationDetails)
+    return this._http.post<RegistrationDetails>(this.configurationService.getServerEndPoint() + 'auth/registeruser', registrationDetails)
   }
 
   getToken(): string | null {
@@ -45,7 +45,7 @@ export class AuthService {
 
   fetchProfile(): Observable<Profile | null> {
     return this._http
-      .get<Profile>('https://localhost:5001/api' + '/auth/getProfile')
+      .get<Profile>(this.configurationService.getServerEndPoint() + 'auth/getProfile')
       .pipe(
         tap(p => {
           localStorage.setItem('Profile', JSON.stringify(p))

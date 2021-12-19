@@ -1,5 +1,5 @@
 <div *ngIf="image">
-  <img src="https://localhost:5001/resources/images/{{image.path}}"/>
+  <img src="{{serverUrl}}resources/images/{{image.path}}"/>
   <mat-form-field appearance="fill">
     <mat-label>Billed titel</mat-label>
     <input matInput [(ngModel)]="image.title">
