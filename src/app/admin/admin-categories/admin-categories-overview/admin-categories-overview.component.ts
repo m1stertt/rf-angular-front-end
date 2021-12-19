@@ -31,10 +31,7 @@ export class AdminCategoriesOverviewComponent implements OnInit {
       {label:'Admin Panel',routerLink:"/admin"},
       {label:'Kategorier',routerLink:"/admin/categories"}
     ];
-    this.categoryService.getAll().subscribe(e=>{
-      console.log(e);
-      this.cats=e;
-    })
+    this.categoryService.getAll().subscribe(r=>this.cats=r);
   }
 
   confirmDelete(category:CategoryDto) {
@@ -52,6 +49,7 @@ export class AdminCategoriesOverviewComponent implements OnInit {
 
   create(){
     const ref = this.dialogService.open(AdminCategoryCreateComponent, { header: 'Ny kategori', width: '240px' });
+    ref.onClose.subscribe(r=>this.categoryService.getAll().subscribe(r=>this.cats=r));
   }
 
   onRowEditInit(category: CategoryDto) {
