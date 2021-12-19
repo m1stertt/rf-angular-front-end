@@ -31,18 +31,15 @@ export class UserAccountManagementComponent implements OnInit {
     this.getUser();
 
     this.email?.setValue(this.userEmail);
-    {
-      this.accountService.getUser(this.userId)?.subscribe(user => {
-        if (this.hasCreatedUser)
-        this.firstName?.setValue(user?.firstName)
-        this.lastName?.setValue(user?.lastName)
-        this.streetAndNumber?.setValue(user?.streetAndNumber)
-        this.postalCode?.setValue(user?.postalCode)
-        this.city?.setValue(user?.city)
-        this.phoneNumber?.setValue(user?.phoneNumber)
-      })
-    }
-
+    this.accountService.getUser(this.userId)?.subscribe(user => {
+      if (this.hasCreatedUser)
+      this.firstName?.setValue(user?.firstName)
+      this.lastName?.setValue(user?.lastName)
+      this.streetAndNumber?.setValue(user?.streetAndNumber)
+      this.postalCode?.setValue(user?.postalCode)
+      this.city?.setValue(user?.city)
+      this.phoneNumber?.setValue(user?.phoneNumber)
+    })
 
   }
 

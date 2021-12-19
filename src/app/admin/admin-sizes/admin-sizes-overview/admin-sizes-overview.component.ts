@@ -53,6 +53,7 @@ export class AdminSizesOverviewComponent implements OnInit {
       header: 'Ny størrelse',
       width: '240px'
     });
+    ref.onClose.subscribe(r=>this.sizesService.getAll().subscribe(e=>this.sizes=e));
   }
 
   onRowEditInit(size: SizeDto) {

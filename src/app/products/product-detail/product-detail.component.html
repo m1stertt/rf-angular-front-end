@@ -20,7 +20,7 @@
               <div class="details">
                 <h1>{{product.productName}}</h1>
                 <p class="price">{{product.productDiscountPrice||product.productPrice}},- DKK</p>
-                <p class="description">A remarkable shoe that's naturally soft, cozy all over, and fits your every move.</p>
+                <p class="description">{{product.productDescription}}</p>
                 <div class="columns">
                   <p><mat-button-toggle-group appearance="legacy" [(value)]="colorSelected">
                     <mat-button-toggle *ngFor="let color of product.colors" [value]="color" matTooltip="{{color.title}}" [ngStyle]="{'background':color['colorString']}"></mat-button-toggle>

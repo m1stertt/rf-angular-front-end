@@ -23,6 +23,7 @@ import { AdminProductInventoryStockViewComponent } from './admin-product-invento
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { PanelModule } from 'primeng/panel';
 import { AdminProductImagesEditComponent } from './admin-product-images-edit/admin-product-images-edit.component';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { AdminProductImagesEditComponent } from './admin-product-images-edit/adm
     ReactiveFormsModule,
     AdminModule,
     InputTextModule,
+    MatInputModule,
     MatButtonModule,
     CheckboxModule,
     ButtonModule,
@@ -51,7 +53,8 @@ import { AdminProductImagesEditComponent } from './admin-product-images-edit/adm
     ToastModule,
     EditorModule,
     ChipModule,
-    PanelModule
+    PanelModule,
+    ConfirmDialogModule
   ]
 })
 export class AdminProductsModule { }

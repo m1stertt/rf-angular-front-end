@@ -20,6 +20,7 @@ import { AdminProductInventoryStockCreateComponent } from '../admin-product-inve
 import { ImageDto } from 'src/app/images/shared/image.dto';
 import { AdminProductImagesUploadComponent } from '../admin-product-images-upload/admin-product-images-upload.component';
 import { AdminProductImagesEditComponent } from '../admin-product-images-edit/admin-product-images-edit.component';
+import { ImagesService } from 'src/app/images/shared/images.service';
 
 @Component({
   selector: 'app-admin-product-edit',
@@ -46,11 +47,10 @@ export class AdminProductEditComponent implements OnInit {
               private menuService:MenuService,
               private dialogService:DialogService,
               private inventoryStockService:InventoryStocksService,
-              private errorHandlingMessageService:ErrorHandlingMessageService ) {
+              private errorHandlingMessageService:ErrorHandlingMessageService,
+              private imagesService:ImagesService ) {
   }
-
   editoropts:string[]=['bold', 'italic', 'underline', 'strike','link','size','underline','script','font'];
-
   ngOnInit(): void {
     this.getProduct();
     this.menuService.breadcrumb=[
@@ -58,23 +58,16 @@ export class AdminProductEditComponent implements OnInit {
       {label:'Admin Panel',routerLink:"/admin"},
       {label:'Redigerer produkt id '+Number(this.route.snapshot.paramMap.get('id')),routerLink:"/admin/products/"+Number(this.route.snapshot.paramMap.get('id'))}
     ];
-
-
-    
   }
 
   createSize(){
     let ref=this.dialogService.open(AdminSizeCreateComponent,{ header: 'Ny størrelse', width: '70%' });
-    ref.onClose.subscribe(res=>{
-      //@todo
-    });
+    ref.onClose.subscribe(res=>this.getSizes());
   }
 
   createColor(product:ProductDto){
     let ref=this.dialogService.open(AdminColorCreateComponent,{ data:{ product:product }, header: 'Ny farve', width: '240px' });
-    ref.onClose.subscribe(res=>{
-      //@todo
-    });
+    ref.onClose.subscribe(res=>this.getColors());
   }
 
   createInventoryStock(){
@@ -86,9 +79,7 @@ export class AdminProductEditComponent implements OnInit {
 
   createImage(){
     let ref=this.dialogService.open(AdminProductImagesUploadComponent,{ data:{ product:this.product }, header: 'Nyt billede', width: '240px' });
-    ref.onClose.subscribe(res=>{
-      //@todo
-    });
+    ref.onClose.subscribe(res=>this.getImages());
   }
 
   getProduct(): void {
@@ -102,8 +93,19 @@ export class AdminProductEditComponent implements OnInit {
         this.inventoryStockService.getByProductID(id).subscribe(res=>{
           if(!this.product) return;
           this.product.inventoryStocks=res;
-        },error=>this.errorHandlingMessageService.error("T1"+error.statusText));
-      },error=>this.errorHandlingMessageService.error("T2"+error.statusText));
+        },(error)=>{
+          if(!error.error) return;
+          this.errorHandlingMessageService.error(error.statusText)
+        });
+      },error=>this.errorHandlingMessageService.error(error.statusText));
+  }
+
+  getImages(){
+    this.imagesService.getByProductID(Number(this.route.snapshot.paramMap.get('id'))).subscribe(images=>{
+      if(this.product){
+        this.product.images=images;
+      }
+    });
   }
 
   getCategories(): void {
@@ -122,6 +124,7 @@ export class AdminProductEditComponent implements OnInit {
 
   update() {
     if (!this.product) return this.errorHandlingMessageService.error("Der er et problem med at indhente produktet.");
+    if(!this.product.productName.length) return;
     this.productsService.updateProduct(this.product).subscribe(
       (product) =>this.errorHandlingMessageService.success("Opdateret produktet, id: "+product.id),
       error=>this.errorHandlingMessageService.error("T3"+error.statusText));
