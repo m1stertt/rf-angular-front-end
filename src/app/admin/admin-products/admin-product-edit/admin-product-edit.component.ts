@@ -128,7 +128,10 @@ export class AdminProductEditComponent implements OnInit {
 
   update() {
     if (!this.product) return this.messageHandlingService.error("Der er et problem med at indhente produktet.");
-    if(!this.product.productName.length) return;
+    if(!this.product.productName.length) return this.messageHandlingService.error("Produktet skal have et navn");
+    if(this.product.productDiscountPrice<0) return;
+    if(this.product.productPrice<0) return this.messageHandlingService.error("Produktet skal have en pris");
+    if(this.product.productDiscountPrice>this.product.productPrice) return this.messageHandlingService.error("Tilbuds pris skal være mindre end den normale pris.");
     this.productsService.updateProduct(this.product).subscribe(
       (product) =>this.messageHandlingService.success("Opdateret produktet, id: "+product.id),
       error=>this.messageHandlingService.error(error.statusText));

@@ -60,7 +60,7 @@ export class AdminSizesOverviewComponent implements OnInit {
   }
 
   onRowEditSave(size: SizeDto) {
-    if(size.title=="") return;
+    if(size.title=="") return this.messageHandlingService.error("Størrelsen skal have et navn");
     this.sizesService.updateSize(size).subscribe(s=>{
       this.messageHandlingService.success("Størrelsen er nu opdateret i systemet.");
       this.sizesService.getAll().subscribe(e=>this.sizes=e);

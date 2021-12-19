@@ -19,6 +19,7 @@ export class AdminColorsOverviewComponent implements OnInit {
   cats:ColorDto[]=[];
   color2: string = '#1976D2';
   editing: ColorDto | undefined;
+  duplicateTitle:string="";
   cols = [
     //{ field: 'id', header: 'ID' },
     //{ field: 'colorString', header: ""},
@@ -51,6 +52,10 @@ export class AdminColorsOverviewComponent implements OnInit {
     });
   }
 
+  focused(color:ColorDto){
+    this.duplicateTitle=color.title;
+  }
+
   setColorFromPicker(){
     if(!this.editing) return;
     let oldColor=this.editing.colorString;
@@ -65,6 +70,10 @@ export class AdminColorsOverviewComponent implements OnInit {
   }
 
   setNewTitle(color:ColorDto){
+    if(!color.title.length){
+      color.title=this.duplicateTitle;
+      return this.messageHandlingService.error("Farven skal have en titel.");
+    }
     this.colorsService.updateColor(color).subscribe((res)=>this.messageHandlingService.success("Farve titel er blevet ændret i systemet."),
     (error)=>{
       this.messageHandlingService.error(error.statusText);
