@@ -9,6 +9,7 @@ import { SizeDto } from 'src/app/sizes/shared/size.dto';
 import { CartService } from 'src/app/cart/shared/cart.service';
 import { MenuService } from 'src/app/menu/shared/menu.service';
 import { MessageService } from 'primeng/api';
+import {ConfigurationService} from "../../configuration.service";
 
 
 @Component({
@@ -21,11 +22,13 @@ export class ProductDetailComponent implements OnInit {
   product?: ProductDto;
   colorSelected: ColorDto|undefined;
   sizeSelected: SizeDto |undefined;
+  serverUrl: string;
 
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
               private location: Location,
-              private cartService: CartService, private menuService:MenuService,private messageService:MessageService ) {
+              private cartService: CartService, private menuService:MenuService,private messageService:MessageService, private configurationService: ConfigurationService ) {
+    this.serverUrl = configurationService.getServerUrl();
   }
 
   ngOnInit(): void {

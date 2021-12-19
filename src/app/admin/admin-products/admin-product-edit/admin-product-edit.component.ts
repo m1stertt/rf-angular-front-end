@@ -20,7 +20,7 @@ import { AdminProductInventoryStockCreateComponent } from '../admin-product-inve
 import { ImageDto } from 'src/app/images/shared/image.dto';
 import { AdminProductImagesUploadComponent } from '../admin-product-images-upload/admin-product-images-upload.component';
 import { AdminProductImagesEditComponent } from '../admin-product-images-edit/admin-product-images-edit.component';
-
+import {ConfigurationService} from "../../../configuration.service";
 @Component({
   selector: 'app-admin-product-edit',
   templateUrl: './admin-product-edit.component.html',
@@ -36,7 +36,7 @@ export class AdminProductEditComponent implements OnInit {
   sizes: SizeDto[]=[];
   sizes_=new FormControl();
   text: string="";
-
+  serverUrl: string;
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
               public location: Location,
@@ -46,7 +46,9 @@ export class AdminProductEditComponent implements OnInit {
               private menuService:MenuService,
               private dialogService:DialogService,
               private inventoryStockService:InventoryStocksService,
-              private errorHandlingMessageService:ErrorHandlingMessageService ) {
+              private errorHandlingMessageService:ErrorHandlingMessageService,
+              private configurationService: ConfigurationService) {
+    this.serverUrl = this.configurationService.getServerUrl();
   }
 
   editoropts:string[]=['bold', 'italic', 'underline', 'strike','link','size','underline','script','font'];

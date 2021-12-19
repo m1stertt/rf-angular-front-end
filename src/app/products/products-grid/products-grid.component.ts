@@ -5,6 +5,7 @@ import {PageEvent} from "@angular/material/paginator";
 import {ProductDto} from "../shared/product.dto";
 import {ProductsGridPaginationService} from "./pagination/products-grid-pagination.service";
 import { MenuService } from 'src/app/menu/shared/menu.service';
+import {ConfigurationService} from "../../configuration.service";
 
 
 @Component({
@@ -18,12 +19,15 @@ export class ProductsGridComponent implements AfterViewInit {
 
   totalCount?: number;
   breakpoint?: number;
+  serverUrl: string;
 
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
               public paginationService: ProductsGridPaginationService,
               private cdRef: ChangeDetectorRef,
-              private menuService:MenuService) {
+              private menuService:MenuService,
+              private configurationService: ConfigurationService) {
+    this.serverUrl = configurationService.getServerUrl();
   }
 
   // @Input('products')

@@ -8,12 +8,14 @@ import {
 import {Observable, throwError} from 'rxjs';
 import {AuthService} from '../shared/auth.service';
 import {catchError} from 'rxjs/operators';
+import jwtDecode from "jwt-decode";
 const TOKEN_HEADER_KEY = 'Authorization';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private _authService: AuthService) {}
+  constructor(private _authService: AuthService) {
+  }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     let authReq = request;
@@ -36,6 +38,7 @@ export class AuthInterceptor implements HttpInterceptor {
     // return request.clone({ headers: request.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token) });
 
     /* for Node.js Express back-end */
-    return request.clone({ headers: request.headers.set(TOKEN_HEADER_KEY, token) });
+    return request.clone({headers: request.headers.set(TOKEN_HEADER_KEY, token)});
   }
+
 }

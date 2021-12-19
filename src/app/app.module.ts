@@ -39,6 +39,7 @@ import { ErrorHandlingMessageService } from './errorHandling/shared/error-handli
 import { ToastModule } from 'primeng/toast';
 import { InventoryStocksService } from './products/shared/inventory-stocks.service';
 import { ImagesService } from './images/shared/images.service';
+import {ConfigurationService} from "./configuration.service";
 
 @NgModule({
   declarations: [
@@ -72,10 +73,10 @@ import { ImagesService } from './images/shared/images.service';
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
-    , AuthService, AppComponent, MenuService, CategoriesService, SizesService, ColorsService, CartService, DialogService, MessageService,ConfirmationService,AccountService,ErrorHandlingMessageService,InventoryStocksService,ImagesService,
+    , AuthService, AppComponent, MenuService, CategoriesService, SizesService, ColorsService, CartService, DialogService, MessageService,ConfirmationService,AccountService,ErrorHandlingMessageService,InventoryStocksService,ImagesService,  ConfigurationService,
     {provide: MatPaginatorIntl, useValue: getDanishPaginatorIntl()}
   ],
-  
+
   bootstrap: [AppComponent]
 })
 export class AppModule {
