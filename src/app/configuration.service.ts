@@ -16,6 +16,8 @@ export class ConfigurationService {
     if (isDevMode()) {
       return 'https://localhost:5001/'
     }
-    return 'https://rf-backend-develop.azurewebsites.net/';
+    return 'https://rf-back-end-master.azurewebsites.net/';
+    
+
   }
 }
