@@ -41,7 +41,10 @@ export class AdminCategoriesOverviewComponent implements OnInit {
       icon: 'pi pi-info-circle',
       accept: () =>{
         this.categoryService.delete(category).subscribe(
-          ()=>this.messageHandlingService.success('Kategorien er nu slettet fra systemet.'),
+          ()=>{
+            this.messageHandlingService.success('Kategorien er nu slettet fra systemet.');
+            this.categoryService.getAll().subscribe(r=>this.cats=r);
+          },
           (error)=>this.messageHandlingService.error(error.statusText));
       }
     });
@@ -58,7 +61,9 @@ export class AdminCategoriesOverviewComponent implements OnInit {
 
   onRowEditSave(category: CategoryDto) {
     this.categoryService.update(category).subscribe(
-      ()=>this.messageHandlingService.success('Kategorien er nu opdateret i systemet.'),
+      ()=>{
+        this.messageHandlingService.success('Kategorien er nu opdateret i systemet.')
+      },
       (error)=>this.messageHandlingService.error(error.statusText));
   }
 

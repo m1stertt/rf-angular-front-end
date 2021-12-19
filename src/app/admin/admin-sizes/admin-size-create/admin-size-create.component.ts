@@ -21,6 +21,7 @@ export class AdminSizeCreateComponent implements OnInit {
   }
 
   create(){
+    if(!this.size.title.length) return this.messageHandlingService.error("Størrelsen skal have et navn.");
     this.sizesService.create(this.size).subscribe((res)=>{
       this.messageHandlingService.success("Størrelsen er nu lavet.")
       this.ref.close();
