@@ -1,6 +1,6 @@
 <app-admin-template>
   <div class="grid">
-    <div class="col-12 lg:col-8">
+    <div class="col-12">
       <p-panel header="Produkter">
         <p-table [columns]="cols" [value]="products" responsiveLayout="scroll">
           <ng-template pTemplate="header" let-columns>
@@ -18,11 +18,6 @@
               </tr>
           </ng-template>
       </p-table>
-      </p-panel>
-    </div>
-    <div class="col-12 lg:col-4">
-      <p-panel header="Title">
-        Content
       </p-panel>
     </div>
   </div>

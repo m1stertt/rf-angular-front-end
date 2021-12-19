@@ -16,6 +16,10 @@ export class ColorsService {
     return this._http.get<ColorDto[]>(`${this.configurationService.getServerEndPoint()}Color`);
   }
 
+  getByProductId(id:Number): Observable<ColorDto[]> {
+    return this._http.get<ColorDto[]>('https://localhost:5001/api/Color/Product/'+id);
+  }
+
   getColor(id: number): Observable<ColorDto> {
     return this._http.get<ColorDto>(`${this.configurationService.getServerEndPoint()}Color/${id}`);
   }

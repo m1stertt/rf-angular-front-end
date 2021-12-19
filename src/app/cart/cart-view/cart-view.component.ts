@@ -22,11 +22,6 @@ export class CartViewComponent implements OnInit {
     this.serverUrl = configurationService.getServerUrl();
   }
 
-  nextPage():void{
-    if(this.amount()<=0) return;
-    this.router.navigateByUrl("/checkout");
-  }
-
   ngOnInit(): void {
     console.log(this.items);
     this.menuService.breadcrumb=[
@@ -43,14 +38,6 @@ export class CartViewComponent implements OnInit {
   incrementCartItem(product: CartItemDto){
     this.cartService.incrementCartItem(product);
     this.items = this.cartService.getItems();
-  }
-
-  sum(){
-    return this.cartService.getPriceAmount();
-  }
-
-  amount(){
-    return this.cartService.getAmount();
   }
 
   groupBy(xs: any[], key: string) {

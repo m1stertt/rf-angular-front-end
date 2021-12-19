@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuItem } from 'primeng/api';
+import { AuthService } from 'src/app/auth/shared/auth.service';
 
 @Component({
   selector: 'app-admin-sidepanel',
@@ -6,60 +8,49 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-sidepanel.component.scss']
 })
 export class AdminSidepanelComponent implements OnInit {
-  items = [
-    {
-      label: 'Tilbage',
-      //icon: 'pi pi-pw pi-tags',
-      routerLink:"/admin/"
-    },
-    {
-      label: 'Brugere',
-      icon: 'pi pi-pw pi-user',
-      items: [
-        { label: 'Ny bruger', icon: 'pi pi-fw pi-user-plus' },
-        {label: 'Se/Rediger brugere', icon: 'pi pi-fw pi-users'}
-      ],
-      disabled:true
-    },
-    /*{
-      label: 'Ordre',
-      icon: 'pi pi-pw pi-clone',
-      items: [
-        { label: 'Ny ordre', icon: 'pi pi-fw pi-plus' },
-        {label: 'Se/Rediger ordre', icon: 'pi pi-fw pi-pencil'}
-      ]
-    },*/
-      {
+  items:MenuItem[] = [{
+    label: 'Tilbage',
+    //icon: 'pi pi-pw pi-tags',
+    routerLink:"/admin/"
+  }];
+  constructor(private authService:AuthService) { }
+
+  ngOnInit(): void {
+    this.authService.hasPermission("CanManageProducts").subscribe((res)=>{
+      if(!res) return;
+      this.items.push({
         label: 'Produkter',
         icon: 'pi pi-pw pi-file',
         items: [
           { label: 'Nyt produkt', icon: 'pi pi-fw pi-plus',routerLink:"/admin/products/create" },
           {label: 'Se/Rediger produkter', icon: 'pi pi-fw pi-pencil',routerLink:"/admin/products/"}
         ]
-    },{
-      label: 'Kategorier',
-      icon: 'pi pi-pw pi-tags',
-      routerLink:"/admin/categories/"
-    },/*{
-      label: 'Billeder',
-      icon: 'pi pi-pw pi-image',
-      items: [
-        { label: 'Nyt billede', icon: 'pi pi-fw pi-plus' },
-        {label: 'Se/Rediger billeder', icon: 'pi pi-fw pi-pencil'}
-      ]
-    },*/{
-      label: 'Størrelser',
-      icon: 'pi pi-pw pi-sort-amount-up',
-      routerLink:"/admin/sizes/",
-    },{
-      label: 'Farver',
-      icon: 'pi pi-pw pi-sliders-v',
-      routerLink:"/admin/colors/"
-    }
-  ];
-  constructor() { }
-
-  ngOnInit(): void {
+      });
+    });
+    this.authService.hasPermission("CanManageCategories").subscribe((res)=>{
+      if(!res) return;
+      this.items.push({
+        label: 'Kategorier',
+        icon: 'pi pi-pw pi-tags',
+        routerLink:"/admin/categories/"
+      });
+    });
+    this.authService.hasPermission("CanManageSizes").subscribe((res)=>{
+      if(!res) return;
+      this.items.push({
+        label: 'Størrelser',
+        icon: 'pi pi-pw pi-sort-amount-up',
+        routerLink:"/admin/sizes/",
+      });
+    });
+    this.authService.hasPermission("CanManageColors").subscribe((res)=>{
+      if(!res) return;
+      this.items.push({
+        label: 'Farver',
+        icon: 'pi pi-pw pi-sliders-v',
+        routerLink:"/admin/colors/"
+      });
+    });
   }
 
 }

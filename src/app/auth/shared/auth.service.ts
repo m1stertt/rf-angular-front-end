@@ -92,4 +92,5 @@ export class AuthService {
     if(localStorage.getItem('Profile')?.includes(permission)) return of(true);
     return of(false);
   }
+
 }

@@ -16,9 +16,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {LayoutModule} from "@angular/cdk/layout";
 import {MatCardModule} from "@angular/material/card";
 import {MatGridListModule} from "@angular/material/grid-list";
-import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorIntl} from "@angular/material/paginator";
-import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
 import {SizesService} from "./sizes/shared/sizes.service";
@@ -26,34 +24,28 @@ import {ColorsService} from "./colors/shared/colors.service";
 import {getDanishPaginatorIntl} from "./danish-paginator-intl";
 import {MatBadgeModule} from '@angular/material/badge';
 import { CartService } from './cart/shared/cart.service';
-import { CartViewComponent } from './cart/cart-view/cart-view.component';
 import {BreadcrumbModule} from 'primeng/breadcrumb';
-import {TableModule} from 'primeng/table';
 import {ButtonModule} from 'primeng/button';
-import {RatingModule} from 'primeng/rating';
 import { MenuService } from './menu/shared/menu.service';
 import { HomepageComponent } from './homepage/homepage.component';
 import {CarouselModule} from 'primeng/carousel';
 import { ProductsModule } from './products/products.module';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { CartDeliveryComponent } from './cart/cart-delivery/cart-delivery.component';
-import {MatStepperModule} from '@angular/material/stepper';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatSelectModule } from '@angular/material/select';
 import { AccountService } from './account/shared/account.service';
 import { ErrorHandlingMessageService } from './errorHandling/shared/error-handling-message.service';
 import { ToastModule } from 'primeng/toast';
+import { InventoryStocksService } from './products/shared/inventory-stocks.service';
+import { ImagesService } from './images/shared/images.service';
 import {ConfigurationService} from "./configuration.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    CartViewComponent,
     HomepageComponent,
-    CartDeliveryComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,30 +57,23 @@ import {ConfigurationService} from "./configuration.service";
     MatButtonModule,
     MatInputModule,
     LayoutModule,
-    MatGridListModule,
     MatCardModule,
     MatIconModule,
-    MatTableModule,
     MatGridListModule,
-    MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
     MatBadgeModule,
     BreadcrumbModule,
-    TableModule,
     ButtonModule,
-    RatingModule,
     CarouselModule,
     ProductsModule,
-    MatStepperModule,
     OverlayPanelModule,
     MatTooltipModule,
-    MatSelectModule,
     ToastModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
-    , AuthService, AppComponent, MenuService, CategoriesService, SizesService, ColorsService, CartService, DialogService, MessageService,ConfirmationService,AccountService,ErrorHandlingMessageService, ConfigurationService,
+    , AuthService, AppComponent, MenuService, CategoriesService, SizesService, ColorsService, CartService, DialogService, MessageService,ConfirmationService,AccountService,ErrorHandlingMessageService,InventoryStocksService,ImagesService,  ConfigurationService,
     {provide: MatPaginatorIntl, useValue: getDanishPaginatorIntl()}
   ],
 

@@ -3,11 +3,11 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {ConfigurationService} from "../../configuration.service";
 
 @Component({
-  selector: 'app-admin-images-upload',
-  templateUrl: './admin-images-upload.component.html',
-  styleUrls: ['./admin-images-upload.component.scss']
+  selector: 'app-admin-product-images-upload',
+  templateUrl: './admin-product-images-upload.component.html',
+  styleUrls: ['./admin-product-images-upload.component.scss']
 })
-export class AdminImagesUploadComponent implements OnInit {
+export class AdminProductImagesUploadComponent implements OnInit {
 
   public progress: number | undefined;
   public message: string | undefined;

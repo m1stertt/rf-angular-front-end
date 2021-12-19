@@ -14,8 +14,7 @@ import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { AdminTemplateComponent } from './admin-template/admin-template.component';
-import { AdminImagesUploadComponent } from './admin-images-upload/admin-images-upload.component';
-import { AdminImagesEditComponent } from './admin-images-edit/admin-images-edit.component';
+import { AdminProductImagesUploadComponent } from './admin-products/admin-product-images-upload/admin-product-images-upload.component';
 
 
 @NgModule({
@@ -23,8 +22,7 @@ import { AdminImagesEditComponent } from './admin-images-edit/admin-images-edit.
     AdminOverviewComponent,
     AdminSidepanelComponent,
     AdminTemplateComponent,
-    AdminImagesUploadComponent,
-    AdminImagesEditComponent,
+    AdminProductImagesUploadComponent,
   ],
   imports: [
     CommonModule,

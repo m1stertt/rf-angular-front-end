@@ -18,13 +18,21 @@ import { AdminProductCreateComponent } from './admin-product-create/admin-produc
 import { ToastModule } from 'primeng/toast';
 import {EditorModule} from 'primeng/editor';
 import { ChipModule } from 'primeng/chip';
+import { AdminProductInventoryStockCreateComponent } from './admin-product-inventory-stock-create/admin-product-inventory-stock-create.component';
+import { AdminProductInventoryStockViewComponent } from './admin-product-inventory-stock-view/admin-product-inventory-stock-view.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { PanelModule } from 'primeng/panel';
+import { AdminProductImagesEditComponent } from './admin-product-images-edit/admin-product-images-edit.component';
 
 @NgModule({
   declarations: [
     AdminProductEditComponent,
     ProductOverviewComponent,
     AdminProductCreateComponent,
-    AdminProductCreateComponent
+    AdminProductCreateComponent,
+    AdminProductInventoryStockCreateComponent,
+    AdminProductInventoryStockViewComponent,
+    AdminProductImagesEditComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +50,8 @@ import { ChipModule } from 'primeng/chip';
     TableModule,
     ToastModule,
     EditorModule,
-    ChipModule
+    ChipModule,
+    PanelModule
   ]
 })
 export class AdminProductsModule { }

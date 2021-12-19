@@ -29,20 +29,16 @@ export class CartService {
           let color=this.items[index].color;
           let size=this.items[index].size;
           if(color){
-            if(!product.colors||!product.colors.includes(color)){
+            if(!product.colors||!product.colors.includes(color)){ //Remove item, not available anymore
               itemsToRemove.push(item);
               return;
-              //Remove item, not available anymore
             }
-            //@todo
           }
           if(size){
-            if(!product.sizes||!product.sizes.includes(size)){
+            if(!product.sizes||!product.sizes.includes(size)){ //Remove item, not available anymore
               itemsToRemove.push(item);
               return;
-              //Remove item, not available anymore
             }
-            //@todo
           }
         });
       });
@@ -64,7 +60,7 @@ export class CartService {
 
   
 
-  addToCart(product: CartItemDto) { //@todo size stuff.
+  addToCart(product: CartItemDto) {
     let index=this.items.findIndex(e=>e.id===product.id&&e.color===product.color&&e.size===product.size);
     if (index>=0) {
       this.items[index].amount+=product.amount;
@@ -74,7 +70,7 @@ export class CartService {
     this.update();
   }
 
-  incrementCartItem(product: CartItemDto) { //@todo size stuff.
+  incrementCartItem(product: CartItemDto) {
     let index=this.items.findIndex(e=>e.id===product.id&&e.color===product.color&&e.size===product.size);
     if (index>=0) {
       this.items[index].amount+=product.amount;

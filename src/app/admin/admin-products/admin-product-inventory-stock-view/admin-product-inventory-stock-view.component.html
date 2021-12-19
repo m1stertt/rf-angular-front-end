@@ -1,0 +1,12 @@
+<p-table *ngIf="product" [value]="product.inventoryStocks" responsiveLayout="scroll">
+  <ng-template pTemplate="header">
+      <tr>
+          <th>Name</th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-category>
+      <tr>
+          <td>{{category.title}}</td>
+      </tr>
+  </ng-template>
+</p-table>
