@@ -1,6 +1,7 @@
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import {ConfigurationService} from "../../configuration.service";
+import {ConfigurationService} from "../../../configuration.service";
+
 
 @Component({
   selector: 'app-admin-product-images-upload',
