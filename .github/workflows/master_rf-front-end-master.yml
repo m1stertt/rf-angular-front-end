@@ -29,6 +29,6 @@
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'rf-frontend-develop'
+          app-name: 'rf-back-end-master'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C560FD22D4D64AF58771E974AEEF7AF8 }}
           package: ./dist/rf-angular-front-end
