@@ -56,6 +56,6 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'rf-back-end-master'
+          app-name: 'rf-front-end-master'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_loAQFCCTfNqmKl3eLegQekJR9oMKWuQZFJWLALqk2Jj0aQtj9eM2trLkFwE4 }}
           package: ./dist/rf-angular-front-end
