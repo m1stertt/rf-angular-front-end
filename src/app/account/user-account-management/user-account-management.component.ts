@@ -148,7 +148,7 @@ export class UserAccountManagementComponent implements OnInit {
   }
 
   deleteUser() {
-    this.accountService.delete(this.userId).subscribe(() => {
+    this.accountService.delete().subscribe(() => {
       },
       error => {
         console.log(error)
