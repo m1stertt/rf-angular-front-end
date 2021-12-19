@@ -73,7 +73,6 @@ export class AdminProductEditComponent implements OnInit {
   createInventoryStock(){
     let ref=this.dialogService.open(AdminProductInventoryStockCreateComponent,{ data:{ product:this.product }, header: 'Ny lager...', width: '240px' });
     ref.onClose.subscribe(res=>{
-      //@todo
     });
   }
 
@@ -92,6 +91,7 @@ export class AdminProductEditComponent implements OnInit {
         this.getSizes();
         this.inventoryStockService.getByProductID(id).subscribe(res=>{
           if(!this.product) return;
+          console.log(res);
           this.product.inventoryStocks=res;
         },(error)=>{
           if(!error.error) return;

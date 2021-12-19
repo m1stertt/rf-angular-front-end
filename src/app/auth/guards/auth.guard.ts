@@ -19,7 +19,7 @@ export class AuthGuard implements CanActivate {
 
   checkLogin(url: string): true|UrlTree {
     if (this.authService.getToken()) { return true; }
-
+    
     // Store the attempted URL for redirecting
     this.authService.redirectUrl = url;
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ColorDto } from 'src/app/colors/shared/color.dto';
 import { ColorsService } from 'src/app/colors/shared/colors.service';
 import { ErrorHandlingMessageService } from 'src/app/errorHandling/shared/error-handling-message.service';
@@ -21,7 +21,10 @@ export class AdminProductInventoryStockCreateComponent implements OnInit {
   size:SizeDto|undefined;
   colors: ColorDto[]=[];
   sizes: SizeDto[]=[];
-  constructor(private errorHandlingMessageService:ErrorHandlingMessageService,private inventoryStockService:InventoryStocksService,private config: DynamicDialogConfig,private colorsService:ColorsService,private sizesService:SizesService) { }
+  constructor(private errorHandlingMessageService:ErrorHandlingMessageService,
+    private inventoryStockService:InventoryStocksService,
+    private config: DynamicDialogConfig,
+    private ref:DynamicDialogRef) { }
 
   ngOnInit(): void {
     this.product=this.config.data.product;
@@ -37,9 +40,10 @@ export class AdminProductInventoryStockCreateComponent implements OnInit {
       if(result){
         this.product?.inventoryStocks.push(result);
         this.errorHandlingMessageService.success("Inventar forhold er nu lavet. Inventar Id: "+result.id);
+        this.ref.close();
       }else{
         this.errorHandlingMessageService.error("Fejl med at indsætte inventar i databasen...");
       }
-    },this.errorHandlingMessageService.error);
+    },error=>this.errorHandlingMessageService.error(error.statusText));
   }
 }

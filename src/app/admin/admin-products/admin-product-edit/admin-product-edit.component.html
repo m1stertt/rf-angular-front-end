@@ -53,22 +53,33 @@
             <p-button (click)="createColor(product)">Ny farve</p-button>
           </p-tabPanel>
           <p-tabPanel header="Størrelser">
-            <p-table [value]="product.sizes" responsiveLayout="scroll">
+            <mat-form-field style="display:block;" appearance="fill">
+              <mat-label>Størrelser</mat-label>
+              <mat-select [(ngModel)]="product.sizes" [formControl]="sizes_" multiple [compareWith]="compareWithFunc">
+                <mat-option *ngFor="let size of sizes" [value]="size" >{{size.title}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <p-button (click)="createSize()">Ny størrelse</p-button>
+          </p-tabPanel>
+          <p-tabPanel header="Inventar">
+            <p-table *ngIf="product" [value]="product.inventoryStocks" responsiveLayout="scroll">
               <ng-template pTemplate="header">
                   <tr>
-                      <th>Name</th>
+                    <th>Id</th>
+                    <th>Mængde</th>
+                    <th>Farve</th>
+                    <th>Størrelse</th>
                   </tr>
               </ng-template>
               <ng-template pTemplate="body" let-category>
                   <tr>
-                      <td>{{category.title}}</td>
+                    <td>{{category.id}}</td>
+                    <td>{{category.amount}}</td>
+                    <td>{{category.color.title}}</td>
+                    <td>{{category.size.title}}</td>
                   </tr>
               </ng-template>
             </p-table>
-            <p-button (click)="createSize()">Ny størrelse</p-button>
-          </p-tabPanel>
-          <p-tabPanel header="Inventar">
-            <app-admin-product-inventory-stock-view></app-admin-product-inventory-stock-view>
             <p-button (click)="createInventoryStock()">Ny inventar kombination</p-button>
           </p-tabPanel>
         </p-tabView>

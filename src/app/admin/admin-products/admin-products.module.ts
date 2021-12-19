@@ -19,7 +19,6 @@ import { ToastModule } from 'primeng/toast';
 import {EditorModule} from 'primeng/editor';
 import { ChipModule } from 'primeng/chip';
 import { AdminProductInventoryStockCreateComponent } from './admin-product-inventory-stock-create/admin-product-inventory-stock-create.component';
-import { AdminProductInventoryStockViewComponent } from './admin-product-inventory-stock-view/admin-product-inventory-stock-view.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { PanelModule } from 'primeng/panel';
 import { AdminProductImagesEditComponent } from './admin-product-images-edit/admin-product-images-edit.component';
@@ -32,7 +31,6 @@ import { MatInputModule } from '@angular/material/input';
     AdminProductCreateComponent,
     AdminProductCreateComponent,
     AdminProductInventoryStockCreateComponent,
-    AdminProductInventoryStockViewComponent,
     AdminProductImagesEditComponent
   ],
   imports: [
