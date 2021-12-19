@@ -85,9 +85,9 @@
         <div style="padding-top:10px;">
           <div class="p-fluid"><p-button (click)="update()">Opdater</p-button></div>
           <button mat-button (click)="location.back()" color="primary">Tilbage</button>
+          <div class="p-fluid"><button mat-button routerLink="/products/{{product.id}}">Se produkt</button></div>
         </div>
       </div>
     </div>
   </div>
 </app-admin-template>
-<p-toast [style]="{'white-space': 'pre-line'}"></p-toast>

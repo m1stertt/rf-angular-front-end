@@ -8,8 +8,9 @@ import { ColorDto } from 'src/app/colors/shared/color.dto';
 import { SizeDto } from 'src/app/sizes/shared/size.dto';
 import { CartService } from 'src/app/cart/shared/cart.service';
 import { MenuService } from 'src/app/menu/shared/menu.service';
-import { MessageService } from 'primeng/api';
 import {ConfigurationService} from "../../configuration.service";
+import { AppComponent } from 'src/app/app.component';
+import { MessageHandlingService } from 'src/app/errorHandling/shared/message-handling.service';
 
 
 @Component({
@@ -20,14 +21,18 @@ import {ConfigurationService} from "../../configuration.service";
 export class ProductDetailComponent implements OnInit {
 
   product?: ProductDto;
-  colorSelected: ColorDto|undefined;
-  sizeSelected: SizeDto |undefined;
+  colorSelected: ColorDto|undefined=undefined;
+  sizeSelected: SizeDto |undefined=undefined;
   serverUrl: string;
 
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
               private location: Location,
-              private cartService: CartService, private menuService:MenuService,private messageService:MessageService, private configurationService: ConfigurationService ) {
+              private cartService: CartService,
+              private menuService:MenuService,
+              private configurationService: ConfigurationService,
+              public appComponent:AppComponent,
+              private messageHandlingService:MessageHandlingService) {
     this.serverUrl = configurationService.getServerUrl();
   }
 
@@ -50,24 +55,25 @@ export class ProductDetailComponent implements OnInit {
   }
 
   addToCart(product: ProductDto,_amount:number=1) {
+    if(this.colorSelected==undefined){
+      this.messageHandlingService.invalid("Venligst vælg en farve");
+      return;
+    }else if(this.sizeSelected==undefined){
+      this.messageHandlingService.invalid("Venligst vælg en størrelse");
+      return;
+    }
     let test={
       id:product.id,
       amount: _amount,
       name: product.productName,
       price: product.productPrice,
       color: this.colorSelected,
-      size: this.sizeSelected
+      size: this.sizeSelected,
+      image: product.images[0]
+
     }
     this.cartService.addToCart(test);
-    let msg='Du har tilføjet '+_amount+"stk "+test.name;
-    if(this.colorSelected){
-      msg+="\nFarve: "+this.colorSelected.title;
-    }
-    if(this.sizeSelected){
-      msg+="\nStørrelse: "+this.sizeSelected.title;
-    }
-    msg+="\n\nKurv: "+this.cartService.getPriceAmount()+",- DKK";
-    this.messageService.add({severity:'success', summary:'Tilføjet til kurv', detail:msg});
+    this.messageHandlingService.success('Du har tilføjet '+_amount+"stk "+test.name+"\nFarve: "+this.colorSelected.title+"\nStørrelse: "+this.sizeSelected.title+"\n\nKurv: "+this.cartService.getPriceAmount()+",- DKK");
   }
 
   goBack(): void {

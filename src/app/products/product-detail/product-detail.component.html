@@ -19,7 +19,12 @@
             <div class="column">
               <div class="details">
                 <h1>{{product.productName}}</h1>
-                <p class="price">{{product.productDiscountPrice||product.productPrice}},- DKK</p>
+                <div *ngIf="product.productDiscountPrice else otherDiv">
+                  <p class="price">{{product.productDiscountPrice}},- <span style="text-decoration: line-through;">{{product.productPrice}}</span> DKK <span style="color:red;">Spar {{product.productPrice-product.productDiscountPrice}},- DKK</span></p>
+                </div>
+                <ng-template #otherDiv>
+                  <p class="price">{{product.productPrice}},- DKK</p>
+                </ng-template>
                 <p class="description">{{product.productDescription}}</p>
                 <div class="columns">
                   <p><mat-button-toggle-group appearance="legacy" [(value)]="colorSelected">
@@ -32,6 +37,9 @@
                     </mat-select>
                   </mat-form-field></p>
                     <button mat-raised-button (click)="addToCart(product)">Tilføj til kurv</button>
+                    <div *ngIf="this.appComponent.profile$ | async as profile" style="float:right;">
+                      <button mat-button *ngIf="profile.permissions.includes('Admin')||profile.permissions.includes('CanManageProducts')" routerLink="/admin/products/{{product.id}}" matTooltip="Edit product"><mat-icon>admin_panel_settings</mat-icon></button>
+                    </div>
                 </div>
               </div>
             </div>
@@ -41,4 +49,3 @@
     </p-panel>
   </div>
 </div>
-<p-toast [style]="{'white-space': 'pre-line'}" position="bottom-center"></p-toast>

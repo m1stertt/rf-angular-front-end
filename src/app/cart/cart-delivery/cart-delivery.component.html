@@ -50,8 +50,8 @@
             <input id="phoneNumber" type="tel" [(ngModel)]="addressData.phoneNumber" maxlength="8" formControlName="phoneNumber" matInput placeholder="Placeholder" >
           </mat-form-field>
           <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext (click)="saveInfo()">Next</button>
+            <button mat-button matStepperPrevious>Tilbage</button>
+            <button mat-button matStepperNext (click)="saveInfo()">Næste</button>
           </div>
         </form>
       </mat-step>
@@ -69,8 +69,8 @@
           </mat-select>
         </mat-form-field>
         <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext (click)="setDeliveryPrice()">Next</button>
+          <button mat-button matStepperPrevious>Tilbage</button>
+          <button mat-button matStepperNext (click)="setDeliveryPrice()">Næste</button>
         </div>
       </mat-step>
       <mat-step>
@@ -87,9 +87,9 @@
         <p *ngIf="!loggedIn">Din ordre bekræftelse sendes til email {{addressData.email}}</p>
         <p *ngIf="loggedIn">Din ordre bekræftelse sendes til email {{loggedIn.email}}</p>
         <div>
-          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperPrevious>Tilbage</button>
           <button mat-button (click)="stepper.reset()">Reset</button>
-          <button mat-raised-button routerLink="/confirm" style="width:80%; background:#305a66; color:white; margin-left:10%;margin-top:5px;">Bekræft din ordre</button>
+          <button mat-raised-button (click)="confirmed()" style="width:80%; background:#305a66; color:white; margin-left:10%;margin-top:5px;">Bekræft din ordre</button>
         </div>
       </mat-step>
     </mat-stepper>

@@ -4,7 +4,7 @@
       <ng-template pTemplate="caption">
         <div class="p-d-flex p-ai-center p-jc-between">
             <div style="font-size:36px; display:inline-block;">Kategorier</div>
-            <p-button label="Lav ny kategori" icon="pi pi-plus" styleClass="p-button-sm" style="float:right;" (click)="create()"></p-button>
+            <p-button label="Lav ny kategori" icon="pi pi-plus" styleClass="p-button-sm" [style]="{float: 'right'}" (click)="create()"></p-button>
         </div>
       </ng-template>
       <ng-template pTemplate="header">
@@ -41,4 +41,3 @@
   </p-panel>
 </app-admin-template>
 <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
-<p-toast [style]="{'white-space': 'pre-line'}"></p-toast>
