@@ -20,7 +20,7 @@ export class AdminColorCreateComponent {
   }
 
   create(){
-    if(!this.color.title.length) return this.messageHandlingService.error("Farven skal have et navn.");
+    if(!this.color.title.length) return this.messageHandlingService.invalid("Farven skal have et navn.");
     this.colorsService.create(this.color).subscribe((res)=>{
       this.ref.close();
       this.messageHandlingService.success("Farven er nu lavet.")

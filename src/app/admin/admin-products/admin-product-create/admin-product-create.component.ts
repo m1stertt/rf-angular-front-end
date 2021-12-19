@@ -29,6 +29,7 @@ export class AdminProductCreateComponent implements OnInit {
   }
 
   create() {
+    if(!this.product.productName.length) return this.messageHandlingService.invalid("Produktet skal have et navn.");
     this.productsService.create(this.product).subscribe((res) => {
         if(!res) return this.messageHandlingService.error("Der var en fejl med at lave produktet.");
         this.router.navigateByUrl('/admin/products/'+res.id)

@@ -31,7 +31,7 @@ export class AdminProductInventoryStockCreateComponent implements OnInit {
 
   createInventoryStock(){
     if(!this.product) return this.messageHandlingService.error("Der er et problem med at indhente produktet.");
-    if(this.amount<=0) return this.messageHandlingService.error("Mængden burde være mere end 0.");
+    if(this.amount<=0) return this.messageHandlingService.invalid("Mængden burde være mere end 0.");
     this.inventoryStockService.create({id:0,product:this.product,color:this.color,size:this.size,amount:this.amount}).subscribe((result)=>{
       if(result){
         this.product?.inventoryStocks.push(result);

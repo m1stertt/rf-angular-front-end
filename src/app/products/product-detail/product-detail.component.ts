@@ -56,10 +56,10 @@ export class ProductDetailComponent implements OnInit {
 
   addToCart(product: ProductDto,_amount:number=1) {
     if(this.colorSelected==undefined){
-      this.messageHandlingService.error("Venligst vælg en farve");
+      this.messageHandlingService.invalid("Venligst vælg en farve");
       return;
     }else if(this.sizeSelected==undefined){
-      this.messageHandlingService.error("Venligst vælg en størrelse");
+      this.messageHandlingService.invalid("Venligst vælg en størrelse");
       return;
     }
     let test={

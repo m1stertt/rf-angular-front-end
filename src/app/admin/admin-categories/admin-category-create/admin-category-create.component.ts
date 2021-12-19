@@ -21,7 +21,7 @@ export class AdminCategoryCreateComponent implements OnInit {
   }
 
   create(){
-    if(!this.category.name.length) return this.messageHandlingService.error("Kategorien skal have et navn.");
+    if(!this.category.name.length) return this.messageHandlingService.invalid("Kategorien skal have et navn.");
     this.categoriesService.create(this.category).subscribe((res)=>{
       this.messageHandlingService.success("Kategorien er nu lavet.");
       this.ref.close();
