@@ -32,6 +32,7 @@
   <button class="md:hidden lg:hidden xl:hidden" (click)="searchOverlay.toggle($event)" mat-button><span class="material-icons">search</span></button>
   <span class="example-spacer"></span>
   <div *ngIf="this.appComponent.profile$ | async as profile else loggedOut" style="float: right">
+    <button mat-button *ngIf="profile.permissions.includes('Admin')||profile.permissions.includes('CanManageProducts')||profile.permissions.includes('CanManageColors')||profile.permissions.includes('CanManageSizes')||profile.permissions.includes('CanManageCategories')" routerLink="/admin" matTooltip="Admin" class="float-right"><mat-icon style="color:white;">admin_panel_settings</mat-icon></button>
     <button mat-button routerLink="/account" matTooltip="Min konto" class="float-right"><mat-icon style="color:white;">manage_accounts</mat-icon></button>
     <button mat-button (click)="this.appComponent.logout()" matTooltip="Log ud" class="float-right"><mat-icon style="color:white;">logout</mat-icon></button>
   </div>
