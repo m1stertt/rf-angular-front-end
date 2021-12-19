@@ -14,6 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ButtonModule } from 'primeng/button';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { ButtonModule } from 'primeng/button';
     MatFormFieldModule,
     MatButtonModule,
     MatIconModule,
-    ButtonModule
+    ButtonModule,
+    MatInputModule
   ]
 })
 export class CartModule { }

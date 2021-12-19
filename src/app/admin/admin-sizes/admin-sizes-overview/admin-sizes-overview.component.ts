@@ -22,8 +22,6 @@ export class AdminSizesOverviewComponent implements OnInit {
     { field: 'id', header: 'ID' },
     { field: 'name', header: 'Name' },
     { field: 'products', header:'Produkter'}
-    //{ field: 'productPrice', header: 'Price' },
-    //{ field: 'quantity', header: 'Quantity' }
   ];
   ngOnInit(): void {
     this.menuService.breadcrumb=[
@@ -41,7 +39,10 @@ export class AdminSizesOverviewComponent implements OnInit {
       icon: 'pi pi-info-circle',
       accept: () =>{
         this.sizesService.delete(size.id).subscribe(
-          ()=>this.errorHandlingMessageService.success('Størrelsen er nu slettet fra systemet.'),
+          ()=>{
+            this.errorHandlingMessageService.success('Størrelsen er nu slettet fra systemet.');
+            this.sizesService.getAll().subscribe(e=>this.sizes=e);
+          },
           (error)=>this.errorHandlingMessageService.error(error.statusText));
       }
     });
@@ -52,6 +53,7 @@ export class AdminSizesOverviewComponent implements OnInit {
       header: 'Ny størrelse',
       width: '240px'
     });
+    ref.onClose.subscribe(r=>this.sizesService.getAll().subscribe(e=>this.sizes=e));
   }
 
   onRowEditInit(size: SizeDto) {
@@ -59,8 +61,10 @@ export class AdminSizesOverviewComponent implements OnInit {
   }
 
   onRowEditSave(size: SizeDto) {
+    if(size.title=="") return;
     this.sizesService.updateSize(size).subscribe(s=>{
-      this.messageService.add({severity:'info', summary:'Kategori', detail:'Kategorien er nu opdateret i systemet.'});
+      this.messageService.add({severity:'info', summary:'Størrelse', detail:'Størrelsen er nu opdateret i systemet.'});
+      this.sizesService.getAll().subscribe(e=>this.sizes=e);
     },(error)=>this.errorHandlingMessageService.error(error.statusText));
   }
 

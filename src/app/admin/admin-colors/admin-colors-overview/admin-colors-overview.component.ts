@@ -46,6 +46,9 @@ export class AdminColorsOverviewComponent implements OnInit {
       header: 'Ny farve',
       width: '240px'
     });
+    ref.onClose.subscribe(res=>{
+      this.colorsService.getAll().subscribe(e=>this.cats=e)
+    });
   }
 
   setColorFromPicker(){
@@ -61,8 +64,11 @@ export class AdminColorsOverviewComponent implements OnInit {
     });
   }
 
-  setNewTitle(){
-    //@todo
+  setNewTitle(color:ColorDto){
+    this.colorsService.updateColor(color).subscribe((res)=>this.errorHandlingMessageService.success("Farve titel er blevet ændret i systemet."),
+    (error)=>{
+      this.errorHandlingMessageService.error(error.statusText);
+    });
   }
 
   confirmDelete(color:ColorDto) {
@@ -72,7 +78,10 @@ export class AdminColorsOverviewComponent implements OnInit {
       icon: 'pi pi-info-circle',
       accept: () =>{
         this.colorsService.delete(color.id).subscribe(
-          color=>this.errorHandlingMessageService.success('Farven er nu slettet fra systemet.'),
+          color=>{
+            this.errorHandlingMessageService.success('Farven er nu slettet fra systemet.')
+            this.colorsService.getAll().subscribe(e=>this.cats=e)
+          },
           error=>this.errorHandlingMessageService.error(error.statusText));
       }
     });

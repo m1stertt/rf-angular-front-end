@@ -23,28 +23,7 @@
         <input id="float-input" type="text" pInputText min=0 [(ngModel)]="product.productDiscountPrice">
         <label for="float-input">Tilbuds pris</label>
       </span>
-
-
-    <p-editor [(ngModel)]="product.productDescription" placeholder="Produkt beskrivelse..." [formats]="editoropts" [style]="{'height':'320px'}">
-
-      <ng-template pTemplate="header">
-        <span class="ql-formats">
-            <select class="ql-size">
-              <!-- Note a missing, thus falsy value, is used to reset to default -->
-              <option selected></option>
-              <option value="large"></option>
-              <option value="huge"></option>
-            </select>
-            <button type="button" class="ql-bold" aria-label="Bold"></button>
-            <button type="button" class="ql-italic" aria-label="Italic"></button>
-            <button type="button" class="ql-underline" aria-label="Underline"></button>
-            <button type="button" class="ql-strike" aria-label="Strikethrough"></button>
-        </span>
-    </ng-template>
-
-    </p-editor>
-
-
+      <textarea [rows]="5" [cols]="30"  [(ngModel)]="product.productDescription" placeholder="Produkt beskrivelse..." pInputTextarea autoResize="autoResize"></textarea>
     <div class="p-field-checkbox">
       <p-checkbox [binary]="true" [(ngModel)]="product.productFeatured" inputId="check"></p-checkbox>
       <label for="check">Udvalgt produkt</label>
@@ -61,37 +40,43 @@
             <p-button (click)="createImage()">Nyt billed</p-button>
           </p-tabPanel>
           <p-tabPanel header="Farver">
-            <p-table [value]="product.colors" responsiveLayout="scroll">
-              <ng-template pTemplate="header">
-                  <tr>
-                      <th>Name</th>
-                  </tr>
-              </ng-template>
-              <ng-template pTemplate="body" let-category>
-                  <tr>
-                      <td>{{category.title}}</td>
-                  </tr>
-              </ng-template>
-            </p-table>
+            
+            <mat-form-field style="display:block;" appearance="fill">
+              <mat-label>Farver</mat-label>
+              <mat-select [(ngModel)]="product.colors" [formControl]="colors_" multiple [compareWith]="compareWithFunc">
+                <mat-option *ngFor="let category of colors" [value]="category" >{{category.title}}</mat-option>
+              </mat-select>
+            </mat-form-field>
             <p-button (click)="createColor(product)">Ny farve</p-button>
           </p-tabPanel>
           <p-tabPanel header="Størrelser">
-            <p-table [value]="product.sizes" responsiveLayout="scroll">
+            <mat-form-field style="display:block;" appearance="fill">
+              <mat-label>Størrelser</mat-label>
+              <mat-select [(ngModel)]="product.sizes" [formControl]="sizes_" multiple [compareWith]="compareWithFunc">
+                <mat-option *ngFor="let size of sizes" [value]="size" >{{size.title}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <p-button (click)="createSize()">Ny størrelse</p-button>
+          </p-tabPanel>
+          <p-tabPanel header="Inventar">
+            <p-table *ngIf="product" [value]="product.inventoryStocks" responsiveLayout="scroll">
               <ng-template pTemplate="header">
                   <tr>
-                      <th>Name</th>
+                    <th>Id</th>
+                    <th>Mængde</th>
+                    <th>Farve</th>
+                    <th>Størrelse</th>
                   </tr>
               </ng-template>
               <ng-template pTemplate="body" let-category>
                   <tr>
-                      <td>{{category.title}}</td>
+                    <td>{{category.id}}</td>
+                    <td>{{category.amount}}</td>
+                    <td>{{category.color.title}}</td>
+                    <td>{{category.size.title}}</td>
                   </tr>
               </ng-template>
             </p-table>
-            <p-button (click)="createSize()">Ny størrelse</p-button>
-          </p-tabPanel>
-          <p-tabPanel header="Inventar">
-            <app-admin-product-inventory-stock-view></app-admin-product-inventory-stock-view>
             <p-button (click)="createInventoryStock()">Ny inventar kombination</p-button>
           </p-tabPanel>
         </p-tabView>

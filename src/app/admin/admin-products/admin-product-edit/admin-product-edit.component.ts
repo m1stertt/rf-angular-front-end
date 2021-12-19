@@ -20,6 +20,8 @@ import { AdminProductInventoryStockCreateComponent } from '../admin-product-inve
 import { ImageDto } from 'src/app/images/shared/image.dto';
 import { AdminProductImagesUploadComponent } from '../admin-product-images-upload/admin-product-images-upload.component';
 import { AdminProductImagesEditComponent } from '../admin-product-images-edit/admin-product-images-edit.component';
+import { ImagesService } from 'src/app/images/shared/images.service';
+
 import {ConfigurationService} from "../../../configuration.service";
 @Component({
   selector: 'app-admin-product-edit',
@@ -47,12 +49,11 @@ export class AdminProductEditComponent implements OnInit {
               private dialogService:DialogService,
               private inventoryStockService:InventoryStocksService,
               private errorHandlingMessageService:ErrorHandlingMessageService,
+              private imagesService:ImagesService,
               private configurationService: ConfigurationService) {
     this.serverUrl = this.configurationService.getServerUrl();
   }
-
   editoropts:string[]=['bold', 'italic', 'underline', 'strike','link','size','underline','script','font'];
-
   ngOnInit(): void {
     this.getProduct();
     this.menuService.breadcrumb=[
@@ -63,19 +64,24 @@ export class AdminProductEditComponent implements OnInit {
   }
 
   createSize(){
-    this.dialogService.open(AdminSizeCreateComponent,{ header: 'Ny størrelse', width: '70%' });
+    let ref=this.dialogService.open(AdminSizeCreateComponent,{ header: 'Ny størrelse', width: '70%' });
+    ref.onClose.subscribe(res=>this.getSizes());
   }
 
   createColor(product:ProductDto){
-    this.dialogService.open(AdminColorCreateComponent,{ data:{ product:product }, header: 'Ny farve', width: '240px' });
+    let ref=this.dialogService.open(AdminColorCreateComponent,{ data:{ product:product }, header: 'Ny farve', width: '240px' });
+    ref.onClose.subscribe(res=>this.getColors());
   }
 
   createInventoryStock(){
-    this.dialogService.open(AdminProductInventoryStockCreateComponent,{ data:{ product:this.product }, header: 'Ny lager...', width: '240px' });
+    let ref=this.dialogService.open(AdminProductInventoryStockCreateComponent,{ data:{ product:this.product }, header: 'Ny lager...', width: '240px' });
+    ref.onClose.subscribe(res=>{
+    });
   }
 
   createImage(){
-    this.dialogService.open(AdminProductImagesUploadComponent,{ data:{ product:this.product }, header: 'Nyt billede', width: '240px' });
+    let ref=this.dialogService.open(AdminProductImagesUploadComponent,{ data:{ product:this.product }, header: 'Nyt billede', width: '240px' });
+    ref.onClose.subscribe(res=>this.getImages());
   }
 
   getProduct(): void {
@@ -88,9 +94,21 @@ export class AdminProductEditComponent implements OnInit {
         this.getSizes();
         this.inventoryStockService.getByProductID(id).subscribe(res=>{
           if(!this.product) return;
+          console.log(res);
           this.product.inventoryStocks=res;
-        },this.errorHandlingMessageService.error);
-      },this.errorHandlingMessageService.error);
+        },(error)=>{
+          if(!error.error) return;
+          this.errorHandlingMessageService.error(error.statusText)
+        });
+      },error=>this.errorHandlingMessageService.error(error.statusText));
+  }
+
+  getImages(){
+    this.imagesService.getByProductID(Number(this.route.snapshot.paramMap.get('id'))).subscribe(images=>{
+      if(this.product){
+        this.product.images=images;
+      }
+    });
   }
 
   getCategories(): void {
@@ -109,9 +127,10 @@ export class AdminProductEditComponent implements OnInit {
 
   update() {
     if (!this.product) return this.errorHandlingMessageService.error("Der er et problem med at indhente produktet.");
+    if(!this.product.productName.length) return;
     this.productsService.updateProduct(this.product).subscribe(
       (product) =>this.errorHandlingMessageService.success("Opdateret produktet, id: "+product.id),
-      this.errorHandlingMessageService.error);
+      error=>this.errorHandlingMessageService.error("T3"+error.statusText));
   }
 
   editImage(image:ImageDto){

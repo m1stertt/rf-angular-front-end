@@ -4,7 +4,7 @@
       <ng-template pTemplate="caption">
         <div class="p-d-flex p-ai-center p-jc-between">
             <div style="font-size:36px; display:inline-block;">Farver</div>
-            <p-button label="Lav ny farve" icon="pi pi-plus" styleClass="p-button-sm" style="float:right;" (click)="create()"></p-button>
+            <p-button label="Lav ny farve" icon="pi pi-plus" styleClass="p-button-sm" [style]="{float:'right'}" (click)="create()"></p-button>
         </div>
       </ng-template>
       <ng-template pTemplate="header">
@@ -23,7 +23,7 @@
               <td pEditableColumn>
                 <p-cellEditor>
                   <ng-template pTemplate="input">
-                    <input pInputText type="text" [(ngModel)]="rowData.title">
+                    <input pInputText type="text" (focusout)="setNewTitle(rowData)" (keydown.enter)="setNewTitle(rowData)" [(ngModel)]="rowData.title">
                   </ng-template>
                   <ng-template pTemplate="output">
                     {{rowData.title}}

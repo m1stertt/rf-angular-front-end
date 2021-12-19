@@ -20,7 +20,7 @@ export class AppComponent {
     this.profile$ = this._authService.listenForProfile();
     if(this._authService.getToken()) {
       this._authService.fetchProfile()
-        .subscribe();
+        .subscribe((r)=>{},(error)=>this._authService.logout());
     }
   }
 

@@ -18,7 +18,7 @@ export class InventoryStocksService {
   }
 
   getByProductID(id:number): Observable<InventoryStockDto[]>{
-    return this._http.get<InventoryStockDto[]>(this.endpoint+id);
+    return this._http.get<InventoryStockDto[]>(this.endpoint+"Product/"+id);
   }
 
   delete(id: number) {

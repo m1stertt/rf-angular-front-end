@@ -49,11 +49,6 @@ export class AuthService {
       .pipe(
         tap(p => {
           localStorage.setItem('Profile', JSON.stringify(p))
-          this.accountService.getUser(p.id)?.subscribe(e=>{
-            if(e){
-              localStorage.setItem("User",JSON.stringify(e));
-            }
-          });
           this.profile$.next(p);
         })
       )

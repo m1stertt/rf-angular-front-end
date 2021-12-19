@@ -6,6 +6,7 @@ import {Profile} from 'src/app/auth/shared/models/profile';
 import { AuthService } from 'src/app/auth/shared/auth.service';
 import { UserDto } from 'src/app/account/shared/user.dto';
 import { LoginUser } from 'src/app/auth/shared/models/login-user';
+import { AccountService } from 'src/app/account/shared/account.service';
 
 @Component({
   selector: 'app-cart-delivery',
@@ -26,9 +27,14 @@ export class CartDeliveryComponent implements OnInit {
   addressData=this.authService.getUser();
   loggedIn:Profile | null =this.authService.getProfile();
 
-  constructor(private _formBuilder: FormBuilder,public cartService:CartService,public appComponent:AppComponent,private authService:AuthService) {}
+  constructor(private _formBuilder: FormBuilder,public cartService:CartService,public appComponent:AppComponent,private authService:AuthService,private accountService:AccountService) {}
 
   ngOnInit() {
+    if(this.loggedIn){
+      this.accountService.getUser(this.loggedIn.id)?.subscribe(e=>{
+        this.addressData=e;
+      },(error)=>{});
+    }
     this.firstFormGroup = this._formBuilder.group({
       //firstCtrl: ['', Validators.required],
     });

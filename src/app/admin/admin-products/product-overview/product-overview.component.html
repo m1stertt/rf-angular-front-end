@@ -1,5 +1,12 @@
+<app-admin-template>
 <p-panel header="Produkter">
   <p-table [columns]="cols" [value]="products" responsiveLayout="scroll">
+    <ng-template pTemplate="caption">
+        <div class="p-d-flex p-ai-center p-jc-between">
+            <div style="font-size:36px; display:inline-block;">Produkter</div>
+            <p-button label="Lav nyt produkt" icon="pi pi-plus" styleClass="p-button-sm" [style]="{float: 'right'}" routerLink="/admin/products/create"></p-button>
+        </div>
+    </ng-template>
     <ng-template pTemplate="header" let-columns>
         <tr>
             <th *ngFor="let col of columns">
@@ -16,3 +23,4 @@
     </ng-template>
   </p-table>
 </p-panel>
+</app-admin-template>
