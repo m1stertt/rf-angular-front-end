@@ -58,22 +58,37 @@ export class AdminProductEditComponent implements OnInit {
       {label:'Admin Panel',routerLink:"/admin"},
       {label:'Redigerer produkt id '+Number(this.route.snapshot.paramMap.get('id')),routerLink:"/admin/products/"+Number(this.route.snapshot.paramMap.get('id'))}
     ];
+
+
+    
   }
 
   createSize(){
-    this.dialogService.open(AdminSizeCreateComponent,{ header: 'Ny størrelse', width: '70%' });
+    let ref=this.dialogService.open(AdminSizeCreateComponent,{ header: 'Ny størrelse', width: '70%' });
+    ref.onClose.subscribe(res=>{
+      //@todo
+    });
   }
 
   createColor(product:ProductDto){
-    this.dialogService.open(AdminColorCreateComponent,{ data:{ product:product }, header: 'Ny farve', width: '240px' });
+    let ref=this.dialogService.open(AdminColorCreateComponent,{ data:{ product:product }, header: 'Ny farve', width: '240px' });
+    ref.onClose.subscribe(res=>{
+      //@todo
+    });
   }
 
   createInventoryStock(){
-    this.dialogService.open(AdminProductInventoryStockCreateComponent,{ data:{ product:this.product }, header: 'Ny lager...', width: '240px' });
+    let ref=this.dialogService.open(AdminProductInventoryStockCreateComponent,{ data:{ product:this.product }, header: 'Ny lager...', width: '240px' });
+    ref.onClose.subscribe(res=>{
+      //@todo
+    });
   }
 
   createImage(){
-    this.dialogService.open(AdminProductImagesUploadComponent,{ data:{ product:this.product }, header: 'Nyt billede', width: '240px' });
+    let ref=this.dialogService.open(AdminProductImagesUploadComponent,{ data:{ product:this.product }, header: 'Nyt billede', width: '240px' });
+    ref.onClose.subscribe(res=>{
+      //@todo
+    });
   }
 
   getProduct(): void {
@@ -87,8 +102,8 @@ export class AdminProductEditComponent implements OnInit {
         this.inventoryStockService.getByProductID(id).subscribe(res=>{
           if(!this.product) return;
           this.product.inventoryStocks=res;
-        },this.errorHandlingMessageService.error);
-      },this.errorHandlingMessageService.error);
+        },error=>this.errorHandlingMessageService.error("T1"+error.statusText));
+      },error=>this.errorHandlingMessageService.error("T2"+error.statusText));
   }
 
   getCategories(): void {
@@ -109,7 +124,7 @@ export class AdminProductEditComponent implements OnInit {
     if (!this.product) return this.errorHandlingMessageService.error("Der er et problem med at indhente produktet.");
     this.productsService.updateProduct(this.product).subscribe(
       (product) =>this.errorHandlingMessageService.success("Opdateret produktet, id: "+product.id),
-      this.errorHandlingMessageService.error);
+      error=>this.errorHandlingMessageService.error("T3"+error.statusText));
   }
 
   editImage(image:ImageDto){

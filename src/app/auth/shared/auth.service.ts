@@ -16,7 +16,9 @@ export class AuthService {
   redirectUrl: string | undefined;
   profile$ = new BehaviorSubject<Profile | null>(null);
   user:UserDto|undefined;
-  constructor(private _http: HttpClient,private accountService:AccountService) { }
+  constructor(private _http: HttpClient,private accountService:AccountService) { 
+    
+  }
 
   login(loginInfo: LoginUser): Promise<string> {
     return this._http
@@ -47,11 +49,6 @@ export class AuthService {
       .pipe(
         tap(p => {
           localStorage.setItem('Profile', JSON.stringify(p))
-          this.accountService.getUser(p.id)?.subscribe(e=>{
-            if(e){
-              localStorage.setItem("User",JSON.stringify(e));
-            }
-          });
           this.profile$.next(p);
         })
       )

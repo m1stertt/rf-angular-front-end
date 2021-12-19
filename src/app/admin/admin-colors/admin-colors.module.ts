@@ -13,6 +13,8 @@ import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog'; 
 
 
 
@@ -20,6 +22,7 @@ import { MatInputModule } from '@angular/material/input';
   declarations: [AdminColorCreateComponent, AdminColorsOverviewComponent],
   imports: [
     CommonModule,
+    MatDialogModule,
     FormsModule,
     AdminColorsRoutingModule,
     AdminModule,
@@ -29,7 +32,8 @@ import { MatInputModule } from '@angular/material/input';
     ColorPickerModule,
     InputTextModule,
     ConfirmDialogModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule
   ]
 })
 export class AdminColorsModule { }

@@ -61,18 +61,13 @@
             <p-button (click)="createImage()">Nyt billed</p-button>
           </p-tabPanel>
           <p-tabPanel header="Farver">
-            <p-table [value]="product.colors" responsiveLayout="scroll">
-              <ng-template pTemplate="header">
-                  <tr>
-                      <th>Name</th>
-                  </tr>
-              </ng-template>
-              <ng-template pTemplate="body" let-category>
-                  <tr>
-                      <td>{{category.title}}</td>
-                  </tr>
-              </ng-template>
-            </p-table>
+            
+            <mat-form-field style="display:block;" appearance="fill">
+              <mat-label>Farver</mat-label>
+              <mat-select [(ngModel)]="product.colors" [formControl]="colors_" multiple [compareWith]="compareWithFunc">
+                <mat-option *ngFor="let category of colors" [value]="category" >{{category.title}}</mat-option>
+              </mat-select>
+            </mat-form-field>
             <p-button (click)="createColor(product)">Ny farve</p-button>
           </p-tabPanel>
           <p-tabPanel header="Størrelser">

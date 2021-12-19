@@ -21,7 +21,7 @@
           <td>
             <p-cellEditor>
               <ng-template pTemplate="input">
-                <input pInputText type="text" [(ngModel)]="rowData.title">
+                <input pInputText type="text" required [(ngModel)]="rowData.title">
               </ng-template>
               <ng-template pTemplate="output">
                 {{rowData.title}}
