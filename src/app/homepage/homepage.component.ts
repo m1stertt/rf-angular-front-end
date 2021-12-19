@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductDto } from '../products/shared/product.dto';
 import { ProductsService } from '../products/shared/products.service';
+import {ConfigurationService} from "../configuration.service";
 
 @Component({
   selector: 'app-homepage',
@@ -8,7 +9,7 @@ import { ProductsService } from '../products/shared/products.service';
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
-
+  serverUrl: string;
   responsiveOptions =[
     {
         breakpoint: '1024px',
@@ -27,11 +28,11 @@ export class HomepageComponent implements OnInit {
     }
   ];
   products:ProductDto[] =[];
-  constructor(private productService:ProductsService) {
+  constructor(private productService:ProductsService, private configurationService: ConfigurationService) {
     this.productService.getFeatured().subscribe(e=>{
       this.products=e;
     });
-
+    this.serverUrl = configurationService.getServerUrl();
    }
 
   ngOnInit(): void {

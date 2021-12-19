@@ -18,7 +18,7 @@
   </ng-template>
   <ng-template pTemplate="body" let-product>
       <tr>
-          <td><img *ngIf="product.image" src="https://localhost:5001/resources/images/{{product.image.path}}" [alt]="product.image.desc" width="100" class="p-shadow-4" /></td>
+          <td><img *ngIf="product.image" src="{{serverUrl}}resources/images/{{product.image.path}}" [alt]="product.image.desc" width="100" class="p-shadow-4" /></td>
           <td>{{product.name}}</td>
           <td>
             <div *ngIf="product.color"> {{product.color.title}}</div>

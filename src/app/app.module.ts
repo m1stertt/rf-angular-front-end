@@ -38,13 +38,14 @@ import { ProductsModule } from './products/products.module';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { CartDeliveryComponent } from './cart/cart-delivery/cart-delivery.component';
-import {MatStepperModule} from '@angular/material/stepper'; 
+import {MatStepperModule} from '@angular/material/stepper';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { AccountService } from './account/shared/account.service';
 import { ErrorHandlingMessageService } from './errorHandling/shared/error-handling-message.service';
 import { ToastModule } from 'primeng/toast';
+import {ConfigurationService} from "./configuration.service";
 
 @NgModule({
   declarations: [
@@ -87,10 +88,10 @@ import { ToastModule } from 'primeng/toast';
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
-    , AuthService, AppComponent, MenuService, CategoriesService, SizesService, ColorsService, CartService, DialogService, MessageService,ConfirmationService,AccountService,ErrorHandlingMessageService,
+    , AuthService, AppComponent, MenuService, CategoriesService, SizesService, ColorsService, CartService, DialogService, MessageService,ConfirmationService,AccountService,ErrorHandlingMessageService, ConfigurationService,
     {provide: MatPaginatorIntl, useValue: getDanishPaginatorIntl()}
   ],
-  
+
   bootstrap: [AppComponent]
 })
 export class AppModule {

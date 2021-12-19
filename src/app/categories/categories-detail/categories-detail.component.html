@@ -6,7 +6,7 @@
           <mat-grid-tile routerLink="/products/{{productDto.id}}">
             {{ productDto.productName}}
             {{ productDto.id}}
-            <img *ngIf="productDto.images.length" src="https://localhost:5001/resources/images/{{productDto.images[0].path}}" alt=""/>
+            <img *ngIf="productDto.images.length" src="{{serverUrl}}resources/images/{{productDto.images[0].path}}" alt=""/>
           </mat-grid-tile>
         </ng-container>
       </mat-grid-list>

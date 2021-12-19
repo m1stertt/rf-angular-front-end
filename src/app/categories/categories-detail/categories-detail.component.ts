@@ -9,6 +9,7 @@ import {CategoryDto} from '../shared/category.dto';
 import {MenuService} from 'src/app/menu/shared/menu.service';
 import {ProductsService} from "../../products/shared/products.service";
 import {ProductsGridPaginationService} from "../../products/products-grid/pagination/products-grid-pagination.service";
+import {ConfigurationService} from "../../configuration.service";
 
 @Component({
   selector: 'app-categories-detail',
@@ -22,6 +23,7 @@ export class CategoriesDetailComponent implements OnInit, OnChanges {
   category: CategoryDto | undefined;
   totalCount?: number;
   id: number = 0;
+  serverUrl: string;
 
   constructor(private route: ActivatedRoute,
               private categoriesService: CategoriesService,
@@ -29,7 +31,9 @@ export class CategoriesDetailComponent implements OnInit, OnChanges {
               private cdRef: ChangeDetectorRef,
               private menuService: MenuService,
               private productsService: ProductsService,
-              public paginationService: ProductsGridPaginationService) {
+              public paginationService: ProductsGridPaginationService,
+              private configurationService: ConfigurationService) {
+    this.serverUrl = configurationService.getServerUrl();
   }
 
   switchPage(event: PageEvent) {
