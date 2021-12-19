@@ -10,6 +10,7 @@ import { CartService } from 'src/app/cart/shared/cart.service';
 import { MenuService } from 'src/app/menu/shared/menu.service';
 import { MessageService } from 'primeng/api';
 import {ConfigurationService} from "../../configuration.service";
+import { AppComponent } from 'src/app/app.component';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class ProductDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private productsService: ProductsService,
               private location: Location,
-              private cartService: CartService, private menuService:MenuService,private messageService:MessageService, private configurationService: ConfigurationService ) {
+              private cartService: CartService, private menuService:MenuService,private messageService:MessageService, private configurationService: ConfigurationService,public appComponent:AppComponent) {
     this.serverUrl = configurationService.getServerUrl();
   }
 
@@ -56,7 +57,9 @@ export class ProductDetailComponent implements OnInit {
       name: product.productName,
       price: product.productPrice,
       color: this.colorSelected,
-      size: this.sizeSelected
+      size: this.sizeSelected,
+      image: product.images[0]
+
     }
     this.cartService.addToCart(test);
     let msg='Du har tilføjet '+_amount+"stk "+test.name;

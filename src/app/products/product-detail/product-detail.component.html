@@ -37,6 +37,9 @@
                     </mat-select>
                   </mat-form-field></p>
                     <button mat-raised-button (click)="addToCart(product)">Tilføj til kurv</button>
+                    <div *ngIf="this.appComponent.profile$ | async as profile" style="float:right;">
+                      <button mat-button *ngIf="profile.permissions.includes('Admin')||profile.permissions.includes('CanManageProducts')" routerLink="/admin/products/{{product.id}}" matTooltip="Edit product"><mat-icon>admin_panel_settings</mat-icon></button>
+                    </div>
                 </div>
               </div>
             </div>

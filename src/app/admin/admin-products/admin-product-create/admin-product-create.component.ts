@@ -3,6 +3,7 @@ import { ProductDto } from 'src/app/products/shared/product.dto';
 import { Router} from "@angular/router";
 import {ProductsService} from "src/app/products/shared/products.service";
 import { MessageHandlingService } from 'src/app/errorHandling/shared/message-handling.service';
+import { MenuService } from 'src/app/menu/shared/menu.service';
 
 @Component({
   selector: 'app-admin-product-create',
@@ -14,11 +15,17 @@ export class AdminProductCreateComponent implements OnInit {
 
   constructor(private productsService: ProductsService,
               private router: Router,
-              private messageHandlingService:MessageHandlingService) {
+              private messageHandlingService:MessageHandlingService,private menuService:MenuService) {
     this.product = {id: 0, productName:'', productPrice: 0, productDiscountPrice:0,productDescription: '',productFeatured:false,categories:[],sizes:[],colors:[],images:[],inventoryStocks:[]}
   }
 
   ngOnInit(): void {
+    this.menuService.breadcrumb=[
+      {icon:'pi pi-home',routerLink:"/"},
+      {label:'Admin Panel',routerLink:"/admin"},
+      {label:'Produkter',routerLink:"/admin/products"},
+      {label:'Lav nyt produkt',routerLink:"/admin/products/create"}
+    ];
   }
 
   create() {

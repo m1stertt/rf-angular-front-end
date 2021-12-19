@@ -71,7 +71,6 @@ export class CartDeliveryComponent implements OnInit {
 
   setDeliveryPrice(){
     this.cartService.setDeliveryPrice(this.deliveryPrice);
-    console.log(this.deliveryPrice);
   }
 
   saveInfo(){//@todo handle
