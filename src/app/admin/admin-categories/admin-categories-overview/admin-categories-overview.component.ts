@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService} from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { CategoriesService } from 'src/app/categories/shared/categories.service';
 import { CategoryDto } from 'src/app/categories/shared/category.dto';
