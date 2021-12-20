@@ -55,10 +55,10 @@ export class ProductDetailComponent implements OnInit {
   }
 
   addToCart(product: ProductDto,_amount:number=1) {
-    if(this.colorSelected==undefined){
+    if(this.colorSelected==undefined&&this.product?.colors.length){
       this.messageHandlingService.invalid("Venligst vælg en farve");
       return;
-    }else if(this.sizeSelected==undefined){
+    }else if(this.sizeSelected==undefined&&this.product?.sizes.length){
       this.messageHandlingService.invalid("Venligst vælg en størrelse");
       return;
     }
@@ -73,7 +73,15 @@ export class ProductDetailComponent implements OnInit {
 
     }
     this.cartService.addToCart(test);
-    this.messageHandlingService.success('Du har tilføjet '+_amount+"stk "+test.name+"\nFarve: "+this.colorSelected.title+"\nStørrelse: "+this.sizeSelected.title+"\n\nKurv: "+this.cartService.getPriceAmount()+",- DKK");
+    let msg='Du har tilføjet '+_amount+"stk "+test.name;
+    if(this.colorSelected){
+      msg+="\nFarve: "+this.colorSelected.title;
+    }
+    if(this.sizeSelected){
+      msg+="\nStørrelse: "+this.sizeSelected.title;
+    }
+    msg+="\n\nKurv: "+this.cartService.getPriceAmount()+",- DKK";
+    this.messageHandlingService.success(msg);
   }
 
   goBack(): void {
