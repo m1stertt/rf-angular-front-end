@@ -2,7 +2,7 @@ import { Component} from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ColorDto } from 'src/app/colors/shared/color.dto';
 import { ColorsService } from 'src/app/colors/shared/colors.service';
-import { MessageHandlingService } from 'src/app/errorHandling/shared/message-handling.service';
+import { MessageHandlingService } from 'src/app/messageHandling/shared/message-handling.service';
 
 @Component({
   selector: 'app-admin-color-create',

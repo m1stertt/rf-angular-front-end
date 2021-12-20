@@ -9,7 +9,6 @@ import {RegistrationDetails} from "./models/registration-details";
 import { UserDto } from 'src/app/account/shared/user.dto';
 import { AccountService } from 'src/app/account/shared/account.service';
 import {ConfigurationService} from "../../configuration.service";
-import {CategoryDto} from "../../categories/shared/category.dto";
 
 @Injectable({
   providedIn: 'root'

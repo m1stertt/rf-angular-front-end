@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { CategoriesService } from 'src/app/categories/shared/categories.service';
 import { CategoryDto } from 'src/app/categories/shared/category.dto';
 

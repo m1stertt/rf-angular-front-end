@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ColorDto } from 'src/app/colors/shared/color.dto';
-import { MessageHandlingService } from 'src/app/errorHandling/shared/message-handling.service';
+import { MessageHandlingService } from 'src/app/messageHandling/shared/message-handling.service';
 import { InventoryStocksService } from 'src/app/products/shared/inventory-stocks.service';
 import { ProductDto } from 'src/app/products/shared/product.dto';
 import { SizeDto } from 'src/app/sizes/shared/size.dto';

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductDto } from 'src/app/products/shared/product.dto';
 import { Router} from "@angular/router";
 import {ProductsService} from "src/app/products/shared/products.service";
-import { MessageHandlingService } from 'src/app/errorHandling/shared/message-handling.service';
+import { MessageHandlingService } from 'src/app/messageHandling/shared/message-handling.service';
 import { MenuService } from 'src/app/menu/shared/menu.service';
 
 @Component({
