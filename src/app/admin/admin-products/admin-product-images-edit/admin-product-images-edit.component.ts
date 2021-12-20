@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { ErrorHandlingMessageService } from 'src/app/errorHandling/shared/error-handling-message.service';
+import { MessageHandlingService } from 'src/app/messageHandling/shared/message-handling.service';
 import { ImageDto } from 'src/app/images/shared/image.dto';
 import { ImagesService } from 'src/app/images/shared/images.service';
 import {ConfigurationService} from "../../../configuration.service";
@@ -13,7 +13,7 @@ import {ConfigurationService} from "../../../configuration.service";
 export class AdminProductImagesEditComponent implements OnInit {
   image:ImageDto|undefined;
   serverUrl: string;
-  constructor(private config: DynamicDialogConfig,private imagesService:ImagesService,private errorHandlingMessageService:ErrorHandlingMessageService, private configurationService: ConfigurationService,private ref:DynamicDialogRef) {
+  constructor(private config: DynamicDialogConfig,private imagesService:ImagesService,private messageHandlingService:MessageHandlingService, private configurationService: ConfigurationService,private ref:DynamicDialogRef) {
     this.serverUrl = configurationService.getServerUrl();
   }
 
@@ -26,17 +26,17 @@ export class AdminProductImagesEditComponent implements OnInit {
     if(this.image==undefined) return;
     this.imagesService.delete(this.image.id).subscribe(
       res=>{
-        this.errorHandlingMessageService.success("Billedet er nu slettet.");
+        this.messageHandlingService.success("Billedet er nu slettet.");
         this.ref.close();
       },
-      error=>this.errorHandlingMessageService.error(error.statusText));
+      error=>this.messageHandlingService.error(error.statusText));
   }
 
   update(){
     if(this.image==undefined) return;
     this.imagesService.update(this.image).subscribe(
-      res=>this.errorHandlingMessageService.success("Billedet er nu opdateret."),
-      error=>this.errorHandlingMessageService.error(error.statusText));
+      res=>this.messageHandlingService.success("Billedet er nu opdateret."),
+      error=>this.messageHandlingService.error(error.statusText));
   }
 
 }

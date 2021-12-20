@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {CategoriesService} from '../categories/shared/categories.service';
 import {CategoryDto} from '../categories/shared/category.dto';
 import {AppComponent} from 'src/app/app.component';
 import {ActivatedRoute, Router} from "@angular/router";
 import { CartService } from '../cart/shared/cart.service';
-import {MenuItem} from 'primeng/api';
 import { MenuService } from './shared/menu.service';
 
 
@@ -14,7 +12,7 @@ import { MenuService } from './shared/menu.service';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-  constructor(private categoryService: CategoriesService, public appComponent: AppComponent, private router: Router, private route: ActivatedRoute,
+  constructor(public appComponent: AppComponent, private router: Router, private route: ActivatedRoute,
     private cartService: CartService,public menuService:MenuService) {
   }
 
@@ -23,11 +21,9 @@ export class MenuComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.categoryService.getAll()
-      // Not until this is called the request is sent
-      .subscribe(categories => {
-        this.categories = categories;
-      });
+    this.menuService.categories.subscribe(categories=>{
+      this.categories=categories;
+    });
 
     this.route.queryParams
       .subscribe(params => {

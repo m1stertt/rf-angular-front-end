@@ -7,6 +7,7 @@ import {UserDto} from "../shared/user.dto";
 import {Profile} from "../../auth/shared/models/profile";
 import {Observable} from "rxjs";
 import {AuthService} from "../../auth/shared/auth.service";
+import { MenuService } from 'src/app/menu/shared/menu.service';
 
 @Component({
   selector: 'app-user-account-management',
@@ -22,10 +23,15 @@ export class UserAccountManagementComponent implements OnInit {
   userEmail: any;
 
   constructor(private accountService: AccountService,
-              private router: Router, public appComponent: AppComponent, private _authService: AuthService) {
+              private router: Router, public appComponent: AppComponent, private _authService: AuthService,private menuService:MenuService) {
   }
 
   ngOnInit(): void {
+    this.menuService.breadcrumb=[
+      {icon:'pi pi-home',routerLink:"/"},
+      {label:'Min Konto',routerLink:"/account"}
+    ];
+
     this.getUserProfileId();
     this.getUserProfileEmail();
     this.getUser();

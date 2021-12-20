@@ -35,7 +35,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AccountService } from './account/shared/account.service';
-import { ErrorHandlingMessageService } from './errorHandling/shared/error-handling-message.service';
+import { MessageHandlingService } from './messageHandling/shared/message-handling.service';
 import { ToastModule } from 'primeng/toast';
 import { InventoryStocksService } from './products/shared/inventory-stocks.service';
 import { ImagesService } from './images/shared/images.service';
@@ -73,7 +73,7 @@ import {ConfigurationService} from "./configuration.service";
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
-    , AuthService, AppComponent, MenuService, CategoriesService, SizesService, ColorsService, CartService, DialogService, MessageService,ConfirmationService,AccountService,ErrorHandlingMessageService,InventoryStocksService,ImagesService,  ConfigurationService,
+    , AuthService, AppComponent, MenuService, CategoriesService, SizesService, ColorsService, CartService, DialogService, MessageService,ConfirmationService,AccountService,MessageHandlingService,InventoryStocksService,ImagesService,  ConfigurationService,
     {provide: MatPaginatorIntl, useValue: getDanishPaginatorIntl()}
   ],
 

@@ -23,7 +23,7 @@
               <td pEditableColumn>
                 <p-cellEditor>
                   <ng-template pTemplate="input">
-                    <input pInputText type="text" (focusout)="setNewTitle(rowData)" (keydown.enter)="setNewTitle(rowData)" [(ngModel)]="rowData.title">
+                    <input pInputText type="text" minlength="1" (focusin)="focused(rowData)" (focusout)="setNewTitle(rowData)" (keydown.enter)="setNewTitle(rowData)" [(ngModel)]="rowData.title">
                   </ng-template>
                   <ng-template pTemplate="output">
                     {{rowData.title}}

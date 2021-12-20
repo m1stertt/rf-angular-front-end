@@ -7,6 +7,8 @@ import { AuthService } from 'src/app/auth/shared/auth.service';
 import { UserDto } from 'src/app/account/shared/user.dto';
 import { LoginUser } from 'src/app/auth/shared/models/login-user';
 import { AccountService } from 'src/app/account/shared/account.service';
+import { Router } from '@angular/router';
+import { MenuService } from 'src/app/menu/shared/menu.service';
 
 @Component({
   selector: 'app-cart-delivery',
@@ -27,9 +29,14 @@ export class CartDeliveryComponent implements OnInit {
   addressData=this.authService.getUser();
   loggedIn:Profile | null =this.authService.getProfile();
 
-  constructor(private _formBuilder: FormBuilder,public cartService:CartService,public appComponent:AppComponent,private authService:AuthService,private accountService:AccountService) {}
+  constructor(private _formBuilder: FormBuilder,public cartService:CartService,public appComponent:AppComponent,private authService:AuthService,private accountService:AccountService,private router:Router,private menuService:MenuService) {}
 
   ngOnInit() {
+    this.menuService.breadcrumb=[
+      {icon:'pi pi-home',routerLink:"/"},
+      {label:'Kurv',routerLink:"/cart"},
+      {label:'Checkout',routerLink:"/cart/checkout"}
+    ];
     if(this.loggedIn){
       this.accountService.getUser(this.loggedIn.id)?.subscribe(e=>{
         this.addressData=e;
@@ -40,7 +47,7 @@ export class CartDeliveryComponent implements OnInit {
     });
   }
 
-  login(){
+  login(){ //@todo handle
     this.authService.login(this.loginInfo).then((token)=>{
       if(token) {
         this.authService.fetchProfile()
@@ -57,12 +64,16 @@ export class CartDeliveryComponent implements OnInit {
     }));
   }
 
-  setDeliveryPrice(){
-    this.cartService.setDeliveryPrice(this.deliveryPrice);
-    console.log(this.deliveryPrice);
+  confirmed(){
+    this.cartService.clearCart();
+    this.router.navigateByUrl('/');
   }
 
-  saveInfo(){
+  setDeliveryPrice(){
+    this.cartService.setDeliveryPrice(this.deliveryPrice);
+  }
+
+  saveInfo(){//@todo handle
     console.log(this.addressData.firstName);
     if(!this.userManagementForm.valid) return;
   }

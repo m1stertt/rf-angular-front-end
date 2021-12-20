@@ -15,7 +15,7 @@ import {DialogService} from 'primeng/dynamicdialog';
 import { AdminSizeCreateComponent } from '../../admin-sizes/admin-size-create/admin-size-create.component';
 import { AdminColorCreateComponent } from '../../admin-colors/admin-color-create/admin-color-create.component';
 import { InventoryStocksService } from 'src/app/products/shared/inventory-stocks.service';
-import { ErrorHandlingMessageService } from 'src/app/errorHandling/shared/error-handling-message.service';
+import { MessageHandlingService } from 'src/app/messageHandling/shared/message-handling.service';
 import { AdminProductInventoryStockCreateComponent } from '../admin-product-inventory-stock-create/admin-product-inventory-stock-create.component';
 import { ImageDto } from 'src/app/images/shared/image.dto';
 import { AdminProductImagesUploadComponent } from '../admin-product-images-upload/admin-product-images-upload.component';
@@ -23,6 +23,8 @@ import { AdminProductImagesEditComponent } from '../admin-product-images-edit/ad
 import { ImagesService } from 'src/app/images/shared/images.service';
 
 import {ConfigurationService} from "../../../configuration.service";
+import { InventoryStockDto } from 'src/app/products/shared/inventoryStock.dto';
+import { AdminCategoryCreateComponent } from '../../admin-categories/admin-category-create/admin-category-create.component';
 @Component({
   selector: 'app-admin-product-edit',
   templateUrl: './admin-product-edit.component.html',
@@ -48,7 +50,7 @@ export class AdminProductEditComponent implements OnInit {
               private menuService:MenuService,
               private dialogService:DialogService,
               private inventoryStockService:InventoryStocksService,
-              private errorHandlingMessageService:ErrorHandlingMessageService,
+              private messageHandlingService:MessageHandlingService,
               private imagesService:ImagesService,
               private configurationService: ConfigurationService) {
     this.serverUrl = this.configurationService.getServerUrl();
@@ -63,8 +65,13 @@ export class AdminProductEditComponent implements OnInit {
     ];
   }
 
+  createCategory(){
+    let ref=this.dialogService.open(AdminCategoryCreateComponent,{ header: 'Ny kategori',  width: '240px' });
+    ref.onClose.subscribe(res=>this.getCategories());
+  }
+
   createSize(){
-    let ref=this.dialogService.open(AdminSizeCreateComponent,{ header: 'Ny størrelse', width: '70%' });
+    let ref=this.dialogService.open(AdminSizeCreateComponent,{ header: 'Ny størrelse', width: '240px' });
     ref.onClose.subscribe(res=>this.getSizes());
   }
 
@@ -98,9 +105,9 @@ export class AdminProductEditComponent implements OnInit {
           this.product.inventoryStocks=res;
         },(error)=>{
           if(!error.error) return;
-          this.errorHandlingMessageService.error(error.statusText)
+          this.messageHandlingService.error(error.statusText)
         });
-      },error=>this.errorHandlingMessageService.error(error.statusText));
+      },error=>this.messageHandlingService.error(error.statusText));
   }
 
   getImages(){
@@ -119,23 +126,33 @@ export class AdminProductEditComponent implements OnInit {
 
   getColors(): void {
     this.colorsService.getAll()
-      .subscribe(product => this.colors = product);
+      .subscribe(colors => this.colors = colors);
   }
   getSizes(): void {
     this.sizesService.getAll()
       .subscribe(product => this.sizes = product);
   }
 
+  deleteInventoryStock(invStock:InventoryStockDto){
+    this.inventoryStockService.delete(invStock.id);
+  }
+
   update() {
-    if (!this.product) return this.errorHandlingMessageService.error("Der er et problem med at indhente produktet.");
-    if(!this.product.productName.length) return;
+    if (!this.product) return this.messageHandlingService.error("Der er et problem med at indhente produktet.");
+    if(!this.product.productName.length) return this.messageHandlingService.error("Produktet skal have et navn");
+    if(this.product.productDiscountPrice<0) return;
+    if(this.product.productPrice<0) return this.messageHandlingService.error("Produktet skal have en pris");
+    if(this.product.productDiscountPrice>this.product.productPrice) return this.messageHandlingService.error("Tilbuds pris skal være mindre end den normale pris.");
     this.productsService.updateProduct(this.product).subscribe(
-      (product) =>this.errorHandlingMessageService.success("Opdateret produktet, id: "+product.id),
-      error=>this.errorHandlingMessageService.error(error.statusText));
+      (product) =>this.messageHandlingService.success("Opdateret produktet, id: "+product.id),
+      error=>this.messageHandlingService.error(error.statusText));
   }
 
   editImage(image:ImageDto){
-    this.dialogService.open(AdminProductImagesEditComponent,{ data:{ image:image }, header: 'Rediger billede', width: '240px' });
+    let ref=this.dialogService.open(AdminProductImagesEditComponent,{ data:{ image:image }, header: 'Rediger billede', width: '480px' });
+    ref.onClose.subscribe(r=>{
+      this.getImages();
+    });
   }
   compareWithFunc(a: CategoryDto, b:CategoryDto) { return a.id === b.id; }
 }
