@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { MessageHandlingService } from 'src/app/errorHandling/shared/message-handling.service';
+import { MessageHandlingService } from 'src/app/messageHandling/shared/message-handling.service';
 import { SizeDto } from 'src/app/sizes/shared/size.dto';
 import { SizesService } from 'src/app/sizes/shared/sizes.service';
 

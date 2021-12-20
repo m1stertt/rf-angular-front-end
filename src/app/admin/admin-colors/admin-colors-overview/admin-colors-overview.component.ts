@@ -5,7 +5,7 @@ import { MenuService } from 'src/app/menu/shared/menu.service';
 import {ConfirmationService } from 'primeng/api';
 import { AdminColorCreateComponent } from '../admin-color-create/admin-color-create.component';
 import { DialogService } from 'primeng/dynamicdialog';
-import { MessageHandlingService } from 'src/app/errorHandling/shared/message-handling.service';
+import { MessageHandlingService } from 'src/app/messageHandling/shared/message-handling.service';
 
 @Component({
   selector: 'app-admin-colors-overview',

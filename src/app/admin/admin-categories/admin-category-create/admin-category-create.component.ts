@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { CategoriesService } from 'src/app/categories/shared/categories.service';
 import { CategoryDto } from 'src/app/categories/shared/category.dto';
-import { MessageHandlingService } from 'src/app/errorHandling/shared/message-handling.service';
+import { MessageHandlingService } from 'src/app/messageHandling/shared/message-handling.service';
 
 @Component({
   selector: 'app-admin-category-create',

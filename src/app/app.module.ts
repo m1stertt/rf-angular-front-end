@@ -35,7 +35,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AccountService } from './account/shared/account.service';
-import { MessageHandlingService } from './errorHandling/shared/message-handling.service';
+import { MessageHandlingService } from './messageHandling/shared/message-handling.service';
 import { ToastModule } from 'primeng/toast';
 import { InventoryStocksService } from './products/shared/inventory-stocks.service';
 import { ImagesService } from './images/shared/images.service';

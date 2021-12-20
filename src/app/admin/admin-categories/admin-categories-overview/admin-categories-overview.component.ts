@@ -3,7 +3,7 @@ import { ConfirmationService} from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { CategoriesService } from 'src/app/categories/shared/categories.service';
 import { CategoryDto } from 'src/app/categories/shared/category.dto';
-import { MessageHandlingService } from 'src/app/errorHandling/shared/message-handling.service';
+import { MessageHandlingService } from 'src/app/messageHandling/shared/message-handling.service';
 import { MenuService } from 'src/app/menu/shared/menu.service';
 import { AdminCategoryCreateComponent } from '../admin-category-create/admin-category-create.component';
 

@@ -10,7 +10,7 @@ import { CartService } from 'src/app/cart/shared/cart.service';
 import { MenuService } from 'src/app/menu/shared/menu.service';
 import {ConfigurationService} from "../../configuration.service";
 import { AppComponent } from 'src/app/app.component';
-import { MessageHandlingService } from 'src/app/errorHandling/shared/message-handling.service';
+import { MessageHandlingService } from 'src/app/messageHandling/shared/message-handling.service';
 
 
 @Component({

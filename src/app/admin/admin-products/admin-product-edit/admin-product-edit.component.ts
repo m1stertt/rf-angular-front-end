@@ -15,7 +15,7 @@ import {DialogService} from 'primeng/dynamicdialog';
 import { AdminSizeCreateComponent } from '../../admin-sizes/admin-size-create/admin-size-create.component';
 import { AdminColorCreateComponent } from '../../admin-colors/admin-color-create/admin-color-create.component';
 import { InventoryStocksService } from 'src/app/products/shared/inventory-stocks.service';
-import { MessageHandlingService } from 'src/app/errorHandling/shared/message-handling.service';
+import { MessageHandlingService } from 'src/app/messageHandling/shared/message-handling.service';
 import { AdminProductInventoryStockCreateComponent } from '../admin-product-inventory-stock-create/admin-product-inventory-stock-create.component';
 import { ImageDto } from 'src/app/images/shared/image.dto';
 import { AdminProductImagesUploadComponent } from '../admin-product-images-upload/admin-product-images-upload.component';
