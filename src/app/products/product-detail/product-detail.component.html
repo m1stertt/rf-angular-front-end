@@ -27,19 +27,23 @@
                 </ng-template>
                 <p class="description">{{product.productDescription}}</p>
                 <div class="columns">
-                  <p><mat-button-toggle-group appearance="legacy" [(value)]="colorSelected">
-                    <mat-button-toggle *ngFor="let color of product.colors" [value]="color" matTooltip="{{color.title}}" [ngStyle]="{'background':color['colorString']}"></mat-button-toggle>
-                  </mat-button-toggle-group></p>
-                  <p><mat-form-field appearance="fill">
-                    <mat-label>Størrelse</mat-label>
-                    <mat-select [(value)]="sizeSelected">
-                      <mat-option *ngFor="let size of product.sizes" [value]="size" >{{size.title}}</mat-option>
-                    </mat-select>
-                  </mat-form-field></p>
-                    <button mat-raised-button (click)="addToCart(product)">Tilføj til kurv</button>
-                    <div *ngIf="this.appComponent.profile$ | async as profile" style="float:right;">
-                      <button mat-button *ngIf="profile.permissions.includes('Admin')||profile.permissions.includes('CanManageProducts')" routerLink="/admin/products/{{product.id}}" matTooltip="Edit product"><mat-icon>admin_panel_settings</mat-icon></button>
-                    </div>
+                  <div *ngIf="product.colors.length">
+                    <p><mat-button-toggle-group appearance="legacy" [(value)]="colorSelected">
+                      <mat-button-toggle *ngFor="let color of product.colors" [value]="color" matTooltip="{{color.title}}" [ngStyle]="{'background':color['colorString']}"></mat-button-toggle>
+                    </mat-button-toggle-group></p>
+                  </div>
+                  <div *ngIf="product.sizes.length">
+                    <p><mat-form-field appearance="fill">
+                      <mat-label>Størrelse</mat-label>
+                      <mat-select [(value)]="sizeSelected">
+                        <mat-option *ngFor="let size of product.sizes" [value]="size" >{{size.title}}</mat-option>
+                      </mat-select>
+                    </mat-form-field></p>
+                  </div>
+                  <button mat-raised-button (click)="addToCart(product)">Tilføj til kurv</button>
+                  <div *ngIf="this.appComponent.profile$ | async as profile" style="float:right;">
+                    <button mat-button *ngIf="profile.permissions.includes('Admin')||profile.permissions.includes('CanManageProducts')" routerLink="/admin/products/{{product.id}}" matTooltip="Edit product"><mat-icon>admin_panel_settings</mat-icon></button>
+                  </div>
                 </div>
               </div>
             </div>
