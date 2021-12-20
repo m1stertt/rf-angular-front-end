@@ -8,7 +8,7 @@
       <mat-label>Kategorier</mat-label>
       <mat-select [(ngModel)]="product.categories" [formControl]="categories_" multiple [compareWith]="compareWithFunc">
         <mat-option *ngFor="let category of categories" [value]="category" >{{category.name}}</mat-option>
-        <p-button (click)="createSize()">Ny kategori</p-button>
+        <button mat-button style="width:100%;" (click)="createCategory()">Ny kategori</button>
       </mat-select>
     </mat-form-field>
       <span class="p-float-label" style="margin-bottom:15px;">
