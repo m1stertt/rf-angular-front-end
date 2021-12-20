@@ -32,7 +32,7 @@ export class AdminColorsOverviewComponent implements OnInit {
     this.menuService.breadcrumb=[
       {icon:'pi pi-home',routerLink:"/"},
       {label:'Admin Panel',routerLink:"/admin"},
-      {label:'Kategorier',routerLink:"/admin/categories"}
+      {label:'Farver',routerLink:"/admin/colors"}
     ];
     this.colorsService.getAll().subscribe(e=>this.cats=e)
   }

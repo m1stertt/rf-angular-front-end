@@ -22,7 +22,7 @@ export class InventoryStocksService {
   }
 
   delete(id: number) {
-    return this._http.delete<InventoryStockDto>(this.configurationService.getServerEndPoint() +"InventoryStock/"+ id);
+    return this._http.delete<InventoryStockDto>(this.configurationService.getServerEndPoint() +"InventoryStock/"+ id).subscribe(r=>console.log(r),e=>console.log(e));
   }
 
   update(invStock: InventoryStockDto): Observable<InventoryStockDto> {

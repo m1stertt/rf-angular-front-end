@@ -21,10 +21,11 @@ export class AdminProductInventoryStockCreateComponent implements OnInit {
   constructor(private messageHandlingService:MessageHandlingService,
     private inventoryStockService:InventoryStocksService,
     private config: DynamicDialogConfig,
-    private ref:DynamicDialogRef) { }
+    private ref:DynamicDialogRef) { 
+      this.product=this.config.data.product;
+    }
 
   ngOnInit(): void {
-    this.product=this.config.data.product;
     console.log(this.product);
   }
 

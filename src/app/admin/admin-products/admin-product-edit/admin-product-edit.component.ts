@@ -23,6 +23,7 @@ import { AdminProductImagesEditComponent } from '../admin-product-images-edit/ad
 import { ImagesService } from 'src/app/images/shared/images.service';
 
 import {ConfigurationService} from "../../../configuration.service";
+import { InventoryStockDto } from 'src/app/products/shared/inventoryStock.dto';
 @Component({
   selector: 'app-admin-product-edit',
   templateUrl: './admin-product-edit.component.html',
@@ -126,6 +127,10 @@ export class AdminProductEditComponent implements OnInit {
       .subscribe(product => this.sizes = product);
   }
 
+  deleteInventoryStock(invStock:InventoryStockDto){
+    this.inventoryStockService.delete(invStock.id);
+  }
+
   update() {
     if (!this.product) return this.messageHandlingService.error("Der er et problem med at indhente produktet.");
     if(!this.product.productName.length) return this.messageHandlingService.error("Produktet skal have et navn");
@@ -138,7 +143,10 @@ export class AdminProductEditComponent implements OnInit {
   }
 
   editImage(image:ImageDto){
-    this.dialogService.open(AdminProductImagesEditComponent,{ data:{ image:image }, header: 'Rediger billede', width: '480px' });
+    let ref=this.dialogService.open(AdminProductImagesEditComponent,{ data:{ image:image }, header: 'Rediger billede', width: '480px' });
+    ref.onClose.subscribe(r=>{
+      this.getImages();
+    });
   }
   compareWithFunc(a: CategoryDto, b:CategoryDto) { return a.id === b.id; }
 }
