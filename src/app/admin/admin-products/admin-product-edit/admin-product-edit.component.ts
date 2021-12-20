@@ -24,6 +24,7 @@ import { ImagesService } from 'src/app/images/shared/images.service';
 
 import {ConfigurationService} from "../../../configuration.service";
 import { InventoryStockDto } from 'src/app/products/shared/inventoryStock.dto';
+import { AdminCategoryCreateComponent } from '../../admin-categories/admin-category-create/admin-category-create.component';
 @Component({
   selector: 'app-admin-product-edit',
   templateUrl: './admin-product-edit.component.html',
@@ -64,8 +65,13 @@ export class AdminProductEditComponent implements OnInit {
     ];
   }
 
+  createCategory(){
+    let ref=this.dialogService.open(AdminCategoryCreateComponent,{ header: 'Ny kategori',  width: '240px' });
+    ref.onClose.subscribe(res=>this.getCategories());
+  }
+
   createSize(){
-    let ref=this.dialogService.open(AdminSizeCreateComponent,{ header: 'Ny størrelse', width: '70%' });
+    let ref=this.dialogService.open(AdminSizeCreateComponent,{ header: 'Ny størrelse', width: '240px' });
     ref.onClose.subscribe(res=>this.getSizes());
   }
 
